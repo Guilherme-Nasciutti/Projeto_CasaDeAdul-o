@@ -41,6 +41,11 @@ class UsersController extends AppController
 
     }
 
+    public function profile()
+    {
+
+    }
+
     /**
      * Index method
      *

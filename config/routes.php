@@ -57,37 +57,35 @@ Router::scope('/', function (RouteBuilder $routes) {
      */
     $routes->applyMiddleware('csrf');
 
-    /*
-     * Here, we are connecting '/' (base path) to a controller called 'Pages',
-     * its action called 'display', and we pass a param to select the view file
-     * to use (in this case, src/Template/Pages/home.ctp)...
-     */
-    $routes->connect('/', ['controller' => 'Pages', 'action' => 'display', 'home']);
+    // Rotas publicas
+    $routes->connect('/', ['controller' => 'Users', 'action' => 'login']);
+    $routes->connect('/login', ['controller' => 'Users', 'action' => 'login']);
+    $routes->connect('/recuperar-senha', ['controller' => 'Users', 'action' => 'rescuePassword']);
+    $routes->connect('/nova-senha/:token', ['controller' => 'Users', 'action' => 'changePassword']);
 
-    /*
-     * ...and connect the rest of 'Pages' controller's URLs.
-     */
-    $routes->connect('/pages/*', ['controller' => 'Pages', 'action' => 'display']);
+    // Rotas privadas
+    $routes->connect('/sair', ['controller' => 'Users', 'action' => 'logout']);
 
-    /*
-     * Connect catchall routes for all controllers.
-     *
-     * Using the argument `DashedRoute`, the `fallbacks` method is a shortcut for
-     *
-     * ```
-     * $routes->connect('/:controller', ['action' => 'index'], ['routeClass' => 'DashedRoute']);
-     * $routes->connect('/:controller/:action/*', [], ['routeClass' => 'DashedRoute']);
-     * ```
-     *
-     * Any route class can be used with this method, such as:
-     * - DashedRoute
-     * - InflectedRoute
-     * - Route
-     * - Or your own route class
-     *
-     * You can remove these routes once you've connected the
-     * routes you want in your application.
-     */
+    // Users
+    $routes->connect('/usuarios/cadastrar', ['controller' => 'Users', 'action' => 'add']);
+    $routes->connect('/usuarios/editar/:id', ['controller' => 'Users', 'action' => 'edit'], ['pass' => ['id'], '_name' => 'editar_users']);
+    $routes->connect('/usuarios/visualizar/:id', ['controller' => 'Users', 'action' => 'view'], ['pass' => ['id'], '_name' => 'visualizar_users']);
+
+    // Activities
+    $routes->connect('/atividades/cadastrar', ['controller' => 'Activities', 'action' => 'add']);
+    $routes->connect('/atividades/editar/:id', ['controller' => 'Activities', 'action' => 'edit'], ['pass' => ['id'], '_name' => 'editar_activities']);
+    $routes->connect('/atividades/visualizar/:id', ['controller' => 'Activities', 'action' => 'view'], ['pass' => ['id'], '_name' => 'visualizar_activities']);
+
+    // Persons
+    $routes->connect('/pessoas/cadastrar', ['controller' => 'Persons', 'action' => 'add']);
+    $routes->connect('/pessoas/editar/:id', ['controller' => 'Persons', 'action' => 'edit'], ['pass' => ['id'], '_name' => 'editar_persons']);
+    $routes->connect('/pessoas/visualizar/:id', ['controller' => 'Persons', 'action' => 'view'], ['pass' => ['id'], '_name' => 'visualizar_persons']);
+
+    // Roles
+    $routes->connect('/perfis/cadastrar', ['controller' => 'Roles', 'action' => 'add']);
+    $routes->connect('/perfis/editar/:id', ['controller' => 'Roles', 'action' => 'edit'], ['pass' => ['id'], '_name' => 'editar_roles']);
+    $routes->connect('/perfis/visualizar/:id', ['controller' => 'Roles', 'action' => 'view'], ['pass' => ['id'], '_name' => 'visualizar_roles']);
+
     $routes->fallbacks(DashedRoute::class);
 });
 

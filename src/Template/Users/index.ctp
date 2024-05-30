@@ -1,3 +1,13 @@
+<?= $this->Html->link('Novo usuário', ['controller' => 'Users', 'action' => 'add']); ?>
+
+
+<?= $this->Html->link('<i class="fa-solid fa-eye" style="color: #0069b3;"></i>', ['_name' => 'visualizar_users', 'id' => $user->id], ['escape' => false]); ?>
+
+<?= $this->Html->link('<i class="fa-solid fa-pen-to-square" style="color: #ff6600;"></i>', ['_name' => 'editar_users', 'id' => $user->id], ['escape' => false]); ?>
+
+<?= $this->Form->postLink(__('<i class="fa-solid fa-trash fa-rotate-by" style="color: #d6002f; --fa-rotate-angle: 0deg;""></i>'), ['action' => 'delete', $user->id], ['escape' => false, 'confirm' => __('Tem certeza que deseja apagar o perfil {0}?', $user->full_name)]); ?>
+
+
 <?php
 /**
  * @var \App\View\AppView $this
