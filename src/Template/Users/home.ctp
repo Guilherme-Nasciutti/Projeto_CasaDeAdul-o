@@ -1,2 +1,3 @@
-<h1>Bem vindo!</h1>
-<?= $this->Html->link(__('Logout'), ['action' => 'logout']) ?>
+<header>
+    <h2>Seja bem-vindo!</h2>
+</header>

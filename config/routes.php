@@ -67,21 +67,25 @@ Router::scope('/', function (RouteBuilder $routes) {
     $routes->connect('/sair', ['controller' => 'Users', 'action' => 'logout']);
 
     // Users
+    $routes->connect('/usuarios', ['controller' => 'Users', 'action' => 'index']);
     $routes->connect('/usuarios/cadastrar', ['controller' => 'Users', 'action' => 'add']);
     $routes->connect('/usuarios/editar/:id', ['controller' => 'Users', 'action' => 'edit'], ['pass' => ['id'], '_name' => 'editar_users']);
     $routes->connect('/usuarios/visualizar/:id', ['controller' => 'Users', 'action' => 'view'], ['pass' => ['id'], '_name' => 'visualizar_users']);
 
     // Activities
+    $routes->connect('/atividades', ['controller' => 'Activities', 'action' => 'index']);
     $routes->connect('/atividades/cadastrar', ['controller' => 'Activities', 'action' => 'add']);
     $routes->connect('/atividades/editar/:id', ['controller' => 'Activities', 'action' => 'edit'], ['pass' => ['id'], '_name' => 'editar_activities']);
     $routes->connect('/atividades/visualizar/:id', ['controller' => 'Activities', 'action' => 'view'], ['pass' => ['id'], '_name' => 'visualizar_activities']);
 
     // Persons
+    $routes->connect('/pessoas', ['controller' => 'Persons', 'action' => 'index']);
     $routes->connect('/pessoas/cadastrar', ['controller' => 'Persons', 'action' => 'add']);
     $routes->connect('/pessoas/editar/:id', ['controller' => 'Persons', 'action' => 'edit'], ['pass' => ['id'], '_name' => 'editar_persons']);
     $routes->connect('/pessoas/visualizar/:id', ['controller' => 'Persons', 'action' => 'view'], ['pass' => ['id'], '_name' => 'visualizar_persons']);
 
     // Roles
+    $routes->connect('/perfis', ['controller' => 'Roles', 'action' => 'index']);
     $routes->connect('/perfis/cadastrar', ['controller' => 'Roles', 'action' => 'add']);
     $routes->connect('/perfis/editar/:id', ['controller' => 'Roles', 'action' => 'edit'], ['pass' => ['id'], '_name' => 'editar_roles']);
     $routes->connect('/perfis/visualizar/:id', ['controller' => 'Roles', 'action' => 'view'], ['pass' => ['id'], '_name' => 'visualizar_roles']);

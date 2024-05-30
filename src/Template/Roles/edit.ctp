@@ -1,3 +1,9 @@
+<header>
+    <h2>Perfis <small>editar</small></h2>
+    <?= $this->Html->link('Voltar', ['controller' => 'Roles', 'action' => 'index']); ?>
+</header>
+
+
 <?php
 /**
  * @var \App\View\AppView $this

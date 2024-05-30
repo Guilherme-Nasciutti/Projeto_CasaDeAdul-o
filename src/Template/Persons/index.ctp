@@ -1,3 +1,8 @@
+<header>
+    <h2>Pessoas <small>listagem</small></h2>
+    <?= $this->Html->link('Nova pessoa', ['controller' => 'Persons', 'action' => 'add']); ?>
+</header>
+
 <?php
 /**
  * @var \App\View\AppView $this

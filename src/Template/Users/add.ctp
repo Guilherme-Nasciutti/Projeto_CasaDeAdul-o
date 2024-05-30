@@ -1,3 +1,8 @@
+<header>
+    <h2>Administrador <small>cadastrar</small></h2>
+    <?= $this->Html->link('Voltar', ['controller' => 'Users', 'action' => 'index']); ?>
+</header>
+
 <?php
 /**
  * @var \App\View\AppView $this

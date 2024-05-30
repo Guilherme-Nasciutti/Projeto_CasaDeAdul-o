@@ -1,1 +1,3 @@
-<h1>Meu perfil!</h1>
+<header>
+    <h2>Meu perfil <small>dados</small></h2>
+</header>

@@ -1,3 +1,9 @@
+<header>
+    <h2>Administradores <small>listagem</small></h2>
+    <?= $this->Html->link('Novo administrador', ['controller' => 'Users', 'action' => 'add']); ?>
+</header>
+
+
 <?= $this->Html->link('Novo usuário', ['controller' => 'Users', 'action' => 'add']); ?>
 
 

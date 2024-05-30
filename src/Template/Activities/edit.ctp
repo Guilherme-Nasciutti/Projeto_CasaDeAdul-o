@@ -1,3 +1,9 @@
+<header>
+    <h2>Atividades <small>editar</small></h2>
+    <?= $this->Html->link('Voltar', ['controller' => 'Activities', 'action' => 'index']); ?>
+</header>
+
+
 <?php
 /**
  * @var \App\View\AppView $this

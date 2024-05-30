@@ -1,3 +1,8 @@
+<header>
+    <h2>Perfis <small>listagem</small></h2>
+    <?= $this->Html->link('Novo perfil', ['controller' => 'Roles', 'action' => 'add']); ?>
+</header>
+
 <?php
 /**
  * @var \App\View\AppView $this
