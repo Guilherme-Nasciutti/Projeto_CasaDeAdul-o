@@ -4,39 +4,25 @@
     <nav>
       <ul class="container_links">
         <li>
-          <a href="#" class="actived">
-            <i class="bi bi-house-door"></i> Inicio
-          </a>
+            <?= $this->Html->link('<i class="bi bi-house-door"></i> Início', ['controller' => 'Users', 'action' => 'home'], ['escape' => false]); ?>
         </li>
         <li>
-          <a href="./persons/index.html">
-            <i class="bi bi-people-fill"></i> Pessoas
-          </a>
+            <?= $this->Html->link('<i class="bi bi-people-fill"></i> Pessoas', ['controller' => 'Persons', 'action' => 'index'], ['escape' => false]); ?>
         </li>
         <li>
-          <a href="./activities/index.html">
-            <i class="bi bi-columns-gap"></i> Atividades
-          </a>
+            <?= $this->Html->link('<i class="bi bi-columns-gap"></i> Atividades', ['controller' => 'Activities', 'action' => 'index'], ['escape' => false]); ?>
         </li>
         <li>
-          <a href="./users/index.html">
-            <i class="bi bi-person-fill-gear"></i> Administradores
-          </a>
+            <?= $this->Html->link('<i class="bi bi-person-fill-gear"></i> Administradores', ['controller' => 'Users', 'action' => 'index'], ['escape' => false]); ?>
         </li>
         <li>
-          <a href="./roles/index.html">
-            <i class="bi bi-gear-wide-connected"></i> Perfis
-          </a>
+            <?= $this->Html->link('<i class="bi bi-gear-wide-connected"></i> Perfis', ['controller' => 'Roles', 'action' => 'index'], ['escape' => false]); ?>
         </li>
         <li>
-          <a href="./profile.html">
-            <i class="bi bi-person-vcard-fill"></i> Meus dados
-          </a>
+            <?= $this->Html->link('<i class="bi bi-person-vcard-fill"></i> Meus dados', ['controller' => 'Users', 'action' => 'profile'], ['escape' => false]); ?>
         </li>
         <li>
-          <a href="../index.html">
-            <i class="bi bi-box-arrow-left"></i> Sair
-          </a>
+            <?= $this->Html->link('<i class="bi bi-box-arrow-left"></i> Sair', ['controller' => 'Users', 'action' => 'logout'], ['escape' => false]); ?>
         </li>
       </ul>
     </nav>
