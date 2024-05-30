@@ -54,11 +54,11 @@ class ActivitiesController extends AppController
         if ($this->request->is('post')) {
             $activity = $this->Activities->patchEntity($activity, $this->request->getData());
             if ($this->Activities->save($activity)) {
-                $this->Flash->success(__('The activity has been saved.'));
+                $this->Flash->success(__('A ativididade foi salva com sucesso.'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The activity could not be saved. Please, try again.'));
+            $this->Flash->error(__('Não foi possível salvar a atividade. Por favor, tente novamente.'));
         }
         $persons = $this->Activities->Persons->find('list', ['limit' => 200]);
         $this->set(compact('activity', 'persons'));
@@ -79,11 +79,11 @@ class ActivitiesController extends AppController
         if ($this->request->is(['patch', 'post', 'put'])) {
             $activity = $this->Activities->patchEntity($activity, $this->request->getData());
             if ($this->Activities->save($activity)) {
-                $this->Flash->success(__('The activity has been saved.'));
+                $this->Flash->success(__('A ativididade foi alterada com sucesso.'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The activity could not be saved. Please, try again.'));
+            $this->Flash->error(__('Não foi possível alterar a atividade. Por favor, tente novamente.'));
         }
         $persons = $this->Activities->Persons->find('list', ['limit' => 200]);
         $this->set(compact('activity', 'persons'));
@@ -101,9 +101,9 @@ class ActivitiesController extends AppController
         $this->request->allowMethod(['post', 'delete']);
         $activity = $this->Activities->get($id);
         if ($this->Activities->delete($activity)) {
-            $this->Flash->success(__('The activity has been deleted.'));
+            $this->Flash->success(__('A atividade foi deletada com sucesso.'));
         } else {
-            $this->Flash->error(__('The activity could not be deleted. Please, try again.'));
+            $this->Flash->error(__('Não foi possível deletar a atividade. Por favor, tente novamente.'));
         }
 
         return $this->redirect(['action' => 'index']);
