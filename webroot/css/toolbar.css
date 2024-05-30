@@ -1,0 +1,39 @@
+.toolbar {
+    margin-left: 250px;
+    padding: 20px 40px;
+    border-bottom: 1px solid var(--grey);
+}
+
+.toolbar nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.toolbar ul {
+    gap: 2em;
+    list-style-type: none;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+}
+
+.toolbar li a {
+    gap: .5em;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.toolbar_full {
+    margin-left: 0px;
+}
+
+.hide_sidebar {
+    transform: translateX(-100%);
+}
+
+#expand {
+    font-size: 1.2em;
+    cursor: pointer;
+}

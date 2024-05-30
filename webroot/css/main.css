@@ -1,0 +1,32 @@
+.container_main {
+    margin-left: 250px;
+    padding: 40px;
+}
+
+.container_main header {
+    margin-bottom: 2em;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.container_main header small {
+    font-size: .6em;
+    color: var(--grey);
+}
+
+.container_main header a {
+    padding: 8px;
+    border-radius: 6px;
+    border: 1px solid var(--blue);
+    color: var(--blue);
+}
+
+.edit_profile {
+    border: 1px solid var(--red) !important;
+    color: var(--red) !important;
+}
+
+.container_full {
+    margin-left: 0px;
+}

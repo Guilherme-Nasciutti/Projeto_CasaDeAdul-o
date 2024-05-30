@@ -75,4 +75,18 @@ class AppController extends Controller
             'unauthorizedRedirect' => $this->referer()
         ]);
     }
+
+    public function beforeRender(Event $event)
+    {
+        if (
+            ($this->request->getParam(['action']) !== null ) AND (
+                ($this->request->getParam(['action']) == 'login')
+            )
+        ) {
+            $this->viewBuilder()->setLayout('default');
+
+        } else {
+            $this->viewBuilder()->setLayout('admin');
+        }
+    }
 }

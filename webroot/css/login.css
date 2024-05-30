@@ -1,0 +1,40 @@
+main {
+    width: 100vw;
+    height: 90vh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+form {
+    gap: 1em;
+    padding: 30px;
+    width: 400px;
+    border-radius: 8px;
+    margin: 0 20px;
+
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--grey);
+    background: var(--gray);
+}
+
+h2 {
+    margin-bottom: 10px;
+    text-transform: uppercase;
+}
+
+.link_password {
+    margin: 10px 0;
+}
+
+footer {
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    padding: 10px;
+    font-weight: 500;
+    position: fixed;
+    text-align: center;
+}
