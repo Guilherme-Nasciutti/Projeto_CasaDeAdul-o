@@ -357,3 +357,28 @@
 2024-05-30 20:13:28 Debug: duration=1 rows=1 SELECT Users.id AS `Users__id`, Users.full_name AS `Users__full_name`, Users.email AS `Users__email`, Users.password AS `Users__password`, Users.password_reset_token AS `Users__password_reset_token` FROM users Users WHERE Users.email = 'yuriaguiar.nascimentof@gmail.com'
 2024-05-30 20:13:50 Debug: duration=1 rows=1 SELECT Users.id AS `Users__id`, Users.full_name AS `Users__full_name`, Users.email AS `Users__email`, Users.password AS `Users__password`, Users.password_reset_token AS `Users__password_reset_token` FROM users Users WHERE Users.email = 'yuriaguiar.nascimentof@gmail.com'
 2024-05-30 20:15:18 Debug: duration=1 rows=1 SELECT Users.id AS `Users__id`, Users.full_name AS `Users__full_name`, Users.email AS `Users__email`, Users.password AS `Users__password`, Users.password_reset_token AS `Users__password_reset_token` FROM users Users WHERE Users.email = 'yuriaguiar.nascimentof@gmail.com' LIMIT 1
+2024-05-30 21:20:58 Debug: duration=2 rows=5 SHOW FULL COLUMNS FROM `users`
+2024-05-30 21:20:58 Debug: duration=1 rows=2 SHOW INDEXES FROM `users`
+2024-05-30 21:20:58 Debug: duration=2 rows=0 SELECT * FROM information_schema.key_column_usage AS kcu
+            INNER JOIN information_schema.referential_constraints AS rc
+            ON (
+                kcu.CONSTRAINT_NAME = rc.CONSTRAINT_NAME
+                AND kcu.CONSTRAINT_SCHEMA = rc.CONSTRAINT_SCHEMA
+            )
+            WHERE kcu.TABLE_SCHEMA = 'projeto_adulao' AND kcu.TABLE_NAME = 'users' AND rc.TABLE_NAME = 'users'
+2024-05-30 21:20:58 Debug: duration=1 rows=1 SHOW TABLE STATUS WHERE Name = 'users'
+2024-05-30 21:20:58 Debug: duration=1 rows=1 SELECT Users.id AS `Users__id`, Users.full_name AS `Users__full_name`, Users.email AS `Users__email`, Users.password AS `Users__password`, Users.password_reset_token AS `Users__password_reset_token` FROM users Users WHERE Users.email = 'yuriaguiar.nascimentof@gmail.com' LIMIT 1
+2024-05-30 21:21:11 Debug: duration=1 rows=1 SELECT Users.id AS `Users__id`, Users.full_name AS `Users__full_name`, Users.email AS `Users__email`, Users.password AS `Users__password`, Users.password_reset_token AS `Users__password_reset_token` FROM users Users WHERE Users.email = 'yuriaguiar.nascimentof@gmail.com' LIMIT 1
+2024-05-30 21:21:20 Debug: duration=1 rows=1 SELECT Users.id AS `Users__id`, Users.full_name AS `Users__full_name`, Users.email AS `Users__email`, Users.password AS `Users__password`, Users.password_reset_token AS `Users__password_reset_token` FROM users Users WHERE Users.email = 'yuriaguiar.nascimentof@gmail.com' LIMIT 1
+2024-05-30 21:21:54 Debug: duration=1 rows=1 SELECT Users.id AS `Users__id`, Users.full_name AS `Users__full_name`, Users.email AS `Users__email`, Users.password AS `Users__password`, Users.password_reset_token AS `Users__password_reset_token` FROM users Users WHERE Users.email = 'yuriaguiar.nascimentof@gmail.com' LIMIT 1
+2024-05-30 21:28:51 Debug: duration=3 rows=5 SHOW FULL COLUMNS FROM `users`
+2024-05-30 21:28:51 Debug: duration=2 rows=2 SHOW INDEXES FROM `users`
+2024-05-30 21:28:51 Debug: duration=2 rows=0 SELECT * FROM information_schema.key_column_usage AS kcu
+            INNER JOIN information_schema.referential_constraints AS rc
+            ON (
+                kcu.CONSTRAINT_NAME = rc.CONSTRAINT_NAME
+                AND kcu.CONSTRAINT_SCHEMA = rc.CONSTRAINT_SCHEMA
+            )
+            WHERE kcu.TABLE_SCHEMA = 'projeto_adulao' AND kcu.TABLE_NAME = 'users' AND rc.TABLE_NAME = 'users'
+2024-05-30 21:28:51 Debug: duration=1 rows=1 SHOW TABLE STATUS WHERE Name = 'users'
+2024-05-30 21:28:51 Debug: duration=1 rows=1 SELECT Users.id AS `Users__id`, Users.full_name AS `Users__full_name`, Users.email AS `Users__email`, Users.password AS `Users__password`, Users.password_reset_token AS `Users__password_reset_token` FROM users Users WHERE Users.email = 'yuriaguiar.nascimentof@gmail.com' LIMIT 1
