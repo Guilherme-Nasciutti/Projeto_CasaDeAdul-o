@@ -51,11 +51,11 @@ class RolesController extends AppController
         if ($this->request->is('post')) {
             $role = $this->Roles->patchEntity($role, $this->request->getData());
             if ($this->Roles->save($role)) {
-                $this->Flash->success(__('The role has been saved.'));
+                $this->Flash->success(__('Registo salvo com sucesso.'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The role could not be saved. Please, try again.'));
+            $this->Flash->error(__('Não foi possivel salvar o registro. Por favor, tente novamente.'));
         }
         $this->set(compact('role'));
     }
@@ -75,11 +75,11 @@ class RolesController extends AppController
         if ($this->request->is(['patch', 'post', 'put'])) {
             $role = $this->Roles->patchEntity($role, $this->request->getData());
             if ($this->Roles->save($role)) {
-                $this->Flash->success(__('The role has been saved.'));
+                $this->Flash->success(__('O registro foi alterado com sucesso.'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The role could not be saved. Please, try again.'));
+            $this->Flash->error(__('Não foi possivel alterar o registro. Por favor, tente novamente.'));
         }
         $this->set(compact('role'));
     }
@@ -96,9 +96,9 @@ class RolesController extends AppController
         $this->request->allowMethod(['post', 'delete']);
         $role = $this->Roles->get($id);
         if ($this->Roles->delete($role)) {
-            $this->Flash->success(__('The role has been deleted.'));
+            $this->Flash->success(__('O registro foi deletado com sucesso.'));
         } else {
-            $this->Flash->error(__('The role could not be deleted. Please, try again.'));
+            $this->Flash->error(__('Não foi possivel deletar o registro. Por favor, tente novamente.'));
         }
 
         return $this->redirect(['action' => 'index']);

@@ -54,11 +54,11 @@ class PersonsController extends AppController
         if ($this->request->is('post')) {
             $person = $this->Persons->patchEntity($person, $this->request->getData());
             if ($this->Persons->save($person)) {
-                $this->Flash->success(__('The person has been saved.'));
+                $this->Flash->success(__('O registro foi salvo com sucesso.'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The person could not be saved. Please, try again.'));
+            $this->Flash->error(__('Não foi possivel salvar o registro. Por favor, tente novamente.'));
         }
         $roles = $this->Persons->Roles->find('list', ['limit' => 200]);
         $this->set(compact('person', 'roles'));
@@ -79,11 +79,11 @@ class PersonsController extends AppController
         if ($this->request->is(['patch', 'post', 'put'])) {
             $person = $this->Persons->patchEntity($person, $this->request->getData());
             if ($this->Persons->save($person)) {
-                $this->Flash->success(__('The person has been saved.'));
+                $this->Flash->success(__('O registro foi alterado com sucesso.'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The person could not be saved. Please, try again.'));
+            $this->Flash->error(__('Não foi possivel alterar o registro. Por favor, tente novamente.'));
         }
         $roles = $this->Persons->Roles->find('list', ['limit' => 200]);
         $this->set(compact('person', 'roles'));
@@ -101,9 +101,9 @@ class PersonsController extends AppController
         $this->request->allowMethod(['post', 'delete']);
         $person = $this->Persons->get($id);
         if ($this->Persons->delete($person)) {
-            $this->Flash->success(__('The person has been deleted.'));
+            $this->Flash->success(__('O registro foi deletado com sucesso.'));
         } else {
-            $this->Flash->error(__('The person could not be deleted. Please, try again.'));
+            $this->Flash->error(__('Não foi possivel deletar o registro. Por favor, tente novamente.'));
         }
 
         return $this->redirect(['action' => 'index']);
