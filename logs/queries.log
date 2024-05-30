@@ -1,0 +1,359 @@
+2024-05-30 20:00:11 Debug: duration=5 rows=4 SHOW TABLES FROM `projeto_adulao`
+2024-05-30 20:00:17 Debug: duration=2 rows=4 SHOW TABLES FROM `projeto_adulao`
+2024-05-30 20:00:17 Debug: duration=2 rows=5 SHOW FULL COLUMNS FROM `users`
+2024-05-30 20:00:17 Debug: duration=12 rows=2 SHOW INDEXES FROM `users`
+2024-05-30 20:00:17 Debug: duration=3 rows=0 SELECT * FROM information_schema.key_column_usage AS kcu
+            INNER JOIN information_schema.referential_constraints AS rc
+            ON (
+                kcu.CONSTRAINT_NAME = rc.CONSTRAINT_NAME
+                AND kcu.CONSTRAINT_SCHEMA = rc.CONSTRAINT_SCHEMA
+            )
+            WHERE kcu.TABLE_SCHEMA = 'projeto_adulao' AND kcu.TABLE_NAME = 'users' AND rc.TABLE_NAME = 'users'
+2024-05-30 20:00:17 Debug: duration=5 rows=1 SHOW TABLE STATUS WHERE Name = 'users'
+2024-05-30 20:00:17 Debug: duration=2 rows=8 SHOW FULL COLUMNS FROM `activities`
+2024-05-30 20:00:17 Debug: duration=5 rows=2 SHOW INDEXES FROM `activities`
+2024-05-30 20:00:17 Debug: duration=1 rows=1 SELECT * FROM information_schema.key_column_usage AS kcu
+            INNER JOIN information_schema.referential_constraints AS rc
+            ON (
+                kcu.CONSTRAINT_NAME = rc.CONSTRAINT_NAME
+                AND kcu.CONSTRAINT_SCHEMA = rc.CONSTRAINT_SCHEMA
+            )
+            WHERE kcu.TABLE_SCHEMA = 'projeto_adulao' AND kcu.TABLE_NAME = 'activities' AND rc.TABLE_NAME = 'activities'
+2024-05-30 20:00:17 Debug: duration=3 rows=1 SHOW TABLE STATUS WHERE Name = 'activities'
+2024-05-30 20:00:17 Debug: duration=1 rows=8 SHOW FULL COLUMNS FROM `persons`
+2024-05-30 20:00:17 Debug: duration=5 rows=2 SHOW INDEXES FROM `persons`
+2024-05-30 20:00:17 Debug: duration=1 rows=1 SELECT * FROM information_schema.key_column_usage AS kcu
+            INNER JOIN information_schema.referential_constraints AS rc
+            ON (
+                kcu.CONSTRAINT_NAME = rc.CONSTRAINT_NAME
+                AND kcu.CONSTRAINT_SCHEMA = rc.CONSTRAINT_SCHEMA
+            )
+            WHERE kcu.TABLE_SCHEMA = 'projeto_adulao' AND kcu.TABLE_NAME = 'persons' AND rc.TABLE_NAME = 'persons'
+2024-05-30 20:00:17 Debug: duration=3 rows=1 SHOW TABLE STATUS WHERE Name = 'persons'
+2024-05-30 20:00:17 Debug: duration=2 rows=4 SHOW FULL COLUMNS FROM `roles`
+2024-05-30 20:00:17 Debug: duration=3 rows=1 SHOW INDEXES FROM `roles`
+2024-05-30 20:00:17 Debug: duration=1 rows=0 SELECT * FROM information_schema.key_column_usage AS kcu
+            INNER JOIN information_schema.referential_constraints AS rc
+            ON (
+                kcu.CONSTRAINT_NAME = rc.CONSTRAINT_NAME
+                AND kcu.CONSTRAINT_SCHEMA = rc.CONSTRAINT_SCHEMA
+            )
+            WHERE kcu.TABLE_SCHEMA = 'projeto_adulao' AND kcu.TABLE_NAME = 'roles' AND rc.TABLE_NAME = 'roles'
+2024-05-30 20:00:17 Debug: duration=3 rows=1 SHOW TABLE STATUS WHERE Name = 'roles'
+2024-05-30 20:00:18 Debug: duration=2 rows=5 SHOW FULL COLUMNS FROM `users`
+2024-05-30 20:00:18 Debug: duration=2 rows=2 SHOW INDEXES FROM `users`
+2024-05-30 20:00:18 Debug: duration=1 rows=0 SELECT * FROM information_schema.key_column_usage AS kcu
+            INNER JOIN information_schema.referential_constraints AS rc
+            ON (
+                kcu.CONSTRAINT_NAME = rc.CONSTRAINT_NAME
+                AND kcu.CONSTRAINT_SCHEMA = rc.CONSTRAINT_SCHEMA
+            )
+            WHERE kcu.TABLE_SCHEMA = 'projeto_adulao' AND kcu.TABLE_NAME = 'users' AND rc.TABLE_NAME = 'users'
+2024-05-30 20:00:18 Debug: duration=1 rows=1 SHOW TABLE STATUS WHERE Name = 'users'
+2024-05-30 20:00:33 Debug: duration=2 rows=5 SHOW FULL COLUMNS FROM `users`
+2024-05-30 20:00:33 Debug: duration=1 rows=2 SHOW INDEXES FROM `users`
+2024-05-30 20:00:33 Debug: duration=2 rows=0 SELECT * FROM information_schema.key_column_usage AS kcu
+            INNER JOIN information_schema.referential_constraints AS rc
+            ON (
+                kcu.CONSTRAINT_NAME = rc.CONSTRAINT_NAME
+                AND kcu.CONSTRAINT_SCHEMA = rc.CONSTRAINT_SCHEMA
+            )
+            WHERE kcu.TABLE_SCHEMA = 'projeto_adulao' AND kcu.TABLE_NAME = 'users' AND rc.TABLE_NAME = 'users'
+2024-05-30 20:00:33 Debug: duration=2 rows=1 SHOW TABLE STATUS WHERE Name = 'users'
+2024-05-30 20:00:33 Debug: duration=1 rows=3 SELECT Users.id AS `Users__id`, Users.full_name AS `Users__full_name`, Users.email AS `Users__email`, Users.password AS `Users__password`, Users.password_reset_token AS `Users__password_reset_token` FROM users Users LIMIT 20 OFFSET 0
+2024-05-30 20:00:33 Debug: duration=3 rows=1 SELECT (COUNT(*)) AS `count` FROM users Users
+2024-05-30 20:00:37 Debug: duration=1 rows=1 SELECT Users.id AS `Users__id`, Users.full_name AS `Users__full_name`, Users.email AS `Users__email`, Users.password AS `Users__password`, Users.password_reset_token AS `Users__password_reset_token` FROM users Users WHERE Users.id = 1 LIMIT 1
+2024-05-30 20:00:41 Debug: duration=1 rows=1 SELECT Users.id AS `Users__id`, Users.full_name AS `Users__full_name`, Users.email AS `Users__email`, Users.password AS `Users__password`, Users.password_reset_token AS `Users__password_reset_token` FROM users Users WHERE Users.id = 1 LIMIT 1
+2024-05-30 20:01:23 Debug: duration=2 rows=0 SELECT 1 AS `existing` FROM users Users WHERE Users.email = 'guilherm@gmail.com' LIMIT 1
+2024-05-30 20:01:23 Debug: duration=0 rows=0 BEGIN
+2024-05-30 20:01:23 Debug: duration=1 rows=0 SELECT 1 AS `existing` FROM users Users WHERE Users.email = 'guilherm@gmail.com' LIMIT 1
+2024-05-30 20:01:23 Debug: duration=2 rows=1 INSERT INTO users (full_name, email, password, password_reset_token) VALUES ('Guilherme Nasciuti', 'guilherm@gmail.com', '123456', '')
+2024-05-30 20:01:23 Debug: duration=0 rows=0 COMMIT
+2024-05-30 20:01:23 Debug: duration=1 rows=4 SELECT Users.id AS `Users__id`, Users.full_name AS `Users__full_name`, Users.email AS `Users__email`, Users.password AS `Users__password`, Users.password_reset_token AS `Users__password_reset_token` FROM users Users LIMIT 20 OFFSET 0
+2024-05-30 20:01:23 Debug: duration=2 rows=1 SELECT (COUNT(*)) AS `count` FROM users Users
+2024-05-30 20:02:53 Debug: duration=2 rows=5 SHOW FULL COLUMNS FROM `users`
+2024-05-30 20:02:53 Debug: duration=2 rows=2 SHOW INDEXES FROM `users`
+2024-05-30 20:02:53 Debug: duration=2 rows=0 SELECT * FROM information_schema.key_column_usage AS kcu
+            INNER JOIN information_schema.referential_constraints AS rc
+            ON (
+                kcu.CONSTRAINT_NAME = rc.CONSTRAINT_NAME
+                AND kcu.CONSTRAINT_SCHEMA = rc.CONSTRAINT_SCHEMA
+            )
+            WHERE kcu.TABLE_SCHEMA = 'projeto_adulao' AND kcu.TABLE_NAME = 'users' AND rc.TABLE_NAME = 'users'
+2024-05-30 20:02:53 Debug: duration=2 rows=1 SHOW TABLE STATUS WHERE Name = 'users'
+2024-05-30 20:03:06 Debug: duration=1 rows=0 SELECT 1 AS `existing` FROM users Users WHERE Users.email = 'kaua@gmail.com' LIMIT 1
+2024-05-30 20:03:06 Debug: duration=0 rows=0 BEGIN
+2024-05-30 20:03:06 Debug: duration=1 rows=0 SELECT 1 AS `existing` FROM users Users WHERE Users.email = 'kaua@gmail.com' LIMIT 1
+2024-05-30 20:03:06 Debug: duration=1 rows=1 INSERT INTO users (full_name, email, password, password_reset_token) VALUES ('Kaua Fernandes', 'kaua@gmail.com', '$2y$10$5NAX0/5nZmg5ElUAIjpk4Ov3wc4iF9Duqe1oCjiKzrZWprIaTCZM.', '')
+2024-05-30 20:03:06 Debug: duration=0 rows=0 COMMIT
+2024-05-30 20:03:06 Debug: duration=1 rows=5 SELECT Users.id AS `Users__id`, Users.full_name AS `Users__full_name`, Users.email AS `Users__email`, Users.password AS `Users__password`, Users.password_reset_token AS `Users__password_reset_token` FROM users Users LIMIT 20 OFFSET 0
+2024-05-30 20:03:06 Debug: duration=2 rows=1 SELECT (COUNT(*)) AS `count` FROM users Users
+2024-05-30 20:03:29 Debug: duration=1 rows=4 SHOW TABLES FROM `projeto_adulao`
+2024-05-30 20:03:34 Debug: duration=1 rows=4 SHOW TABLES FROM `projeto_adulao`
+2024-05-30 20:03:34 Debug: duration=2 rows=4 SHOW FULL COLUMNS FROM `roles`
+2024-05-30 20:03:34 Debug: duration=1 rows=1 SHOW INDEXES FROM `roles`
+2024-05-30 20:03:34 Debug: duration=2 rows=0 SELECT * FROM information_schema.key_column_usage AS kcu
+            INNER JOIN information_schema.referential_constraints AS rc
+            ON (
+                kcu.CONSTRAINT_NAME = rc.CONSTRAINT_NAME
+                AND kcu.CONSTRAINT_SCHEMA = rc.CONSTRAINT_SCHEMA
+            )
+            WHERE kcu.TABLE_SCHEMA = 'projeto_adulao' AND kcu.TABLE_NAME = 'roles' AND rc.TABLE_NAME = 'roles'
+2024-05-30 20:03:34 Debug: duration=1 rows=1 SHOW TABLE STATUS WHERE Name = 'roles'
+2024-05-30 20:03:34 Debug: duration=1 rows=8 SHOW FULL COLUMNS FROM `activities`
+2024-05-30 20:03:34 Debug: duration=1 rows=2 SHOW INDEXES FROM `activities`
+2024-05-30 20:03:34 Debug: duration=1 rows=1 SELECT * FROM information_schema.key_column_usage AS kcu
+            INNER JOIN information_schema.referential_constraints AS rc
+            ON (
+                kcu.CONSTRAINT_NAME = rc.CONSTRAINT_NAME
+                AND kcu.CONSTRAINT_SCHEMA = rc.CONSTRAINT_SCHEMA
+            )
+            WHERE kcu.TABLE_SCHEMA = 'projeto_adulao' AND kcu.TABLE_NAME = 'activities' AND rc.TABLE_NAME = 'activities'
+2024-05-30 20:03:34 Debug: duration=1 rows=1 SHOW TABLE STATUS WHERE Name = 'activities'
+2024-05-30 20:03:34 Debug: duration=1 rows=8 SHOW FULL COLUMNS FROM `persons`
+2024-05-30 20:03:34 Debug: duration=1 rows=2 SHOW INDEXES FROM `persons`
+2024-05-30 20:03:34 Debug: duration=2 rows=1 SELECT * FROM information_schema.key_column_usage AS kcu
+            INNER JOIN information_schema.referential_constraints AS rc
+            ON (
+                kcu.CONSTRAINT_NAME = rc.CONSTRAINT_NAME
+                AND kcu.CONSTRAINT_SCHEMA = rc.CONSTRAINT_SCHEMA
+            )
+            WHERE kcu.TABLE_SCHEMA = 'projeto_adulao' AND kcu.TABLE_NAME = 'persons' AND rc.TABLE_NAME = 'persons'
+2024-05-30 20:03:34 Debug: duration=1 rows=1 SHOW TABLE STATUS WHERE Name = 'persons'
+2024-05-30 20:03:34 Debug: duration=2 rows=5 SHOW FULL COLUMNS FROM `users`
+2024-05-30 20:03:34 Debug: duration=1 rows=2 SHOW INDEXES FROM `users`
+2024-05-30 20:03:34 Debug: duration=1 rows=0 SELECT * FROM information_schema.key_column_usage AS kcu
+            INNER JOIN information_schema.referential_constraints AS rc
+            ON (
+                kcu.CONSTRAINT_NAME = rc.CONSTRAINT_NAME
+                AND kcu.CONSTRAINT_SCHEMA = rc.CONSTRAINT_SCHEMA
+            )
+            WHERE kcu.TABLE_SCHEMA = 'projeto_adulao' AND kcu.TABLE_NAME = 'users' AND rc.TABLE_NAME = 'users'
+2024-05-30 20:03:34 Debug: duration=1 rows=1 SHOW TABLE STATUS WHERE Name = 'users'
+2024-05-30 20:03:34 Debug: duration=2 rows=4 SHOW FULL COLUMNS FROM `roles`
+2024-05-30 20:03:34 Debug: duration=1 rows=1 SHOW INDEXES FROM `roles`
+2024-05-30 20:03:34 Debug: duration=1 rows=0 SELECT * FROM information_schema.key_column_usage AS kcu
+            INNER JOIN information_schema.referential_constraints AS rc
+            ON (
+                kcu.CONSTRAINT_NAME = rc.CONSTRAINT_NAME
+                AND kcu.CONSTRAINT_SCHEMA = rc.CONSTRAINT_SCHEMA
+            )
+            WHERE kcu.TABLE_SCHEMA = 'projeto_adulao' AND kcu.TABLE_NAME = 'roles' AND rc.TABLE_NAME = 'roles'
+2024-05-30 20:03:34 Debug: duration=1 rows=1 SHOW TABLE STATUS WHERE Name = 'roles'
+2024-05-30 20:03:34 Debug: duration=1 rows=8 SHOW FULL COLUMNS FROM `persons`
+2024-05-30 20:03:34 Debug: duration=1 rows=2 SHOW INDEXES FROM `persons`
+2024-05-30 20:03:34 Debug: duration=2 rows=1 SELECT * FROM information_schema.key_column_usage AS kcu
+            INNER JOIN information_schema.referential_constraints AS rc
+            ON (
+                kcu.CONSTRAINT_NAME = rc.CONSTRAINT_NAME
+                AND kcu.CONSTRAINT_SCHEMA = rc.CONSTRAINT_SCHEMA
+            )
+            WHERE kcu.TABLE_SCHEMA = 'projeto_adulao' AND kcu.TABLE_NAME = 'persons' AND rc.TABLE_NAME = 'persons'
+2024-05-30 20:03:34 Debug: duration=1 rows=1 SHOW TABLE STATUS WHERE Name = 'persons'
+2024-05-30 20:03:36 Debug: duration=1 rows=4 SHOW TABLES FROM `projeto_adulao`
+2024-05-30 20:03:43 Debug: duration=1 rows=4 SHOW TABLES FROM `projeto_adulao`
+2024-05-30 20:03:43 Debug: duration=3 rows=0 SHOW FULL COLUMNS FROM `activties`
+2024-05-30 20:03:58 Debug: duration=1 rows=4 SHOW TABLES FROM `projeto_adulao`
+2024-05-30 20:04:02 Debug: duration=2 rows=4 SHOW TABLES FROM `projeto_adulao`
+2024-05-30 20:04:02 Debug: duration=1 rows=8 SHOW FULL COLUMNS FROM `persons`
+2024-05-30 20:04:02 Debug: duration=1 rows=2 SHOW INDEXES FROM `persons`
+2024-05-30 20:04:02 Debug: duration=3 rows=1 SELECT * FROM information_schema.key_column_usage AS kcu
+            INNER JOIN information_schema.referential_constraints AS rc
+            ON (
+                kcu.CONSTRAINT_NAME = rc.CONSTRAINT_NAME
+                AND kcu.CONSTRAINT_SCHEMA = rc.CONSTRAINT_SCHEMA
+            )
+            WHERE kcu.TABLE_SCHEMA = 'projeto_adulao' AND kcu.TABLE_NAME = 'persons' AND rc.TABLE_NAME = 'persons'
+2024-05-30 20:04:02 Debug: duration=2 rows=1 SHOW TABLE STATUS WHERE Name = 'persons'
+2024-05-30 20:04:03 Debug: duration=1 rows=8 SHOW FULL COLUMNS FROM `activities`
+2024-05-30 20:04:03 Debug: duration=1 rows=2 SHOW INDEXES FROM `activities`
+2024-05-30 20:04:03 Debug: duration=1 rows=1 SELECT * FROM information_schema.key_column_usage AS kcu
+            INNER JOIN information_schema.referential_constraints AS rc
+            ON (
+                kcu.CONSTRAINT_NAME = rc.CONSTRAINT_NAME
+                AND kcu.CONSTRAINT_SCHEMA = rc.CONSTRAINT_SCHEMA
+            )
+            WHERE kcu.TABLE_SCHEMA = 'projeto_adulao' AND kcu.TABLE_NAME = 'activities' AND rc.TABLE_NAME = 'activities'
+2024-05-30 20:04:03 Debug: duration=1 rows=1 SHOW TABLE STATUS WHERE Name = 'activities'
+2024-05-30 20:04:03 Debug: duration=1 rows=4 SHOW FULL COLUMNS FROM `roles`
+2024-05-30 20:04:03 Debug: duration=1 rows=1 SHOW INDEXES FROM `roles`
+2024-05-30 20:04:03 Debug: duration=1 rows=0 SELECT * FROM information_schema.key_column_usage AS kcu
+            INNER JOIN information_schema.referential_constraints AS rc
+            ON (
+                kcu.CONSTRAINT_NAME = rc.CONSTRAINT_NAME
+                AND kcu.CONSTRAINT_SCHEMA = rc.CONSTRAINT_SCHEMA
+            )
+            WHERE kcu.TABLE_SCHEMA = 'projeto_adulao' AND kcu.TABLE_NAME = 'roles' AND rc.TABLE_NAME = 'roles'
+2024-05-30 20:04:03 Debug: duration=1 rows=1 SHOW TABLE STATUS WHERE Name = 'roles'
+2024-05-30 20:04:03 Debug: duration=1 rows=5 SHOW FULL COLUMNS FROM `users`
+2024-05-30 20:04:03 Debug: duration=1 rows=2 SHOW INDEXES FROM `users`
+2024-05-30 20:04:03 Debug: duration=1 rows=0 SELECT * FROM information_schema.key_column_usage AS kcu
+            INNER JOIN information_schema.referential_constraints AS rc
+            ON (
+                kcu.CONSTRAINT_NAME = rc.CONSTRAINT_NAME
+                AND kcu.CONSTRAINT_SCHEMA = rc.CONSTRAINT_SCHEMA
+            )
+            WHERE kcu.TABLE_SCHEMA = 'projeto_adulao' AND kcu.TABLE_NAME = 'users' AND rc.TABLE_NAME = 'users'
+2024-05-30 20:04:03 Debug: duration=2 rows=1 SHOW TABLE STATUS WHERE Name = 'users'
+2024-05-30 20:04:03 Debug: duration=1 rows=8 SHOW FULL COLUMNS FROM `persons`
+2024-05-30 20:04:03 Debug: duration=1 rows=2 SHOW INDEXES FROM `persons`
+2024-05-30 20:04:03 Debug: duration=1 rows=1 SELECT * FROM information_schema.key_column_usage AS kcu
+            INNER JOIN information_schema.referential_constraints AS rc
+            ON (
+                kcu.CONSTRAINT_NAME = rc.CONSTRAINT_NAME
+                AND kcu.CONSTRAINT_SCHEMA = rc.CONSTRAINT_SCHEMA
+            )
+            WHERE kcu.TABLE_SCHEMA = 'projeto_adulao' AND kcu.TABLE_NAME = 'persons' AND rc.TABLE_NAME = 'persons'
+2024-05-30 20:04:03 Debug: duration=1 rows=1 SHOW TABLE STATUS WHERE Name = 'persons'
+2024-05-30 20:04:03 Debug: duration=2 rows=4 SHOW FULL COLUMNS FROM `roles`
+2024-05-30 20:04:03 Debug: duration=1 rows=1 SHOW INDEXES FROM `roles`
+2024-05-30 20:04:03 Debug: duration=2 rows=0 SELECT * FROM information_schema.key_column_usage AS kcu
+            INNER JOIN information_schema.referential_constraints AS rc
+            ON (
+                kcu.CONSTRAINT_NAME = rc.CONSTRAINT_NAME
+                AND kcu.CONSTRAINT_SCHEMA = rc.CONSTRAINT_SCHEMA
+            )
+            WHERE kcu.TABLE_SCHEMA = 'projeto_adulao' AND kcu.TABLE_NAME = 'roles' AND rc.TABLE_NAME = 'roles'
+2024-05-30 20:04:03 Debug: duration=1 rows=1 SHOW TABLE STATUS WHERE Name = 'roles'
+2024-05-30 20:04:03 Debug: duration=2 rows=8 SHOW FULL COLUMNS FROM `activities`
+2024-05-30 20:04:03 Debug: duration=2 rows=2 SHOW INDEXES FROM `activities`
+2024-05-30 20:04:03 Debug: duration=1 rows=1 SELECT * FROM information_schema.key_column_usage AS kcu
+            INNER JOIN information_schema.referential_constraints AS rc
+            ON (
+                kcu.CONSTRAINT_NAME = rc.CONSTRAINT_NAME
+                AND kcu.CONSTRAINT_SCHEMA = rc.CONSTRAINT_SCHEMA
+            )
+            WHERE kcu.TABLE_SCHEMA = 'projeto_adulao' AND kcu.TABLE_NAME = 'activities' AND rc.TABLE_NAME = 'activities'
+2024-05-30 20:04:03 Debug: duration=1 rows=1 SHOW TABLE STATUS WHERE Name = 'activities'
+2024-05-30 20:04:07 Debug: duration=1 rows=4 SHOW TABLES FROM `projeto_adulao`
+2024-05-30 20:04:12 Debug: duration=1 rows=4 SHOW TABLES FROM `projeto_adulao`
+2024-05-30 20:04:12 Debug: duration=4 rows=8 SHOW FULL COLUMNS FROM `activities`
+2024-05-30 20:04:12 Debug: duration=2 rows=2 SHOW INDEXES FROM `activities`
+2024-05-30 20:04:12 Debug: duration=2 rows=1 SELECT * FROM information_schema.key_column_usage AS kcu
+            INNER JOIN information_schema.referential_constraints AS rc
+            ON (
+                kcu.CONSTRAINT_NAME = rc.CONSTRAINT_NAME
+                AND kcu.CONSTRAINT_SCHEMA = rc.CONSTRAINT_SCHEMA
+            )
+            WHERE kcu.TABLE_SCHEMA = 'projeto_adulao' AND kcu.TABLE_NAME = 'activities' AND rc.TABLE_NAME = 'activities'
+2024-05-30 20:04:12 Debug: duration=1 rows=1 SHOW TABLE STATUS WHERE Name = 'activities'
+2024-05-30 20:04:12 Debug: duration=1 rows=8 SHOW FULL COLUMNS FROM `persons`
+2024-05-30 20:04:12 Debug: duration=1 rows=2 SHOW INDEXES FROM `persons`
+2024-05-30 20:04:12 Debug: duration=1 rows=1 SELECT * FROM information_schema.key_column_usage AS kcu
+            INNER JOIN information_schema.referential_constraints AS rc
+            ON (
+                kcu.CONSTRAINT_NAME = rc.CONSTRAINT_NAME
+                AND kcu.CONSTRAINT_SCHEMA = rc.CONSTRAINT_SCHEMA
+            )
+            WHERE kcu.TABLE_SCHEMA = 'projeto_adulao' AND kcu.TABLE_NAME = 'persons' AND rc.TABLE_NAME = 'persons'
+2024-05-30 20:04:12 Debug: duration=2 rows=1 SHOW TABLE STATUS WHERE Name = 'persons'
+2024-05-30 20:04:12 Debug: duration=1 rows=4 SHOW FULL COLUMNS FROM `roles`
+2024-05-30 20:04:12 Debug: duration=2 rows=1 SHOW INDEXES FROM `roles`
+2024-05-30 20:04:12 Debug: duration=1 rows=0 SELECT * FROM information_schema.key_column_usage AS kcu
+            INNER JOIN information_schema.referential_constraints AS rc
+            ON (
+                kcu.CONSTRAINT_NAME = rc.CONSTRAINT_NAME
+                AND kcu.CONSTRAINT_SCHEMA = rc.CONSTRAINT_SCHEMA
+            )
+            WHERE kcu.TABLE_SCHEMA = 'projeto_adulao' AND kcu.TABLE_NAME = 'roles' AND rc.TABLE_NAME = 'roles'
+2024-05-30 20:04:12 Debug: duration=1 rows=1 SHOW TABLE STATUS WHERE Name = 'roles'
+2024-05-30 20:04:12 Debug: duration=1 rows=5 SHOW FULL COLUMNS FROM `users`
+2024-05-30 20:04:12 Debug: duration=1 rows=2 SHOW INDEXES FROM `users`
+2024-05-30 20:04:12 Debug: duration=1 rows=0 SELECT * FROM information_schema.key_column_usage AS kcu
+            INNER JOIN information_schema.referential_constraints AS rc
+            ON (
+                kcu.CONSTRAINT_NAME = rc.CONSTRAINT_NAME
+                AND kcu.CONSTRAINT_SCHEMA = rc.CONSTRAINT_SCHEMA
+            )
+            WHERE kcu.TABLE_SCHEMA = 'projeto_adulao' AND kcu.TABLE_NAME = 'users' AND rc.TABLE_NAME = 'users'
+2024-05-30 20:04:12 Debug: duration=2 rows=1 SHOW TABLE STATUS WHERE Name = 'users'
+2024-05-30 20:04:12 Debug: duration=2 rows=8 SHOW FULL COLUMNS FROM `activities`
+2024-05-30 20:04:12 Debug: duration=1 rows=2 SHOW INDEXES FROM `activities`
+2024-05-30 20:04:12 Debug: duration=1 rows=1 SELECT * FROM information_schema.key_column_usage AS kcu
+            INNER JOIN information_schema.referential_constraints AS rc
+            ON (
+                kcu.CONSTRAINT_NAME = rc.CONSTRAINT_NAME
+                AND kcu.CONSTRAINT_SCHEMA = rc.CONSTRAINT_SCHEMA
+            )
+            WHERE kcu.TABLE_SCHEMA = 'projeto_adulao' AND kcu.TABLE_NAME = 'activities' AND rc.TABLE_NAME = 'activities'
+2024-05-30 20:04:12 Debug: duration=1 rows=1 SHOW TABLE STATUS WHERE Name = 'activities'
+2024-05-30 20:04:12 Debug: duration=2 rows=8 SHOW FULL COLUMNS FROM `persons`
+2024-05-30 20:04:12 Debug: duration=1 rows=2 SHOW INDEXES FROM `persons`
+2024-05-30 20:04:12 Debug: duration=1 rows=1 SELECT * FROM information_schema.key_column_usage AS kcu
+            INNER JOIN information_schema.referential_constraints AS rc
+            ON (
+                kcu.CONSTRAINT_NAME = rc.CONSTRAINT_NAME
+                AND kcu.CONSTRAINT_SCHEMA = rc.CONSTRAINT_SCHEMA
+            )
+            WHERE kcu.TABLE_SCHEMA = 'projeto_adulao' AND kcu.TABLE_NAME = 'persons' AND rc.TABLE_NAME = 'persons'
+2024-05-30 20:04:12 Debug: duration=1 rows=1 SHOW TABLE STATUS WHERE Name = 'persons'
+2024-05-30 20:04:21 Debug: duration=1 rows=5 SELECT Users.id AS `Users__id`, Users.full_name AS `Users__full_name`, Users.email AS `Users__email`, Users.password AS `Users__password`, Users.password_reset_token AS `Users__password_reset_token` FROM users Users LIMIT 20 OFFSET 0
+2024-05-30 20:04:21 Debug: duration=2 rows=1 SELECT (COUNT(*)) AS `count` FROM users Users
+2024-05-30 20:04:24 Debug: duration=1 rows=4 SHOW FULL COLUMNS FROM `roles`
+2024-05-30 20:04:24 Debug: duration=1 rows=1 SHOW INDEXES FROM `roles`
+2024-05-30 20:04:24 Debug: duration=1 rows=0 SELECT * FROM information_schema.key_column_usage AS kcu
+            INNER JOIN information_schema.referential_constraints AS rc
+            ON (
+                kcu.CONSTRAINT_NAME = rc.CONSTRAINT_NAME
+                AND kcu.CONSTRAINT_SCHEMA = rc.CONSTRAINT_SCHEMA
+            )
+            WHERE kcu.TABLE_SCHEMA = 'projeto_adulao' AND kcu.TABLE_NAME = 'roles' AND rc.TABLE_NAME = 'roles'
+2024-05-30 20:04:24 Debug: duration=1 rows=1 SHOW TABLE STATUS WHERE Name = 'roles'
+2024-05-30 20:04:24 Debug: duration=1 rows=1 SELECT Roles.id AS `Roles__id`, Roles.name AS `Roles__name`, Roles.type AS `Roles__type`, Roles.description AS `Roles__description` FROM roles Roles LIMIT 20 OFFSET 0
+2024-05-30 20:04:24 Debug: duration=2 rows=1 SELECT (COUNT(*)) AS `count` FROM roles Roles
+2024-05-30 20:04:37 Debug: duration=0 rows=0 BEGIN
+2024-05-30 20:04:37 Debug: duration=1 rows=1 INSERT INTO roles (name, type, description) VALUES ('Morador de rua', 2, '')
+2024-05-30 20:04:37 Debug: duration=0 rows=0 COMMIT
+2024-05-30 20:04:37 Debug: duration=1 rows=2 SELECT Roles.id AS `Roles__id`, Roles.name AS `Roles__name`, Roles.type AS `Roles__type`, Roles.description AS `Roles__description` FROM roles Roles LIMIT 20 OFFSET 0
+2024-05-30 20:04:37 Debug: duration=2 rows=1 SELECT (COUNT(*)) AS `count` FROM roles Roles
+2024-05-30 20:04:41 Debug: duration=2 rows=8 SHOW FULL COLUMNS FROM `persons`
+2024-05-30 20:04:41 Debug: duration=2 rows=2 SHOW INDEXES FROM `persons`
+2024-05-30 20:04:41 Debug: duration=1 rows=1 SELECT * FROM information_schema.key_column_usage AS kcu
+            INNER JOIN information_schema.referential_constraints AS rc
+            ON (
+                kcu.CONSTRAINT_NAME = rc.CONSTRAINT_NAME
+                AND kcu.CONSTRAINT_SCHEMA = rc.CONSTRAINT_SCHEMA
+            )
+            WHERE kcu.TABLE_SCHEMA = 'projeto_adulao' AND kcu.TABLE_NAME = 'persons' AND rc.TABLE_NAME = 'persons'
+2024-05-30 20:04:41 Debug: duration=1 rows=1 SHOW TABLE STATUS WHERE Name = 'persons'
+2024-05-30 20:04:41 Debug: duration=1 rows=2 SELECT Roles.id AS `Roles__id`, Roles.name AS `Roles__name` FROM roles Roles LIMIT 200
+2024-05-30 20:05:01 Debug: duration=0 rows=0 BEGIN
+2024-05-30 20:05:01 Debug: duration=1 rows=1 SELECT 1 AS `existing` FROM roles Roles WHERE Roles.id = 3 LIMIT 1
+2024-05-30 20:05:01 Debug: duration=2 rows=1 INSERT INTO persons (first_name, last_name, birthday, civil_status, phone, role_id) VALUES ('Gustavo ', 'Alexandre', '2024-05-30', 1, '', 3)
+2024-05-30 20:05:01 Debug: duration=0 rows=0 COMMIT
+2024-05-30 20:05:01 Debug: duration=1 rows=2 SELECT Persons.id AS `Persons__id`, Persons.first_name AS `Persons__first_name`, Persons.last_name AS `Persons__last_name`, Persons.birthday AS `Persons__birthday`, Persons.civil_status AS `Persons__civil_status`, Persons.phone AS `Persons__phone`, Persons.education AS `Persons__education`, Persons.role_id AS `Persons__role_id`, Roles.id AS `Roles__id`, Roles.name AS `Roles__name`, Roles.type AS `Roles__type`, Roles.description AS `Roles__description` FROM persons Persons INNER JOIN roles Roles ON Roles.id = (Persons.role_id) LIMIT 20 OFFSET 0
+2024-05-30 20:05:01 Debug: duration=1 rows=1 SELECT (COUNT(*)) AS `count` FROM persons Persons INNER JOIN roles Roles ON Roles.id = (Persons.role_id)
+2024-05-30 20:05:43 Debug: duration=1 rows=2 SELECT Roles.id AS `Roles__id`, Roles.name AS `Roles__name`, Roles.type AS `Roles__type`, Roles.description AS `Roles__description` FROM roles Roles LIMIT 20 OFFSET 0
+2024-05-30 20:05:43 Debug: duration=2 rows=1 SELECT (COUNT(*)) AS `count` FROM roles Roles
+2024-05-30 20:05:44 Debug: duration=1 rows=2 SELECT Persons.id AS `Persons__id`, Persons.first_name AS `Persons__first_name`, Persons.last_name AS `Persons__last_name`, Persons.birthday AS `Persons__birthday`, Persons.civil_status AS `Persons__civil_status`, Persons.phone AS `Persons__phone`, Persons.education AS `Persons__education`, Persons.role_id AS `Persons__role_id`, Roles.id AS `Roles__id`, Roles.name AS `Roles__name`, Roles.type AS `Roles__type`, Roles.description AS `Roles__description` FROM persons Persons INNER JOIN roles Roles ON Roles.id = (Persons.role_id) LIMIT 20 OFFSET 0
+2024-05-30 20:05:44 Debug: duration=1 rows=1 SELECT (COUNT(*)) AS `count` FROM persons Persons INNER JOIN roles Roles ON Roles.id = (Persons.role_id)
+2024-05-30 20:11:04 Debug: duration=2 rows=5 SHOW FULL COLUMNS FROM `users`
+2024-05-30 20:11:04 Debug: duration=2 rows=2 SHOW INDEXES FROM `users`
+2024-05-30 20:11:04 Debug: duration=2 rows=0 SELECT * FROM information_schema.key_column_usage AS kcu
+            INNER JOIN information_schema.referential_constraints AS rc
+            ON (
+                kcu.CONSTRAINT_NAME = rc.CONSTRAINT_NAME
+                AND kcu.CONSTRAINT_SCHEMA = rc.CONSTRAINT_SCHEMA
+            )
+            WHERE kcu.TABLE_SCHEMA = 'projeto_adulao' AND kcu.TABLE_NAME = 'users' AND rc.TABLE_NAME = 'users'
+2024-05-30 20:11:04 Debug: duration=1 rows=1 SHOW TABLE STATUS WHERE Name = 'users'
+2024-05-30 20:11:04 Debug: duration=1 rows=0 SELECT Users.id AS `Users__id`, Users.full_name AS `Users__full_name`, Users.email AS `Users__email`, Users.password AS `Users__password`, Users.password_reset_token AS `Users__password_reset_token` FROM users Users WHERE Users.email = 'yuriaguiar.nascimentof@gmail.com'
+2024-05-30 20:11:57 Debug: duration=1 rows=0 SELECT 1 AS `existing` FROM users Users WHERE Users.email = 'yuriaguiar.nascimentof@gmail.com' LIMIT 1
+2024-05-30 20:11:57 Debug: duration=0 rows=0 BEGIN
+2024-05-30 20:11:57 Debug: duration=1 rows=0 SELECT 1 AS `existing` FROM users Users WHERE Users.email = 'yuriaguiar.nascimentof@gmail.com' LIMIT 1
+2024-05-30 20:11:57 Debug: duration=1 rows=1 INSERT INTO users (full_name, email, password, password_reset_token) VALUES ('Yuri Fernandes', 'yuriaguiar.nascimentof@gmail.com', '$2y$10$f5IquBH4dXrM2y76YZxMd.BrMiZy39TheLsfAd2pIXYz/VggrWd8e', '')
+2024-05-30 20:11:57 Debug: duration=0 rows=0 COMMIT
+2024-05-30 20:12:08 Debug: duration=1 rows=1 SELECT Users.id AS `Users__id`, Users.full_name AS `Users__full_name`, Users.email AS `Users__email`, Users.password AS `Users__password`, Users.password_reset_token AS `Users__password_reset_token` FROM users Users WHERE Users.email = 'yuriaguiar.nascimentof@gmail.com'
+2024-05-30 20:13:28 Debug: duration=2 rows=5 SHOW FULL COLUMNS FROM `users`
+2024-05-30 20:13:28 Debug: duration=1 rows=2 SHOW INDEXES FROM `users`
+2024-05-30 20:13:28 Debug: duration=1 rows=0 SELECT * FROM information_schema.key_column_usage AS kcu
+            INNER JOIN information_schema.referential_constraints AS rc
+            ON (
+                kcu.CONSTRAINT_NAME = rc.CONSTRAINT_NAME
+                AND kcu.CONSTRAINT_SCHEMA = rc.CONSTRAINT_SCHEMA
+            )
+            WHERE kcu.TABLE_SCHEMA = 'projeto_adulao' AND kcu.TABLE_NAME = 'users' AND rc.TABLE_NAME = 'users'
+2024-05-30 20:13:28 Debug: duration=1 rows=1 SHOW TABLE STATUS WHERE Name = 'users'
+2024-05-30 20:13:28 Debug: duration=1 rows=1 SELECT Users.id AS `Users__id`, Users.full_name AS `Users__full_name`, Users.email AS `Users__email`, Users.password AS `Users__password`, Users.password_reset_token AS `Users__password_reset_token` FROM users Users WHERE Users.email = 'yuriaguiar.nascimentof@gmail.com'
+2024-05-30 20:13:50 Debug: duration=1 rows=1 SELECT Users.id AS `Users__id`, Users.full_name AS `Users__full_name`, Users.email AS `Users__email`, Users.password AS `Users__password`, Users.password_reset_token AS `Users__password_reset_token` FROM users Users WHERE Users.email = 'yuriaguiar.nascimentof@gmail.com'
+2024-05-30 20:15:18 Debug: duration=1 rows=1 SELECT Users.id AS `Users__id`, Users.full_name AS `Users__full_name`, Users.email AS `Users__email`, Users.password AS `Users__password`, Users.password_reset_token AS `Users__password_reset_token` FROM users Users WHERE Users.email = 'yuriaguiar.nascimentof@gmail.com' LIMIT 1

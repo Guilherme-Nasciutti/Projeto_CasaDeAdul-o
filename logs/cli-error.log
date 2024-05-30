@@ -1,0 +1,50 @@
+2024-05-30 20:03:43 Error: [Cake\Database\Exception] SQLSTATE[42S02]: Base table or view not found: 1146 Table 'projeto_adulao.activties' doesn't exist in C:\wamp64\www\casa_adulao\casa_de_adulao\vendor\cakephp\cakephp\src\Database\Schema\Collection.php on line 132
+Stack Trace:
+#0 C:\wamp64\www\casa_adulao\casa_de_adulao\vendor\cakephp\cakephp\src\Database\Schema\Collection.php(98): Cake\Database\Schema\Collection->_reflect('Column', 'activties', Array, Object(Cake\Database\Schema\TableSchema))
+#1 C:\wamp64\www\casa_adulao\casa_de_adulao\vendor\cakephp\cakephp\src\Database\Schema\CachedCollection.php(61): Cake\Database\Schema\Collection->describe('activties', Array)
+#2 C:\wamp64\www\casa_adulao\casa_de_adulao\vendor\cakephp\cakephp\src\ORM\Table.php(566): Cake\Database\Schema\CachedCollection->describe('activties')
+#3 C:\wamp64\www\casa_adulao\casa_de_adulao\vendor\cakephp\cakephp\src\ORM\Table.php(691): Cake\ORM\Table->getSchema()
+#4 C:\wamp64\www\casa_adulao\casa_de_adulao\vendor\cakephp\bake\src\Shell\Task\ModelTask.php(221): Cake\ORM\Table->getPrimaryKey()
+#5 C:\wamp64\www\casa_adulao\casa_de_adulao\vendor\cakephp\bake\src\Shell\Task\ModelTask.php(131): Bake\Shell\Task\ModelTask->getAssociations(Object(Cake\ORM\Table))
+#6 C:\wamp64\www\casa_adulao\casa_de_adulao\vendor\cakephp\bake\src\Shell\Task\ModelTask.php(114): Bake\Shell\Task\ModelTask->getTableContext(Object(Cake\ORM\Table), 'activties', 'Activties')
+#7 C:\wamp64\www\casa_adulao\casa_de_adulao\vendor\cakephp\bake\src\Shell\Task\ModelTask.php(101): Bake\Shell\Task\ModelTask->bake('Activties')
+#8 C:\wamp64\www\casa_adulao\casa_de_adulao\vendor\cakephp\bake\src\Shell\BakeShell.php(282): Bake\Shell\Task\ModelTask->main('Activties')
+#9 C:\wamp64\www\casa_adulao\casa_de_adulao\vendor\cakephp\cakephp\src\Collection\CollectionTrait.php(64): Bake\Shell\BakeShell->Bake\Shell\{closure}('Activties', 0)
+#10 C:\wamp64\www\casa_adulao\casa_de_adulao\vendor\cakephp\bake\src\Shell\BakeShell.php(283): Cake\Collection\Collection->each(Object(Closure))
+#11 C:\wamp64\www\casa_adulao\casa_de_adulao\vendor\cakephp\cakephp\src\Console\Shell.php(517): Bake\Shell\BakeShell->all('activties')
+#12 C:\wamp64\www\casa_adulao\casa_de_adulao\vendor\cakephp\cakephp\src\Console\CommandRunner.php(384): Cake\Console\Shell->runCommand(Array, true)
+#13 C:\wamp64\www\casa_adulao\casa_de_adulao\vendor\cakephp\cakephp\src\Console\CommandRunner.php(162): Cake\Console\CommandRunner->runShell(Object(Bake\Shell\BakeShell), Array)
+#14 C:\wamp64\www\casa_adulao\casa_de_adulao\bin\cake.php(12): Cake\Console\CommandRunner->run(Array)
+#15 {main}
+
+
+Caused by: [PDOException] SQLSTATE[42S02]: Base table or view not found: 1146 Table 'projeto_adulao.activties' doesn't exist in C:\wamp64\www\casa_adulao\casa_de_adulao\vendor\cakephp\cakephp\src\Database\Statement\MysqlStatement.php on line 37
+Stack Trace:
+#0 C:\wamp64\www\casa_adulao\casa_de_adulao\vendor\cakephp\cakephp\src\Database\Statement\MysqlStatement.php(37): PDOStatement->execute(NULL)
+#1 C:\wamp64\www\casa_adulao\casa_de_adulao\vendor\cakephp\cakephp\src\Database\Statement\StatementDecorator.php(173): Cake\Database\Statement\MysqlStatement->execute(NULL)
+#2 C:\wamp64\www\casa_adulao\casa_de_adulao\vendor\cakephp\cakephp\src\Database\Log\LoggingStatement.php(55): Cake\Database\Statement\StatementDecorator->execute(NULL)
+#3 C:\wamp64\www\casa_adulao\casa_de_adulao\vendor\cakephp\cakephp\src\Database\Connection.php(358): Cake\Database\Log\LoggingStatement->execute()
+#4 C:\wamp64\www\casa_adulao\casa_de_adulao\vendor\cakephp\cakephp\src\Core\Retry\CommandRetry.php(67): Cake\Database\Connection->Cake\Database\{closure}()
+#5 C:\wamp64\www\casa_adulao\casa_de_adulao\vendor\cakephp\cakephp\src\Database\Connection.php(361): Cake\Core\Retry\CommandRetry->run(Object(Closure))
+#6 C:\wamp64\www\casa_adulao\casa_de_adulao\vendor\cakephp\cakephp\src\Database\Connection.php(310): Cake\Database\Connection->query('SHOW FULL COLUM...')
+#7 C:\wamp64\www\casa_adulao\casa_de_adulao\vendor\cakephp\cakephp\src\Core\Retry\CommandRetry.php(67): Cake\Database\Connection->Cake\Database\{closure}()
+#8 C:\wamp64\www\casa_adulao\casa_de_adulao\vendor\cakephp\cakephp\src\Database\Connection.php(314): Cake\Core\Retry\CommandRetry->run(Object(Closure))
+#9 C:\wamp64\www\casa_adulao\casa_de_adulao\vendor\cakephp\cakephp\src\Database\Schema\Collection.php(130): Cake\Database\Connection->execute('SHOW FULL COLUM...', Array)
+#10 C:\wamp64\www\casa_adulao\casa_de_adulao\vendor\cakephp\cakephp\src\Database\Schema\Collection.php(98): Cake\Database\Schema\Collection->_reflect('Column', 'activties', Array, Object(Cake\Database\Schema\TableSchema))
+#11 C:\wamp64\www\casa_adulao\casa_de_adulao\vendor\cakephp\cakephp\src\Database\Schema\CachedCollection.php(61): Cake\Database\Schema\Collection->describe('activties', Array)
+#12 C:\wamp64\www\casa_adulao\casa_de_adulao\vendor\cakephp\cakephp\src\ORM\Table.php(566): Cake\Database\Schema\CachedCollection->describe('activties')
+#13 C:\wamp64\www\casa_adulao\casa_de_adulao\vendor\cakephp\cakephp\src\ORM\Table.php(691): Cake\ORM\Table->getSchema()
+#14 C:\wamp64\www\casa_adulao\casa_de_adulao\vendor\cakephp\bake\src\Shell\Task\ModelTask.php(221): Cake\ORM\Table->getPrimaryKey()
+#15 C:\wamp64\www\casa_adulao\casa_de_adulao\vendor\cakephp\bake\src\Shell\Task\ModelTask.php(131): Bake\Shell\Task\ModelTask->getAssociations(Object(Cake\ORM\Table))
+#16 C:\wamp64\www\casa_adulao\casa_de_adulao\vendor\cakephp\bake\src\Shell\Task\ModelTask.php(114): Bake\Shell\Task\ModelTask->getTableContext(Object(Cake\ORM\Table), 'activties', 'Activties')
+#17 C:\wamp64\www\casa_adulao\casa_de_adulao\vendor\cakephp\bake\src\Shell\Task\ModelTask.php(101): Bake\Shell\Task\ModelTask->bake('Activties')
+#18 C:\wamp64\www\casa_adulao\casa_de_adulao\vendor\cakephp\bake\src\Shell\BakeShell.php(282): Bake\Shell\Task\ModelTask->main('Activties')
+#19 C:\wamp64\www\casa_adulao\casa_de_adulao\vendor\cakephp\cakephp\src\Collection\CollectionTrait.php(64): Bake\Shell\BakeShell->Bake\Shell\{closure}('Activties', 0)
+#20 C:\wamp64\www\casa_adulao\casa_de_adulao\vendor\cakephp\bake\src\Shell\BakeShell.php(283): Cake\Collection\Collection->each(Object(Closure))
+#21 C:\wamp64\www\casa_adulao\casa_de_adulao\vendor\cakephp\cakephp\src\Console\Shell.php(517): Bake\Shell\BakeShell->all('activties')
+#22 C:\wamp64\www\casa_adulao\casa_de_adulao\vendor\cakephp\cakephp\src\Console\CommandRunner.php(384): Cake\Console\Shell->runCommand(Array, true)
+#23 C:\wamp64\www\casa_adulao\casa_de_adulao\vendor\cakephp\cakephp\src\Console\CommandRunner.php(162): Cake\Console\CommandRunner->runShell(Object(Bake\Shell\BakeShell), Array)
+#24 C:\wamp64\www\casa_adulao\casa_de_adulao\bin\cake.php(12): Cake\Console\CommandRunner->run(Array)
+#25 {main}
+
+
