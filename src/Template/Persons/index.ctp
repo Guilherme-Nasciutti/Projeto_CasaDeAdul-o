@@ -3,58 +3,40 @@
     <?= $this->Html->link('Nova pessoa', ['controller' => 'Persons', 'action' => 'add']); ?>
 </header>
 
-<?php
-/**
- * @var \App\View\AppView $this
- * @var \App\Model\Entity\Person[]|\Cake\Collection\CollectionInterface $persons
- */
-?>
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('New Person'), ['action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Roles'), ['controller' => 'Roles', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Role'), ['controller' => 'Roles', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Activities'), ['controller' => 'Activities', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Activity'), ['controller' => 'Activities', 'action' => 'add']) ?></li>
-    </ul>
-</nav>
-<div class="persons index large-9 medium-8 columns content">
-    <h3><?= __('Persons') ?></h3>
-    <table cellpadding="0" cellspacing="0">
+<main>
+    <table class="table_list">
         <thead>
             <tr>
-                <th scope="col"><?= $this->Paginator->sort('id') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('first_name') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('last_name') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('birthday') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('civil_status') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('phone') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('education') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('role_id') ?></th>
-                <th scope="col" class="actions"><?= __('Actions') ?></th>
+                <th>#</th>
+                <th><?= $this->Paginator->sort('first_name', 'Nome'); ?><i class="bi bi-arrow-down-up"></i></th>
+                <th><?= $this->Paginator->sort('last_name', 'Sobrenome'); ?><i class="bi bi-arrow-down-up"></i></th>
+                <th><?= $this->Paginator->sort('phone', 'Telefone'); ?><i class="bi bi-arrow-down-up"></i></th>
+                <th>Perfil</th>
+                <th>Ações</th>
             </tr>
         </thead>
+
         <tbody>
             <?php foreach ($persons as $person): ?>
-            <tr>
-                <td><?= $this->Number->format($person->id) ?></td>
-                <td><?= h($person->first_name) ?></td>
-                <td><?= h($person->last_name) ?></td>
-                <td><?= h($person->birthday) ?></td>
-                <td><?= $this->Number->format($person->civil_status) ?></td>
-                <td><?= h($person->phone) ?></td>
-                <td><?= $this->Number->format($person->education) ?></td>
-                <td><?= $person->has('role') ? $this->Html->link($person->role->name, ['controller' => 'Roles', 'action' => 'view', $person->role->id]) : '' ?></td>
-                <td class="actions">
-                    <?= $this->Html->link(__('View'), ['action' => 'view', $person->id]) ?>
-                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $person->id]) ?>
-                    <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $person->id], ['confirm' => __('Are you sure you want to delete # {0}?', $person->id)]) ?>
-                </td>
-            </tr>
+                <tr>
+                    <td><?= $this->Number->format($person->id); ?></td>
+                    <td><?= h($person->first_name); ?></td>
+                    <td><?= h($person->last_name); ?></td>
+                    <td><?= h($person->phone); ?></td>
+                    <td><?= h($person->role->name); ?></td>
+
+                    <td class="actions">
+                        <?= $this->Html->link('<i class="bi bi-eye"></i>', ['_name' => 'visualizar_persons', 'id' => $person->id], ['escape' => false]); ?>
+
+                        <?= $this->Html->link('<i class="bi bi-pencil-square"></i>', ['_name' => 'editar_persons', 'id' => $person->id], ['escape' => false]); ?>
+
+                        <?= $this->Form->postLink(__('<i class="bi bi-trash"></i>'), ['action' => 'delete', $person->id], ['escape' => false, 'confirm' => __('Tem certeza que deseja apagar o {0} {1}?', $person->role->name, $person->first_name)]); ?>
+                    </td>
+                </tr>
             <?php endforeach; ?>
         </tbody>
     </table>
+
     <div class="paginator">
         <ul class="pagination">
             <?= $this->Paginator->first('<< ' . __('first')) ?>
@@ -65,4 +47,4 @@
         </ul>
         <p><?= $this->Paginator->counter(['format' => __('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')]) ?></p>
     </div>
-</div>
+</main>

@@ -3,46 +3,36 @@
     <?= $this->Html->link('Novo perfil', ['controller' => 'Roles', 'action' => 'add']); ?>
 </header>
 
-<?php
-/**
- * @var \App\View\AppView $this
- * @var \App\Model\Entity\Role[]|\Cake\Collection\CollectionInterface $roles
- */
-?>
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('New Role'), ['action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Persons'), ['controller' => 'Persons', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Person'), ['controller' => 'Persons', 'action' => 'add']) ?></li>
-    </ul>
-</nav>
-<div class="roles index large-9 medium-8 columns content">
-    <h3><?= __('Roles') ?></h3>
-    <table cellpadding="0" cellspacing="0">
+<main>
+    <table class="table_list">
         <thead>
             <tr>
-                <th scope="col"><?= $this->Paginator->sort('id') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('name') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('type') ?></th>
-                <th scope="col" class="actions"><?= __('Actions') ?></th>
+                <th>#</th>
+                <th><?= $this->Paginator->sort('name', 'Nome'); ?><i class="bi bi-arrow-down-up"></i></th>
+                <th><?= $this->Paginator->sort('type', 'Tipo'); ?><i class="bi bi-arrow-down-up"></i></th>
+                <th>Ações</th>
             </tr>
         </thead>
+
         <tbody>
             <?php foreach ($roles as $role): ?>
-            <tr>
-                <td><?= $this->Number->format($role->id) ?></td>
-                <td><?= h($role->name) ?></td>
-                <td><?= $this->Number->format($role->type) ?></td>
-                <td class="actions">
-                    <?= $this->Html->link(__('View'), ['action' => 'view', $role->id]) ?>
-                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $role->id]) ?>
-                    <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $role->id], ['confirm' => __('Are you sure you want to delete # {0}?', $role->id)]) ?>
-                </td>
-            </tr>
+                <tr>
+                    <td><?= $this->Number->format($role->id); ?></td>
+                    <td><?= h($role->name); ?></td>
+                    <td><?= h($role->type); ?></td>
+
+                    <td class="actions">
+                        <?= $this->Html->link('<i class="bi bi-eye"></i>', ['_name' => 'visualizar_roles', 'id' => $role->id], ['escape' => false]); ?>
+
+                        <?= $this->Html->link('<i class="bi bi-pencil-square"></i>', ['_name' => 'editar_roles', 'id' => $role->id], ['escape' => false]); ?>
+
+                        <?= $this->Form->postLink(__('<i class="bi bi-trash"></i>'), ['action' => 'delete', $role->id], ['escape' => false, 'confirm' => __('Tem certeza que deseja apagar o perfil {0}?', $role->name)]); ?>
+                    </td>
+                </tr>
             <?php endforeach; ?>
         </tbody>
     </table>
+
     <div class="paginator">
         <ul class="pagination">
             <?= $this->Paginator->first('<< ' . __('first')) ?>
@@ -53,4 +43,4 @@
         </ul>
         <p><?= $this->Paginator->counter(['format' => __('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')]) ?></p>
     </div>
-</div>
+</main>

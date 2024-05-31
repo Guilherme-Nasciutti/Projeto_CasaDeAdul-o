@@ -11,7 +11,7 @@
     <?= $this->Html->meta('icon'); ?>
 
     <?= $this->Html->css([
-        'style', 'main', 'sidebar', 'toolbar'
+        'style', 'main', 'sidebar', 'toolbar', 'list', 'view'
     ]); ?>
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
