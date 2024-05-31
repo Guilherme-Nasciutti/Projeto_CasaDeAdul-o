@@ -4,66 +4,48 @@
 </header>
 
 <main>
-    <?php
-    /**
-     * @var \App\View\AppView $this
-     * @var \App\Model\Entity\Activity[]|\Cake\Collection\CollectionInterface $activities
-     */
-    ?>
-    <nav class="large-3 medium-4 columns" id="actions-sidebar">
-        <ul class="side-nav">
-            <li class="heading"><?= __('Actions') ?></li>
-            <li><?= $this->Html->link(__('New Activity'), ['action' => 'add']) ?></li>
-            <li><?= $this->Html->link(__('List Persons'), ['controller' => 'Persons', 'action' => 'index']) ?></li>
-            <li><?= $this->Html->link(__('New Person'), ['controller' => 'Persons', 'action' => 'add']) ?></li>
-        </ul>
-    </nav>
-    <div class="activities index large-9 medium-8 columns content">
-        <h3><?= __('Activities') ?></h3>
-        <table cellpadding="0" cellspacing="0">
-            <thead>
+    <table class="table_list">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th><?= $this->Paginator->sort('name', 'Nome'); ?><i class="bi bi-arrow-down-up"></i></th>
+                <th><?= $this->Paginator->sort('initial_date', 'Data de início'); ?><i class="bi bi-arrow-down-up"></i></th>
+                <th><?= $this->Paginator->sort('final_date', 'Data final'); ?><i class="bi bi-arrow-down-up"></i></th>
+                <th><?= $this->Paginator->sort('person_id', 'Responsável'); ?><i class="bi bi-arrow-down-up"></i></th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <?php foreach ($activities as $activity): ?>
                 <tr>
-                    <th scope="col"><?= $this->Paginator->sort('id') ?></th>
-                    <th scope="col"><?= $this->Paginator->sort('name') ?></th>
-                    <th scope="col"><?= $this->Paginator->sort('initial_date') ?></th>
-                    <th scope="col"><?= $this->Paginator->sort('final_date') ?></th>
-                    <th scope="col"><?= $this->Paginator->sort('start_time') ?></th>
-                    <th scope="col"><?= $this->Paginator->sort('duration') ?></th>
-                    <th scope="col"><?= $this->Paginator->sort('created') ?></th>
-                    <th scope="col"><?= $this->Paginator->sort('person_id') ?></th>
-                    <th scope="col" class="actions"><?= __('Actions') ?></th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php foreach ($activities as $activity): ?>
-                <tr>
-                    <td><?= $this->Number->format($activity->id) ?></td>
-                    <td><?= h($activity->name) ?></td>
-                    <td><?= h($activity->initial_date) ?></td>
-                    <td><?= h($activity->final_date) ?></td>
-                    <td><?= h($activity->start_time) ?></td>
-                    <td><?= $this->Number->format($activity->duration) ?></td>
-                    <td><?= h($activity->created) ?></td>
+                    <td><?= $this->Number->format($activity->id); ?></td>
+                    <td><?= h($activity->name); ?></td>
+                    <td><?= h($activity->initial_date); ?></td>
+                    <td><?= h($activity->final_date); ?></td>
                     <td><?= $activity->has('person') ? $this->Html->link($activity->person->id, ['controller' => 'Persons', 'action' => 'view', $activity->person->id]) : '' ?></td>
+
                     <td class="actions">
-                        <?= $this->Html->link(__('View'), ['action' => 'view', $activity->id]) ?>
-                        <?= $this->Html->link(__('Edit'), ['action' => 'edit', $activity->id]) ?>
-                        <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $activity->id], ['confirm' => __('Are you sure you want to delete # {0}?', $activity->id)]) ?>
+                        <?= $this->Html->link('<i class="bi bi-eye"></i>', ['_name' => 'visualizar_activities', 'id' => $activity->id], ['escape' => false]); ?>
+
+                        <?= $this->Html->link('<i class="bi bi-pencil-square"></i>', ['_name' => 'editar_activities', 'id' => $activity->id], ['escape' => false]); ?>
+
+                        <?= $this->Form->postLink(__('<i class="bi bi-trash"></i>'), ['action' => 'delete', $activity->id], ['escape' => false, 'confirm' => __('Tem certeza que deseja apagar o {0} {1}?', $activity->role->name, $activity->first_name)]); ?>
                     </td>
                 </tr>
-                <?php endforeach; ?>
-            </tbody>
-        </table>
-        <div class="paginator">
-            <ul class="pagination">
-                <?= $this->Paginator->first('<< ' . __('first')) ?>
-                <?= $this->Paginator->prev('< ' . __('previous')) ?>
-                <?= $this->Paginator->numbers() ?>
-                <?= $this->Paginator->next(__('next') . ' >') ?>
-                <?= $this->Paginator->last(__('last') . ' >>') ?>
-            </ul>
-            <p><?= $this->Paginator->counter(['format' => __('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')]) ?></p>
-        </div>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+
+    <div class="paginator">
+        <ul class="pagination">
+            <?= $this->Paginator->first('<< ' . __('first')) ?>
+            <?= $this->Paginator->prev('< ' . __('previous')) ?>
+            <?= $this->Paginator->numbers() ?>
+            <?= $this->Paginator->next(__('next') . ' >') ?>
+            <?= $this->Paginator->last(__('last') . ' >>') ?>
+        </ul>
+        <p><?= $this->Paginator->counter(['format' => __('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')]) ?></p>
     </div>
 </main>
 

@@ -1,0 +1,48 @@
+.table_list {
+    width: 100%;
+    border-radius: 6px;
+    color: var(--black);
+    overflow: hidden;
+    background: var(--blue);
+}
+
+.table_list thead i {
+    margin-left: .5em;
+}
+
+.table_list tbody {
+    background: var(--white);
+}
+
+.table_list th,
+.table_list td {
+    padding: 10px 15px;
+    text-align: left;
+}
+
+.table_list tr {
+    border-color: var(--dark);
+}
+
+.table_list th,
+.table_list th a {
+    color: var(--white);
+}
+
+.table_list .actions {
+    gap: 1em;
+    display: flex;
+    align-items: center;
+}
+
+.bi-eye {
+    color: var(--blue);
+}
+
+.bi-pencil-square {
+    color: var(--orange);
+}
+
+.bi-trash {
+    color: var(--red);
+}
