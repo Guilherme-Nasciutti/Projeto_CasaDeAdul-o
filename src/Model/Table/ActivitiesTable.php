@@ -61,28 +61,28 @@ class ActivitiesTable extends Table
         $validator
             ->scalar('name')
             ->maxLength('name', 220)
-            ->requirePresence('name', 'create')
-            ->notEmptyString('name');
+            ->requirePresence('name', 'create', 'O campo para identificar a atividade é obrigatório!')
+            ->notEmptyString('name', 'O campo para identificar a atividade é obrigatório!');
 
         $validator
             ->date('initial_date')
-            ->requirePresence('initial_date', 'create')
-            ->notEmptyDate('initial_date');
+            ->requirePresence('initial_date', 'create', 'O campo data de início é obrigatório!')
+            ->notEmptyDate('initial_date', 'O campo data de início é obrigatório!');
 
         $validator
             ->date('final_date')
-            ->requirePresence('final_date', 'create')
-            ->notEmptyDate('final_date');
+            ->requirePresence('final_date', 'create', 'O campo data final é obrigatório!')
+            ->notEmptyDate('final_date', 'O campo data final é obrigatório!');
 
         $validator
             ->time('start_time')
-            ->requirePresence('start_time', 'create')
-            ->notEmptyTime('start_time');
+            ->requirePresence('start_time', 'create', 'O campo horário de início é obrigatório!')
+            ->notEmptyTime('start_time', 'O campo horário de início é obrigatório!');
 
         $validator
             ->integer('duration')
-            ->requirePresence('duration', 'create')
-            ->notEmptyString('duration');
+            ->requirePresence('duration', 'create', 'O campo duração é obrigatório!')
+            ->notEmptyString('duration', 'O campo duração é obrigatório!');
 
         return $validator;
     }
@@ -96,8 +96,7 @@ class ActivitiesTable extends Table
      */
     public function buildRules(RulesChecker $rules)
     {
-        $rules->add($rules->existsIn(['person_id'], 'Persons'));
-
+        $rules->add($rules->existsIn(['person_id'], 'Persons', 'É orbigatório selecionar um responsável.'));
         return $rules;
     }
 }

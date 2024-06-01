@@ -61,23 +61,23 @@ class PersonsTable extends Table
         $validator
             ->scalar('first_name')
             ->maxLength('first_name', 220)
-            ->requirePresence('first_name', 'create')
-            ->notEmptyString('first_name');
+            ->requirePresence('first_name', 'create', 'O campo nome é obrigatório!')
+            ->notEmptyString('first_name', 'O campo nome é obrigatório!');
 
         $validator
             ->scalar('last_name')
             ->maxLength('last_name', 220)
-            ->requirePresence('last_name', 'create')
-            ->notEmptyString('last_name');
+            ->requirePresence('last_name', 'create', 'O campo sobrenome é obrigatório!')
+            ->notEmptyString('last_name', 'O campo sobrenome é obrigatório!');
 
         $validator
             ->date('birthday')
-            ->requirePresence('birthday', 'create')
-            ->notEmptyDate('birthday');
+            ->requirePresence('birthday', 'create', 'O campo data de nascimento é obrigatório!')
+            ->notEmptyDate('birthday', 'O campo data de nascimento é obrigatório!');
 
         $validator
-            ->requirePresence('civil_status', 'create')
-            ->notEmptyString('civil_status');
+            ->requirePresence('civil_status', 'create', 'O campo estado civil é obrigatório!')
+            ->notEmptyString('civil_status', 'O campo estado civil é obrigatório!');
 
         $validator
             ->scalar('phone')
