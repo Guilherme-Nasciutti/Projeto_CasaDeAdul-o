@@ -50,20 +50,24 @@ class UsersTable extends Table
         $validator
             ->scalar('full_name')
             ->maxLength('full_name', 220)
-            ->requirePresence('full_name', 'create')
-            ->notEmptyString('full_name');
+            ->requirePresence('full_name', 'create', 'O campo nome completo é obrigatório!')
+            ->notEmptyString('full_name', 'O campo nome completo é obrigatório!');
 
         $validator
             ->email('email')
-            ->requirePresence('email', 'create')
-            ->notEmptyString('email')
-            ->add('email', 'unique', ['rule' => 'validateUnique', 'provider' => 'table']);
+            ->requirePresence('email', 'create', 'O campo e-mail é obrigatório!')
+            ->notEmptyString('email', 'O campo e-mail é obrigatório!')
+            ->add('email', 'unique', [
+                'rule' => 'validateUnique',
+                'provider' => 'table',
+                'message' => 'E-mail já cadastrado!'
+            ]);
 
         $validator
             ->scalar('password')
             ->maxLength('password', 180)
-            ->requirePresence('password', 'create')
-            ->notEmptyString('password');
+            ->requirePresence('password', 'create', 'O campo nome completo é obrigatório!')
+            ->notEmptyString('password', 'O campo nome completo é obrigatório!');
 
         $validator
             ->scalar('password_reset_token')
@@ -82,8 +86,7 @@ class UsersTable extends Table
      */
     public function buildRules(RulesChecker $rules)
     {
-        $rules->add($rules->isUnique(['email']));
-
+        $rules->add($rules->isUnique(['email'], 'E-mail já cadastrado!'));
         return $rules;
     }
 

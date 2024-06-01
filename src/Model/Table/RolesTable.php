@@ -56,12 +56,12 @@ class RolesTable extends Table
         $validator
             ->scalar('name')
             ->maxLength('name', 220)
-            ->requirePresence('name', 'create')
-            ->notEmptyString('name');
+            ->requirePresence('name', 'create', 'O campo nome é obrigatório!')
+            ->notEmptyString('name', 'O campo nome é obrigatório!');
 
         $validator
-            ->requirePresence('type', 'create')
-            ->notEmptyString('type');
+            ->requirePresence('type', 'create', 'O campo tipo do perfil é obrigatório!')
+            ->notEmptyString('type', 'O campo tipo do perfil é obrigatório!');
 
         $validator
             ->scalar('description')
