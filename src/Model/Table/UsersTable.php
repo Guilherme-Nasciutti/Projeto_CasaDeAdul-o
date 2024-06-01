@@ -67,7 +67,29 @@ class UsersTable extends Table
             ->scalar('password')
             ->maxLength('password', 180)
             ->requirePresence('password', 'create', 'O campo nome completo é obrigatório!')
-            ->notEmptyString('password', 'O campo nome completo é obrigatório!');
+            ->notEmptyString('password', 'O campo nome completo é obrigatório!')
+            ->add('password', [
+                'length' => [
+                    'rule' => ['minLength', 6],
+                    'message' => 'A senha deve ter no mínimo 06 caracteres!',
+                ]
+            ]);
+
+        $validator
+            ->requirePresence('confirm_password', 'create', 'O campo confirmar senha obrigatório!')
+            ->notEmptyString('confirm_password', 'O campo confirmar senha obrigatório!')
+            ->add('confirm_password', [
+                'length' => [
+                    'rule' => ['minLength', 6],
+                    'message' => 'O confirmar senha deve ter no mínimo 06 caracteres!',
+                ]
+            ])
+            ->add('confirm_password',[
+                'match'=>[
+                    'rule'=> ['compareWith','password'],
+                    'message'=>'As senhas devem ser iguais!',
+                ]
+            ]);
 
         $validator
             ->scalar('password_reset_token')
