@@ -240,5 +240,15 @@ if (!function_exists('__dxn')) {
             ['_count' => $count, '_singular' => $singular, '_context' => $context] + $args
         );
     }
+}
 
+if (!function_exists('__overrideEmpty')) {
+
+    /**
+     *
+     * @param string $domain Domain.
+     */
+    function __overrideEmpty($value) {
+        return (!isset($value) || empty($value) || is_array($value)) ? 'Não possui' : $value;
+    }
 }

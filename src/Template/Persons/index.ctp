@@ -23,7 +23,7 @@
                         <td><?= $this->Number->format($person->id); ?></td>
                         <td><?= h($person->first_name); ?></td>
                         <td><?= h($person->last_name); ?></td>
-                        <td><?= h($person->phone); ?></td>
+                        <td><?= __overrideEmpty($person->phone); ?></td>
                         <td><?= h($person->role->name); ?></td>
 
                         <td class="actions">
