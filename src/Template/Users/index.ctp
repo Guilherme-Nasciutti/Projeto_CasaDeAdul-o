@@ -8,7 +8,6 @@
         <table class="table_list">
             <thead>
                 <tr>
-                    <th>#</th>
                     <th><?= $this->Paginator->sort('full_name', 'Nome completo'); ?><i class="bi bi-arrow-down-up"></i></th>
                     <th><?= $this->Paginator->sort('email', 'E-mail'); ?><i class="bi bi-arrow-down-up"></i></th>
                     <th>Ações</th>
@@ -18,7 +17,6 @@
             <tbody>
                 <?php foreach ($users as $user) : ?>
                     <tr>
-                        <td><?= $this->Number->format($user->id); ?></td>
                         <td><?= h($user->full_name); ?></td>
                         <td><?= h($user->email); ?></td>
 

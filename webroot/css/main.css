@@ -63,3 +63,9 @@
 .pagination li a:hover {
     background: var(--baby);
 }
+
+/* DATEPICKER */
+.ui-widget-header {
+    border: none !important;
+    background: var(--blue) !important;
+}

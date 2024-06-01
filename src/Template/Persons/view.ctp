@@ -3,7 +3,6 @@
 use App\Controller\CivilStatusENUM;
 use App\Controller\EducationENUM;
 use App\Controller\TypeRolesENUM;
-
 ?>
 
 <header>

@@ -2,7 +2,6 @@
 
 use App\Controller\CivilStatusENUM;
 use App\Controller\EducationENUM;
-
 ?>
 
 <header>
@@ -19,8 +18,8 @@ use App\Controller\EducationENUM;
     </div>
 
     <div class="container_fields">
-        <?= $this->Form->control('birthday', ['label' => 'Data de nascimento', 'type' => 'text', 'placeholder' => '99/99/9999']); ?>
-        <?= $this->Form->control('phone', ['label' => 'Telefone p/ contato', 'placeholder' => '(99) 99999-9999']); ?>
+        <?= $this->Form->control('birthday', ['label' => 'Data de nascimento', 'type' => 'text', 'placeholder' => '99/99/9999', 'class' => 'datepicker mask_date']); ?>
+        <?= $this->Form->control('phone', ['label' => 'Telefone p/ contato', 'placeholder' => '(99) 99999-9999', 'class' => 'mask_phone']); ?>
         <?= $this->Form->control('civil_status', ['label' => 'Estado civil', 'options' => CivilStatusENUM::findConstants()]); ?>
         <?= $this->Form->control('role_id', ['label' => 'Perfil', 'options' => $roles]); ?>
     </div>

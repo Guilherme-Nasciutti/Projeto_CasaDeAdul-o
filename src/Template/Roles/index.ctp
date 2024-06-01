@@ -13,7 +13,6 @@ use App\Controller\TypeRolesENUM;
         <table class="table_list">
             <thead>
                 <tr>
-                    <th>#</th>
                     <th><?= $this->Paginator->sort('name', 'Nome'); ?><i class="bi bi-arrow-down-up"></i></th>
                     <th><?= $this->Paginator->sort('type', 'Tipo do perfil'); ?><i class="bi bi-arrow-down-up"></i></th>
                     <th>Ações</th>
@@ -23,7 +22,6 @@ use App\Controller\TypeRolesENUM;
             <tbody>
                 <?php foreach ($roles as $role) : ?>
                     <tr>
-                        <td><?= $this->Number->format($role->id); ?></td>
                         <td><?= h($role->name); ?></td>
                         <td><?= TypeRolesENUM::findConstants($role->type); ?></td>
 

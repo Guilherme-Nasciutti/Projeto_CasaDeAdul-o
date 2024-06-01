@@ -10,7 +10,7 @@ use Cake\ORM\Entity;
  * @property string $name
  * @property \Cake\I18n\FrozenDate $initial_date
  * @property \Cake\I18n\FrozenDate $final_date
- * @property \Cake\I18n\FrozenTime $start_time
+ * @property int $start_time
  * @property int $duration
  * @property \Cake\I18n\FrozenTime $created
  * @property int $person_id

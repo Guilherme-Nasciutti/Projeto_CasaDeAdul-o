@@ -71,7 +71,7 @@ class PersonsTable extends Table
             ->notEmptyString('last_name', 'O campo sobrenome é obrigatório!');
 
         $validator
-            ->date('birthday')
+            ->date('birthday', ['dmy'], 'Informe uma data válida!')
             ->requirePresence('birthday', 'create', 'O campo data de nascimento é obrigatório!')
             ->notEmptyDate('birthday', 'O campo data de nascimento é obrigatório!');
 

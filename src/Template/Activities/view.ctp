@@ -1,3 +1,7 @@
+<?php
+
+use App\Controller\TimesDayENUM;
+?>
 <header>
     <h2>Atividades <small>visualizar</small></h2>
     <?= $this->Html->link('Voltar', ['controller' => 'Activities', 'action' => 'index']); ?>
@@ -7,7 +11,7 @@
     <dl>
         <div class="view_row">
             <dt>Responsável:</dt>
-            <dd><?= $activity->has('person') ? $this->Html->link($activity->person->id, ['controller' => 'Persons', 'action' => 'view', $activity->person->id]) : ''; ?></dd>
+            <dd><?= $activity->has('person') ? $this->Html->link($activity->person->first_name, ['controller' => 'Persons', 'action' => 'view', $activity->person->id]) : ''; ?></dd>
         </div>
 
         <div class="view_row">
@@ -27,17 +31,17 @@
 
         <div class="view_row">
             <dt>Horário de início:</dt>
-            <dd><?= $activity->start_time; ?></dd>
+            <dd><?= TimesDayENUM::findConstants($activity->start_time); ?></dd>
         </div>
 
         <div class="view_row">
             <dt>Duração prevista:</dt>
-            <dd><?= $activity->duration; ?></dd>
+            <dd><?= $activity->duration; ?> hora(s)</dd>
         </div>
 
         <div class="view_row">
             <dt>Data de cadastro:</dt>
-            <dd><?= $activity->created->format('d/m/Y'); ?></dd>
+            <dd><?= $activity->created->format('d/m/Y H:m:s'); ?></dd>
         </div>
     </dl>
 </main>

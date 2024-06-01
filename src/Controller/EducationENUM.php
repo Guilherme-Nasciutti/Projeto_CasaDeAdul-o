@@ -24,7 +24,8 @@ class EducationENUM {
             self::INCOMPLETE_GRADUATED => "Ensino superior incompleto",
             self::SPECIALIZATION => "Especialização",
             self::MASTER => "Mestrado",
-            self::DOCTORATE => "Não informado",
+            self::DOCTORATE => "Doutorado",
+            self::NOT => "Não informado",
         );
 
         if ($value != NULL) {
