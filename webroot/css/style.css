@@ -43,6 +43,12 @@ form {
     flex-direction: row;
 }
 
+.row {
+    width: 100%;
+    gap: 1em;
+    display: flex;
+}
+
 .input {
     width: 100%;
     gap: .3em;
@@ -116,4 +122,20 @@ select {
 
 .error-message ul {
     list-style-type: none;
+}
+
+@media screen and (max-width: 1050px) {
+    .row {
+        flex-direction: column;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .container_fields {
+        flex-direction: column;
+    }
+
+    .btn_sumit {
+        max-width: 100%;
+    }
 }

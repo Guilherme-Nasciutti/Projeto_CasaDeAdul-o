@@ -15,13 +15,17 @@ use App\Controller\TimesDayENUM;
     <?= $this->Form->control('name', ['label' => 'Nome', 'placeholder' => 'Identificação da atividade']); ?>
 
     <div class="container_fields">
-        <?= $this->Form->control('initial_date', ['label' => 'Data de início', 'type' => 'text', 'placeholder' => '99/99/9999', 'class' => 'datepicker mask_date']); ?>
+        <div class="row">
+            <?= $this->Form->control('initial_date', ['label' => 'Data de início', 'type' => 'text', 'placeholder' => '99/99/9999', 'class' => 'datepicker mask_date']); ?>
 
-        <?= $this->Form->control('final_date', ['label' => 'Data prevista p/ término', 'type' => 'text', 'placeholder' => '99/99/9999', 'class' => 'datepicker mask_date']); ?>
+            <?= $this->Form->control('final_date', ['label' => 'Data prevista p/ término', 'type' => 'text', 'placeholder' => '99/99/9999', 'class' => 'datepicker mask_date']); ?>
+        </div>
 
-        <?= $this->Form->control('start_time', ['label' => 'Horário de início', 'options' => TimesDayENUM::findConstants()]); ?>
+        <div class="row">
+            <?= $this->Form->control('start_time', ['label' => 'Horário de início', 'options' => TimesDayENUM::findConstants()]); ?>
 
-        <?= $this->Form->control('duration', ['label' => 'Duração prevista', 'placeholder' => '999', 'placeholder' => 'Tempo estimado em horas', 'title' => 'Somente números']); ?>
+            <?= $this->Form->control('duration', ['label' => 'Duração prevista', 'placeholder' => '999', 'placeholder' => 'Tempo estimado em horas', 'title' => 'Somente números']); ?>
+        </div>
     </div>
 
     <?= $this->Form->button('Editar', ['class' => 'btn_sumit btn_edit']); ?>

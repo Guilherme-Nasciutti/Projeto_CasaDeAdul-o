@@ -18,10 +18,17 @@ use App\Controller\EducationENUM;
     </div>
 
     <div class="container_fields">
-        <?= $this->Form->control('birthday', ['label' => 'Data de nascimento', 'type' => 'text', 'placeholder' => '99/99/9999']); ?>
-        <?= $this->Form->control('phone', ['label' => 'Telefone p/ contato', 'placeholder' => '(99) 99999-9999']); ?>
-        <?= $this->Form->control('civil_status', ['label' => 'Estado civil', 'options' => CivilStatusENUM::findConstants()]); ?>
-        <?= $this->Form->control('role_id', ['label' => 'Perfil', 'options' => $roles]); ?>
+        <div class="row">
+            <?= $this->Form->control('birthday', ['label' => 'Data de nascimento', 'type' => 'text', 'placeholder' => '99/99/9999', 'class' => 'datepicker mask_date']); ?>
+
+            <?= $this->Form->control('phone', ['label' => 'Telefone p/ contato', 'placeholder' => '(99) 99999-9999', 'class' => 'mask_phone']); ?>
+        </div>
+
+        <div class="row">
+            <?= $this->Form->control('civil_status', ['label' => 'Estado civil', 'options' => CivilStatusENUM::findConstants()]); ?>
+
+            <?= $this->Form->control('role_id', ['label' => 'Perfil', 'options' => $roles]); ?>
+        </div>
     </div>
 
     <?= $this->Form->control('education', ['label' => 'Formação escolar', 'options' => EducationENUM::findConstants()]); ?>
