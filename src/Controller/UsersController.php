@@ -61,7 +61,8 @@ class UsersController extends AppController
     public function profile()
     {
         try {
-
+            $user = $this->Auth->user();
+            $this->set(compact('user'));
         } catch (Exception $exc) {
             $this->Flash->error('Entre em contato com o administrador do sistema.');
         }
