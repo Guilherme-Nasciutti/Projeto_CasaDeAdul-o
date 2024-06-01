@@ -51,7 +51,8 @@ class UsersController extends AppController
     public function home()
     {
         try {
-            // to-do: busca nome do usuario logado e apresentar nas boas vindas
+            $full_name = $this->Auth->user('full_name');
+            $this->set(compact('full_name'));
         } catch (Exception $exc) {
             $this->Flash->error('Entre em contato com o administrador do sistema.');
         }
@@ -112,8 +113,6 @@ class UsersController extends AppController
 
             if ($this->request->is('post')) {
                 $user = $this->Users->patchEntity($user, $this->request->getData());
-
-                // to-do: verificar a senha e confirmar senha
 
                 if ($this->Users->save($user)) {
                     $this->Flash->success(__('Administrador cadastrador com sucesso.'));

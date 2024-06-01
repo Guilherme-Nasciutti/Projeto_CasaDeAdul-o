@@ -11,7 +11,7 @@
 
     <div class="container_fields">
         <?= $this->Form->control('password', ['label' => 'Senha', 'placeholder' => 'No mínimo 06 caracteres']); ?>
-        <?= $this->Form->control('confirm_password', ['label' => 'Confimar senha', 'placeholder' => 'Repita a senha']); ?>
+        <?= $this->Form->control('confirm_password', ['label' => 'Confimar senha', 'placeholder' => 'Repita a senha', 'type' => 'password']); ?>
     </div>
 
     <?= $this->Form->button('Cadastrar', ['class' => 'btn_sumit']); ?>

@@ -108,3 +108,12 @@ select {
     border: 1px solid var(--green);
     background: rgba(31, 146, 84, .1);
 }
+
+.error-message {
+    font-size: .7em;
+    color: var(--red);
+}
+
+.error-message ul {
+    list-style-type: none;
+}
