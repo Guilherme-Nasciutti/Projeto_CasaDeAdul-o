@@ -227,8 +227,8 @@ return [
             'host' => 'ssl://smtp.gmail.com',
             'port' => 465,
             'timeout' => 30,
-            'username' => 'imepacpcd@gmail.com',
-            'password' => "xynhporxnlkpozcv",
+            'username' => 'email_administrativo',
+            'password' => "senha_do_email",
             'client' => null,
             'context' => [
                 'ssl' => [
@@ -261,7 +261,7 @@ return [
         ],
         'sender' => [
             'transport' => 'sender',
-            'from' => 'imepacpcd@gmail.com',
+            'from' => 'email_administrativo',
         ],
     ],
 
