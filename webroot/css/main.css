@@ -33,7 +33,7 @@
 }
 
 .container_full {
-    margin-left: 0px;
+    margin-left: 0px !important;
 }
 
 /* PAGINATION */
@@ -68,4 +68,10 @@
 .ui-widget-header {
     border: none !important;
     background: var(--blue) !important;
+}
+
+@media screen and (max-width: 767px) {
+    .container_main {
+        margin-left: 100px;
+    }
 }

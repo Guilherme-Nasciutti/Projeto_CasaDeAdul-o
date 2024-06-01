@@ -26,14 +26,20 @@
 }
 
 .toolbar_full {
-    margin-left: 0px;
+    margin-left: 0px !important;
 }
 
 .hide_sidebar {
-    transform: translateX(-100%);
+    transform: translateX(-100%) !important;
 }
 
 #expand {
     font-size: 1.2em;
     cursor: pointer;
+}
+
+@media screen and (max-width: 767px) {
+    .toolbar {
+        margin-left: 100px;
+    }
 }
