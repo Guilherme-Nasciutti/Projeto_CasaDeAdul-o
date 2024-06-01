@@ -52,3 +52,15 @@
     border-radius: 6px;
     border: 1px solid var(--dark);
 }
+
+@media screen and (max-width: 1050px) {
+    .list_table {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .list_phone {
+        display: none;
+    }
+}

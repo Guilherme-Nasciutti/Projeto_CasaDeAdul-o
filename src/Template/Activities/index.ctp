@@ -9,9 +9,9 @@
             <thead>
                 <tr>
                     <th><?= $this->Paginator->sort('name', 'Nome'); ?><i class="bi bi-arrow-down-up"></i></th>
-                    <th><?= $this->Paginator->sort('initial_date', 'Data de início'); ?><i class="bi bi-arrow-down-up"></i></th>
-                    <th><?= $this->Paginator->sort('final_date', 'Data prevista p/ término'); ?><i class="bi bi-arrow-down-up"></i></th>
-                    <th><?= $this->Paginator->sort('person_id', 'Responsável'); ?><i class="bi bi-arrow-down-up"></i></th>
+                    <th class="list_table"><?= $this->Paginator->sort('initial_date', 'Data de início'); ?><i class="bi bi-arrow-down-up"></i></th>
+                    <th class="list_table"><?= $this->Paginator->sort('final_date', 'Data prevista p/ término'); ?><i class="bi bi-arrow-down-up"></i></th>
+                    <th class="list_phone"><?= $this->Paginator->sort('person_id', 'Responsável'); ?><i class="bi bi-arrow-down-up"></i></th>
                     <th>Ações</th>
                 </tr>
             </thead>
@@ -20,9 +20,9 @@
                 <?php foreach ($activities as $activity): ?>
                     <tr>
                         <td><?= h($activity->name); ?></td>
-                        <td><?= h($activity->initial_date->format('d/m/Y')); ?></td>
-                        <td><?= h($activity->final_date->format('d/m/Y')); ?></td>
-                        <td><?= $activity->has('person') ? $this->Html->link($activity->person->first_name, ['controller' => 'Persons', 'action' => 'view', $activity->person->id]) : '' ?></td>
+                        <td class="list_table"><?= h($activity->initial_date->format('d/m/Y')); ?></td>
+                        <td class="list_table"><?= h($activity->final_date->format('d/m/Y')); ?></td>
+                        <td class="list_phone"><?= $activity->has('person') ? $this->Html->link($activity->person->first_name, ['controller' => 'Persons', 'action' => 'view', $activity->person->id]) : '' ?></td>
 
                         <td class="actions">
                             <?= $this->Html->link('<i class="bi bi-eye"></i>', ['_name' => 'visualizar_activities', 'id' => $activity->id], ['escape' => false]); ?>

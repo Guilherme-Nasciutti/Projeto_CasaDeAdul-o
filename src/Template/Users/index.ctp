@@ -9,7 +9,7 @@
             <thead>
                 <tr>
                     <th><?= $this->Paginator->sort('full_name', 'Nome completo'); ?><i class="bi bi-arrow-down-up"></i></th>
-                    <th><?= $this->Paginator->sort('email', 'E-mail'); ?><i class="bi bi-arrow-down-up"></i></th>
+                    <th class="list_phone"><?= $this->Paginator->sort('email', 'E-mail'); ?><i class="bi bi-arrow-down-up"></i></th>
                     <th>Ações</th>
                 </tr>
             </thead>
@@ -18,7 +18,7 @@
                 <?php foreach ($users as $user) : ?>
                     <tr>
                         <td><?= h($user->full_name); ?></td>
-                        <td><?= h($user->email); ?></td>
+                        <td class="list_phone"><?= h($user->email); ?></td>
 
                         <td class="actions">
                             <?= $this->Html->link('<i class="bi bi-eye"></i>', ['_name' => 'visualizar_users', 'id' => $user->id], ['escape' => false]); ?>

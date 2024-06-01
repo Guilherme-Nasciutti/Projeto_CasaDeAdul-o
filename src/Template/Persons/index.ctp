@@ -9,9 +9,9 @@
             <thead>
                 <tr>
                     <th><?= $this->Paginator->sort('first_name', 'Nome'); ?><i class="bi bi-arrow-down-up"></i></th>
-                    <th><?= $this->Paginator->sort('last_name', 'Sobrenome'); ?><i class="bi bi-arrow-down-up"></i></th>
-                    <th><?= $this->Paginator->sort('phone', 'Telefone'); ?><i class="bi bi-arrow-down-up"></i></th>
-                    <th>Perfil</th>
+                    <th class="list_phone"><?= $this->Paginator->sort('last_name', 'Sobrenome'); ?><i class="bi bi-arrow-down-up"></i></th>
+                    <th class="list_phone"><?= $this->Paginator->sort('phone', 'Telefone'); ?><i class="bi bi-arrow-down-up"></i></th>
+                    <th class="list_table">Perfil</th>
                     <th>Ações</th>
                 </tr>
             </thead>
@@ -20,9 +20,9 @@
                 <?php foreach ($persons as $person) : ?>
                     <tr>
                         <td><?= h($person->first_name); ?></td>
-                        <td><?= h($person->last_name); ?></td>
-                        <td><?= __overrideEmpty($person->phone); ?></td>
-                        <td><?= h($person->role->name); ?></td>
+                        <td class="list_phone"><?= h($person->last_name); ?></td>
+                        <td class="list_phone"><?= __overrideEmpty($person->phone); ?></td>
+                        <td class="list_table"><?= h($person->role->name); ?></td>
 
                         <td class="actions">
                             <?= $this->Html->link('<i class="bi bi-eye"></i>', ['_name' => 'visualizar_persons', 'id' => $person->id], ['escape' => false]); ?>

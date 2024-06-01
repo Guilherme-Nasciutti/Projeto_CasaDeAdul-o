@@ -14,7 +14,7 @@ use App\Controller\TypeRolesENUM;
             <thead>
                 <tr>
                     <th><?= $this->Paginator->sort('name', 'Nome'); ?><i class="bi bi-arrow-down-up"></i></th>
-                    <th><?= $this->Paginator->sort('type', 'Tipo do perfil'); ?><i class="bi bi-arrow-down-up"></i></th>
+                    <th class="list_phone"><?= $this->Paginator->sort('type', 'Tipo do perfil'); ?><i class="bi bi-arrow-down-up"></i></th>
                     <th>Ações</th>
                 </tr>
             </thead>
@@ -23,7 +23,7 @@ use App\Controller\TypeRolesENUM;
                 <?php foreach ($roles as $role) : ?>
                     <tr>
                         <td><?= h($role->name); ?></td>
-                        <td><?= TypeRolesENUM::findConstants($role->type); ?></td>
+                        <td class="list_phone"><?= TypeRolesENUM::findConstants($role->type); ?></td>
 
                         <td class="actions">
                             <?= $this->Html->link('<i class="bi bi-eye"></i>', ['_name' => 'visualizar_roles', 'id' => $role->id], ['escape' => false]); ?>
