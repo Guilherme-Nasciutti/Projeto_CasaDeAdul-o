@@ -116,4 +116,22 @@ class UsersTable extends Table
     {
         return $query;
     }
+
+    public function getUserByEmail($email)
+    {
+        return $this->find()->select(['id'])->where(['email' => $email])->first();
+    }
+
+    public function getRescuePassword($id_user)
+    {
+        return $this->find()->where(['id' => $id_user])->first();
+    }
+
+    public function getUserByPasswordToken($token)
+    {
+        return $this->find()
+            ->select(['id', 'email'])
+            ->where(['password_reset_token' => $token])
+            ->first();
+    }
 }

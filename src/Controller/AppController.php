@@ -80,7 +80,9 @@ class AppController extends Controller
     {
         if (
             ($this->request->getParam(['action']) !== null ) AND (
-                ($this->request->getParam(['action']) == 'login')
+                ($this->request->getParam(['action']) == 'login') OR
+                ($this->request->getParam(['action']) == 'rescuePassword') OR
+                ($this->request->getParam(['action']) == 'changePassword')
             )
         ) {
             $this->viewBuilder()->setLayout('default');

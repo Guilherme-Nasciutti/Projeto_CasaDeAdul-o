@@ -222,6 +222,22 @@ return [
             'tls' => false,
             'url' => env('EMAIL_TRANSPORT_DEFAULT_URL', null),
         ],
+        'sender' => [
+            'className' => 'Smtp',
+            'host' => 'ssl://smtp.gmail.com',
+            'port' => 465,
+            'timeout' => 30,
+            'username' => 'imepacpcd@gmail.com',
+            'password' => "xynhporxnlkpozcv",
+            'client' => null,
+            'context' => [
+                'ssl' => [
+                    'verify_peer' => false,
+                    'verify_peer_name' => false,
+                    'allow_self_signed' => true
+                ],
+            ],
+        ],
     ],
 
     /*
@@ -242,6 +258,10 @@ return [
              */
             //'charset' => 'utf-8',
             //'headerCharset' => 'utf-8',
+        ],
+        'sender' => [
+            'transport' => 'sender',
+            'from' => 'imepacpcd@gmail.com',
         ],
     ],
 
