@@ -74,4 +74,14 @@
     .container_main {
         margin-left: 100px;
     }
+
+    .container_main header {
+        gap: 1em;
+        flex-wrap: wrap;
+    }
+
+    .container_main header a {
+        width: 100%;
+        text-align: center;
+    }
 }
