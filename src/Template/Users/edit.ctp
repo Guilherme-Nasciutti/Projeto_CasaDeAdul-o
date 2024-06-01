@@ -1,37 +1,19 @@
 <header>
-    <h2>Administrador <small>editar</small></h2>
+    <h2>Administradores <small>editar</small></h2>
     <?= $this->Html->link('Voltar', ['controller' => 'Users', 'action' => 'index']); ?>
 </header>
 
-<?php
-/**
- * @var \App\View\AppView $this
- * @var \App\Model\Entity\User $user
- */
-?>
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Form->postLink(
-                __('Delete'),
-                ['action' => 'delete', $user->id],
-                ['confirm' => __('Are you sure you want to delete # {0}?', $user->id)]
-            )
-        ?></li>
-        <li><?= $this->Html->link(__('List Users'), ['action' => 'index']) ?></li>
-    </ul>
-</nav>
-<div class="users form large-9 medium-8 columns content">
-    <?= $this->Form->create($user) ?>
-    <fieldset>
-        <legend><?= __('Edit User') ?></legend>
-        <?php
-            echo $this->Form->control('full_name');
-            echo $this->Form->control('email');
-            echo $this->Form->control('password');
-            echo $this->Form->control('password_reset_token');
-        ?>
-    </fieldset>
-    <?= $this->Form->button(__('Submit')) ?>
-    <?= $this->Form->end() ?>
-</div>
+<main>
+    <?= $this->Form->create($user); ?>
+
+    <?= $this->Form->control('full_name', ['label' => 'Nome completo']); ?>
+    <?= $this->Form->control('email', ['label' => 'E-mail', 'placeholder' => 'exemplo@email.com']); ?>
+
+    <div class="container_fields">
+        <?= $this->Form->control('password', ['label' => 'Senha', 'placeholder' => 'No mínimo 06 caracteres', 'value' => '']); ?>
+        <?= $this->Form->control('confirm_password', ['label' => 'Confimar senha', 'placeholder' => 'Repita a senha']); ?>
+    </div>
+
+    <?= $this->Form->button('Editar', ['class' => 'btn_sumit btn_edit']); ?>
+    <?= $this->Form->end(); ?>
+</main>

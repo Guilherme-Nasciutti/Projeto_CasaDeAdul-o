@@ -57,7 +57,9 @@ class RolesController extends AppController
             }
             $this->Flash->error(__('Não foi possivel salvar o registro. Por favor, tente novamente.'));
         }
-        $this->set(compact('role'));
+
+        $roles_in_use = $this->Roles->findRolesInUse(['type !=' => TypeRolesENUM::OUTRO]);
+        $this->set(compact('role', 'roles_in_use'));
     }
 
     /**
@@ -81,7 +83,9 @@ class RolesController extends AppController
             }
             $this->Flash->error(__('Não foi possivel alterar o registro. Por favor, tente novamente.'));
         }
-        $this->set(compact('role'));
+
+        $roles_in_use = $this->Roles->findRolesInUse(["type not in" => [TypeRolesENUM::OUTRO, $role->type]]);
+        $this->set(compact('role', 'roles_in_use'));
     }
 
     /**

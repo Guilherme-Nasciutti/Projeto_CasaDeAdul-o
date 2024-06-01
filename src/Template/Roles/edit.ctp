@@ -1,39 +1,23 @@
+<?php
+
+use App\Controller\TypeRolesENUM;
+?>
+
 <header>
     <h2>Perfis <small>editar</small></h2>
     <?= $this->Html->link('Voltar', ['controller' => 'Roles', 'action' => 'index']); ?>
 </header>
 
+<main>
+    <?= $this->Form->create($role); ?>
 
-<?php
-/**
- * @var \App\View\AppView $this
- * @var \App\Model\Entity\Role $role
- */
-?>
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Form->postLink(
-                __('Delete'),
-                ['action' => 'delete', $role->id],
-                ['confirm' => __('Are you sure you want to delete # {0}?', $role->id)]
-            )
-        ?></li>
-        <li><?= $this->Html->link(__('List Roles'), ['action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('List Persons'), ['controller' => 'Persons', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Person'), ['controller' => 'Persons', 'action' => 'add']) ?></li>
-    </ul>
-</nav>
-<div class="roles form large-9 medium-8 columns content">
-    <?= $this->Form->create($role) ?>
-    <fieldset>
-        <legend><?= __('Edit Role') ?></legend>
-        <?php
-            echo $this->Form->control('name');
-            echo $this->Form->control('type');
-            echo $this->Form->control('description');
-        ?>
-    </fieldset>
-    <?= $this->Form->button(__('Submit')) ?>
-    <?= $this->Form->end() ?>
-</div>
+    <div class="container_fields">
+        <?= $this->Form->control('name', ['label' => 'Nome']); ?>
+        <?= $this->Form->control('type', ['label' => 'Tipo do perfil <span class="field_required">*</span>', 'escape' => false, 'options' => array_diff_key(TypeRolesENUM::findConstants(), array_flip($roles_in_use))]); ?>
+    </div>
+
+    <?= $this->Form->control('description', ['label' => 'Descrição']); ?>
+
+    <?= $this->Form->button('Editar', ['class' => 'btn_sumit btn_edit']); ?>
+    <?= $this->Form->end(); ?>
+</main>

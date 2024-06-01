@@ -34,7 +34,7 @@ class PersonsTable extends Table
         parent::initialize($config);
 
         $this->setTable('persons');
-        $this->setDisplayField('id');
+        $this->setDisplayField('first_name');
         $this->setPrimaryKey('id');
 
         $this->belongsTo('Roles', [
