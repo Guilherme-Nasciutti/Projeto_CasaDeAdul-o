@@ -35,3 +35,31 @@
 .container_full {
     margin-left: 0px;
 }
+
+/* PAGINATION */
+.container_paginaton {
+    margin-top: 2em;
+    text-align: left;
+}
+
+.pagination {
+    gap: .5em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    list-style: none;
+    margin-bottom: 10px;
+}
+
+.pagination li a {
+    padding: 5px 10px;
+    border-radius: 3px;
+    transition: .3s all;
+    color: var(--blue);
+    background: var(--white);
+    border: 1px solid var(--blue);
+}
+
+.pagination li a:hover {
+    background: var(--baby);
+}
