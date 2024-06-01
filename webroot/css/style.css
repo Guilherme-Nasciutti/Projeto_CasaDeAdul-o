@@ -31,7 +31,20 @@ a {
 }
 
 /* FORMS */
+form {
+    gap: 1em;
+    display: flex;
+    flex-direction: column;
+}
+
+.container_fields {
+    gap: 1em;
+    display: flex;
+    flex-direction: row;
+}
+
 .input {
+    width: 100%;
     gap: .3em;
     display: flex;
     flex-direction: column;
@@ -42,7 +55,9 @@ label {
     font-weight: 500;
 }
 
-input {
+input,
+textarea,
+select {
     border: 1px solid var(--grey);
 }
 
@@ -55,8 +70,23 @@ button {
 }
 
 input,
-button {
+button,
+textarea,
+select {
     padding: 8px;
     border-radius: 6px;
     outline: none;
+}
+
+select {
+    cursor: pointer;
+}
+
+.btn_sumit {
+    max-width: 300px;
+    margin-top: 10px;
+}
+
+.btn_edit {
+    background: var(--orange);
 }

@@ -1,5 +1,5 @@
 <header>
-    <h2>Administrador <small>visualizar</small></h2>
+    <h2>Administradores <small>visualizar</small></h2>
     <?= $this->Html->link('Voltar', ['controller' => 'Users', 'action' => 'index']); ?>
 </header>
 

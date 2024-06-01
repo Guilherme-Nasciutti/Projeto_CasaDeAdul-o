@@ -20,6 +20,11 @@
     border-radius: 6px;
     border: 1px solid var(--blue);
     color: var(--blue);
+    transition: .3s all;
+}
+
+.container_main header a:hover {
+    background: var(--baby);
 }
 
 .edit_profile {

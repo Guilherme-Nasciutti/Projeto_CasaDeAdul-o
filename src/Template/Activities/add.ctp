@@ -3,33 +3,22 @@
     <?= $this->Html->link('Voltar', ['controller' => 'Activities', 'action' => 'index']); ?>
 </header>
 
-<?php
-/**
- * @var \App\View\AppView $this
- * @var \App\Model\Entity\Activity $activity
- */
-?>
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('List Activities'), ['action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('List Persons'), ['controller' => 'Persons', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Person'), ['controller' => 'Persons', 'action' => 'add']) ?></li>
-    </ul>
-</nav>
-<div class="activities form large-9 medium-8 columns content">
-    <?= $this->Form->create($activity) ?>
-    <fieldset>
-        <legend><?= __('Add Activity') ?></legend>
-        <?php
-            echo $this->Form->control('name');
-            echo $this->Form->control('initial_date');
-            echo $this->Form->control('final_date');
-            echo $this->Form->control('start_time');
-            echo $this->Form->control('duration');
-            echo $this->Form->control('person_id', ['options' => $persons]);
-        ?>
-    </fieldset>
-    <?= $this->Form->button(__('Submit')) ?>
-    <?= $this->Form->end() ?>
-</div>
+<main>
+    <?= $this->Form->create($activity); ?>
+
+    <?= $this->Form->control('person_id', ['label' => 'Responsável', 'options' => $persons]); ?>
+    <?= $this->Form->control('name', ['label' => 'Nome', 'placeholder' => 'Identificação da atividade']); ?>
+
+    <div class="container_fields">
+        <?= $this->Form->control('initial_date', ['label' => 'Data de início', 'type' => 'text', 'placeholder' => '99/99/9999']); ?>
+
+        <?= $this->Form->control('final_date', ['label' => 'Data final', 'type' => 'text', 'placeholder' => '99/99/9999']); ?>
+
+        <?= $this->Form->control('start_time', ['label' => 'Horário de início', 'type' => 'text', 'placeholder' => '999', 'title' => 'Somente números']); ?>
+
+        <?= $this->Form->control('duration', ['label' => 'Duração', 'placeholder' => '999', 'placeholder' => 'Informe o tempo estimado', 'title' => 'Somente números']); ?>
+    </div>
+
+    <?= $this->Form->button('Cadastrar', ['class' => 'btn_sumit']); ?>
+    <?= $this->Form->end(); ?>
+</main>

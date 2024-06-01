@@ -69,4 +69,12 @@ class RolesTable extends Table
 
         return $validator;
     }
+
+    public function findRolesInUse($conditions)
+    {
+        return $this->find('list', ['valueField' => 'type'])
+            ->select(['type'])->distinct()
+            ->where($conditions)
+            ->toList();
+    }
 }
