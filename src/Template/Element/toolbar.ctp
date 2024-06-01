@@ -3,7 +3,7 @@
       <i class="bi bi-list" id="expand"></i>
 
       <ul>
-        <li>Primeiro nome</li>
+        <li><?= strtok($this->request->getSession()->read('Auth.User.full_name'), ' '); ?></li>
 
         <li>
         <?= $this->Html->link('<i class="bi bi-box-arrow-left"></i> Sair', ['controller' => 'Users', 'action' => 'logout'], ['escape' => false]); ?>
