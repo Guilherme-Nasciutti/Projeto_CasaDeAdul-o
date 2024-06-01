@@ -46,3 +46,9 @@
 .bi-trash {
     color: var(--red);
 }
+
+.list_empty {
+    padding: 10px 15px;
+    border-radius: 6px;
+    border: 1px solid var(--dark);
+}

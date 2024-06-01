@@ -89,4 +89,10 @@ class AppController extends Controller
             $this->viewBuilder()->setLayout('admin');
         }
     }
+
+    public function debug($var)
+    {
+        debug($var);
+        exit;
+    }
 }
