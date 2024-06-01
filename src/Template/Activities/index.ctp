@@ -11,7 +11,7 @@
                     <th>#</th>
                     <th><?= $this->Paginator->sort('name', 'Nome'); ?><i class="bi bi-arrow-down-up"></i></th>
                     <th><?= $this->Paginator->sort('initial_date', 'Data de início'); ?><i class="bi bi-arrow-down-up"></i></th>
-                    <th><?= $this->Paginator->sort('final_date', 'Data final'); ?><i class="bi bi-arrow-down-up"></i></th>
+                    <th><?= $this->Paginator->sort('final_date', 'Data prevista p/ término'); ?><i class="bi bi-arrow-down-up"></i></th>
                     <th><?= $this->Paginator->sort('person_id', 'Responsável'); ?><i class="bi bi-arrow-down-up"></i></th>
                     <th>Ações</th>
                 </tr>
