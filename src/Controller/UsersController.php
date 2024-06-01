@@ -2,6 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Exception;
 
 /**
  * Users Controller
@@ -20,30 +21,49 @@ class UsersController extends AppController
 
     public function login()
     {
-        if ($this->request->is('post')) {
-            $user = $this->Auth->identify();
-            if ($user) {
-                $this->Auth->setUser($user);
-                return $this->redirect($this->Auth->redirectUrl());
+        try {
+            if ($this->request->is('post')) {
+                $user = $this->Auth->identify();
+
+                if ($user) {
+                    $this->Auth->setUser($user);
+                    return $this->redirect($this->Auth->redirectUrl());
+                }
+                $this->Flash->error('E-mail ou senha incorreto(s).');
             }
-            $this->Flash->error('Your username or password is incorrect.');
+
+        } catch (Exception $exc) {
+            $this->Flash->error('Entre em contato com o administrador do sistema.');
         }
     }
 
     public function logout()
     {
-        $this->Flash->success('You are now logged out.');
-        return $this->redirect($this->Auth->logout());
+        try {
+            $this->Flash->success('Deslogado com sucesso!');
+            return $this->redirect($this->Auth->logout());
+
+        } catch (Exception $exc) {
+            $this->Flash->error('Entre em contato com o administrador do sistema.');
+        }
     }
 
     public function home()
     {
-
+        try {
+            // to-do: busca nome do usuario logado e apresentar nas boas vindas
+        } catch (Exception $exc) {
+            $this->Flash->error('Entre em contato com o administrador do sistema.');
+        }
     }
 
     public function profile()
     {
+        try {
 
+        } catch (Exception $exc) {
+            $this->Flash->error('Entre em contato com o administrador do sistema.');
+        }
     }
 
     /**
@@ -53,9 +73,13 @@ class UsersController extends AppController
      */
     public function index()
     {
-        $users = $this->paginate($this->Users);
+        try {
+            $users = $this->paginate($this->Users);
+            $this->set(compact('users'));
 
-        $this->set(compact('users'));
+        } catch (Exception $exc) {
+            $this->Flash->error('Entre em contato com o administrador do sistema.');
+        }
     }
 
     /**
@@ -67,11 +91,13 @@ class UsersController extends AppController
      */
     public function view($id = null)
     {
-        $user = $this->Users->get($id, [
-            'contain' => [],
-        ]);
+        try {
+            $user = $this->Users->get($id);
+            $this->set('user', $user);
 
-        $this->set('user', $user);
+        } catch (Exception $exc) {
+            $this->Flash->error('Entre em contato com o administrador do sistema.');
+        }
     }
 
     /**
@@ -81,17 +107,25 @@ class UsersController extends AppController
      */
     public function add()
     {
-        $user = $this->Users->newEntity();
-        if ($this->request->is('post')) {
-            $user = $this->Users->patchEntity($user, $this->request->getData());
-            if ($this->Users->save($user)) {
-                $this->Flash->success(__('Usuário foi salvo com sucesso.'));
+        try {
+            $user = $this->Users->newEntity();
 
-                return $this->redirect(['action' => 'index']);
+            if ($this->request->is('post')) {
+                $user = $this->Users->patchEntity($user, $this->request->getData());
+
+                // to-do: verificar a senha e confirmar senha
+
+                if ($this->Users->save($user)) {
+                    $this->Flash->success(__('Administrador cadastrador com sucesso.'));
+                    return $this->redirect(['action' => 'index']);
+                }
+                $this->Flash->error(__('Não foi possivel cadastrar o administrador. Por favor, tente novamente.'));
             }
-            $this->Flash->error(__('Não foi possivel salvar o usuário. Por favor, tente novamente.'));
+            $this->set(compact('user'));
+
+        } catch (Exception $exc) {
+            $this->Flash->error('Entre em contato com o administrador do sistema.');
         }
-        $this->set(compact('user'));
     }
 
     /**
@@ -103,19 +137,23 @@ class UsersController extends AppController
      */
     public function edit($id = null)
     {
-        $user = $this->Users->get($id, [
-            'contain' => [],
-        ]);
-        if ($this->request->is(['patch', 'post', 'put'])) {
-            $user = $this->Users->patchEntity($user, $this->request->getData());
-            if ($this->Users->save($user)) {
-                $this->Flash->success(__('Usuário alterado com sucesso.'));
+        try {
+            $user = $this->Users->get($id);
 
-                return $this->redirect(['action' => 'index']);
+            if ($this->request->is(['patch', 'post', 'put'])) {
+                $user = $this->Users->patchEntity($user, $this->request->getData());
+
+                if ($this->Users->save($user)) {
+                    $this->Flash->success(__('Administrador editado com sucesso.'));
+                    return $this->redirect(['action' => 'index']);
+                }
+                $this->Flash->error(__('Não foi possivel editar o administrador. Por favor, tente novamente.'));
             }
-            $this->Flash->error(__('Não foi possivel alterar os dados do usuário. Por favor, tente novamente.'));
+            $this->set(compact('user'));
+
+        } catch (Exception $exc) {
+            $this->Flash->error('Entre em contato com o administrador do sistema.');
         }
-        $this->set(compact('user'));
     }
 
     /**
@@ -127,14 +165,18 @@ class UsersController extends AppController
      */
     public function delete($id = null)
     {
-        $this->request->allowMethod(['post', 'delete']);
-        $user = $this->Users->get($id);
-        if ($this->Users->delete($user)) {
-            $this->Flash->success(__('Usuário deletado com sucesso.'));
-        } else {
-            $this->Flash->error(__('Não foi possivel deletar o usuário. Por favor, tente novamente.'));
-        }
+        try {
+            $this->request->allowMethod(['post', 'delete']);
+            $user = $this->Users->get($id);
 
-        return $this->redirect(['action' => 'index']);
+            $this->Users->delete($user) ?
+            $this->Flash->success(__('Administrador apagado com sucesso.')) :
+            $this->Flash->error(__('Não foi possivel apagar o administrador. Por favor, tente novamente.'));
+
+            return $this->redirect(['action' => 'index']);
+
+        } catch (Exception $exc) {
+            $this->Flash->error('Entre em contato com o administrador do sistema.');
+        }
     }
 }
