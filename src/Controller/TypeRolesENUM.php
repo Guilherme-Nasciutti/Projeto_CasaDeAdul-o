@@ -3,14 +3,12 @@
 namespace App\Controller;
 
 class TypeRolesENUM {
-    const ADMIN = 1;
-    const INSTRUCTOR = 2;
-    const HOMELESS = 3;
-    const OUTRO = 4;
+    const INSTRUCTOR = 1;
+    const HOMELESS = 2;
+    const OUTRO = 3;
 
     public static function findConstants($value = NULL) {
         $values = array(
-            self::ADMIN => "Administrador(a)",
             self::INSTRUCTOR => "Instrutor(a)",
             self::HOMELESS => "Morador(a) de rua",
             self::OUTRO => "Outro"

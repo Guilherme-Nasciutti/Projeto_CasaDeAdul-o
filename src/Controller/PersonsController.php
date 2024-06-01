@@ -43,7 +43,7 @@ class PersonsController extends AppController
     {
         try {
             $person = $this->Persons->get($id, [
-                'contain' => ['Roles', 'Activities']
+                'contain' => ['Roles']
             ]);
 
             $this->set('person', $person);

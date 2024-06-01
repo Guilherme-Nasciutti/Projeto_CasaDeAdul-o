@@ -2,7 +2,6 @@
 
 use App\Controller\CivilStatusENUM;
 use App\Controller\EducationENUM;
-use App\Controller\TypeRolesENUM;
 ?>
 
 <header>
@@ -47,30 +46,4 @@ use App\Controller\TypeRolesENUM;
             <dd><?= __overrideEmpty(EducationENUM::findConstants($person->education)); ?></dd>
         </div>
     </dl>
-
-    <?php if (count($person->activities) > 0 && $person->role->id === TypeRolesENUM::INSTRUCTOR) : ?>
-        <table class="table_list">
-            <thead>
-                <tr>
-                    <th>#</th>
-                    <th>Nome</th>
-                    <th>Data de início</th>
-                    <th>Data prevista p/ término</th>
-                </tr>
-            </thead>
-
-            <tbody>
-                <?php foreach ($activities as $activity) : ?>
-                    <tr>
-                        <td><?= $this->Number->format($activity->id); ?></td>
-                        <td><?= h($activity->name); ?></td>
-                        <td><?= h($activity->initial_date); ?></td>
-                        <td><?= h($activity->final_date); ?></td>
-                    </tr>
-                <?php endforeach; ?>
-            </tbody>
-        </table>
-    <?php else : ?>
-        <p class="list_empty">Nenhuma atividade vinculada!</p>
-    <?php endif; ?>
 </main>
