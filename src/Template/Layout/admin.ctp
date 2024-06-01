@@ -25,6 +25,7 @@
     <?= $this->element('toolbar'); ?>
 
     <main class="container_main">
+        <?= $this->Flash->render(); ?><br/>
         <?= $this->fetch('content'); ?>
     </main>
 

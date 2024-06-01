@@ -2,6 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Exception;
 
 /**
  * Roles Controller
@@ -19,9 +20,13 @@ class RolesController extends AppController
      */
     public function index()
     {
-        $roles = $this->paginate($this->Roles);
+        try {
+            $roles = $this->paginate($this->Roles);
+            $this->set(compact('roles'));
 
-        $this->set(compact('roles'));
+        } catch (Exception $exc) {
+            $this->Flash->error('Entre em contato com o administrador do sistema.');
+        }
     }
 
     /**
@@ -33,11 +38,13 @@ class RolesController extends AppController
      */
     public function view($id = null)
     {
-        $role = $this->Roles->get($id, [
-            'contain' => ['Persons'],
-        ]);
+        try {
+            $role = $this->Roles->get($id);
+            $this->set('role', $role);
 
-        $this->set('role', $role);
+        } catch (Exception $exc) {
+            $this->Flash->error('Entre em contato com o administrador do sistema.');
+        }
     }
 
     /**
@@ -47,19 +54,26 @@ class RolesController extends AppController
      */
     public function add()
     {
-        $role = $this->Roles->newEntity();
-        if ($this->request->is('post')) {
-            $role = $this->Roles->patchEntity($role, $this->request->getData());
-            if ($this->Roles->save($role)) {
-                $this->Flash->success(__('Registo salvo com sucesso.'));
+        try {
+            $role = $this->Roles->newEntity();
 
-                return $this->redirect(['action' => 'index']);
+            if ($this->request->is('post')) {
+                $role = $this->Roles->patchEntity($role, $this->request->getData());
+
+                if ($this->Roles->save($role)) {
+                    $this->Flash->success(__('Perfil cadastrado com sucesso.'));
+                    return $this->redirect(['action' => 'index']);
+                }
+                $this->Flash->error(__('Não foi possivel cadastrar o perfil. Por favor, tente novamente.'));
             }
-            $this->Flash->error(__('Não foi possivel salvar o registro. Por favor, tente novamente.'));
-        }
 
-        $roles_in_use = $this->Roles->findRolesInUse(['type !=' => TypeRolesENUM::OUTRO]);
-        $this->set(compact('role', 'roles_in_use'));
+        } catch (Exception $exc) {
+            $this->Flash->error('Entre em contato com o administrador do sistema.');
+
+        } finally {
+            $roles_in_use = $this->Roles->findRolesInUse(['type !=' => TypeRolesENUM::OUTRO]);
+            $this->set(compact('role', 'roles_in_use'));
+        }
     }
 
     /**
@@ -71,21 +85,26 @@ class RolesController extends AppController
      */
     public function edit($id = null)
     {
-        $role = $this->Roles->get($id, [
-            'contain' => [],
-        ]);
-        if ($this->request->is(['patch', 'post', 'put'])) {
-            $role = $this->Roles->patchEntity($role, $this->request->getData());
-            if ($this->Roles->save($role)) {
-                $this->Flash->success(__('O registro foi alterado com sucesso.'));
+        try {
+            $role = $this->Roles->get($id);
 
-                return $this->redirect(['action' => 'index']);
+            if ($this->request->is(['patch', 'post', 'put'])) {
+                $role = $this->Roles->patchEntity($role, $this->request->getData());
+
+                if ($this->Roles->save($role)) {
+                    $this->Flash->success(__('Perfil editado com sucesso.'));
+                    return $this->redirect(['action' => 'index']);
+                }
+                $this->Flash->error(__('Não foi possivel editar o perfil. Por favor, tente novamente.'));
             }
-            $this->Flash->error(__('Não foi possivel alterar o registro. Por favor, tente novamente.'));
-        }
 
-        $roles_in_use = $this->Roles->findRolesInUse(["type not in" => [TypeRolesENUM::OUTRO, $role->type]]);
-        $this->set(compact('role', 'roles_in_use'));
+        } catch (Exception $exc) {
+            $this->Flash->error('Entre em contato com o administrador do sistema.');
+
+        } finally {
+            $roles_in_use = $this->Roles->findRolesInUse(["type not in" => [TypeRolesENUM::OUTRO, $role->type]]);
+            $this->set(compact('role', 'roles_in_use'));
+        }
     }
 
     /**
@@ -97,14 +116,18 @@ class RolesController extends AppController
      */
     public function delete($id = null)
     {
-        $this->request->allowMethod(['post', 'delete']);
-        $role = $this->Roles->get($id);
-        if ($this->Roles->delete($role)) {
-            $this->Flash->success(__('O registro foi deletado com sucesso.'));
-        } else {
-            $this->Flash->error(__('Não foi possivel deletar o registro. Por favor, tente novamente.'));
-        }
+        try {
+            $this->request->allowMethod(['post', 'delete']);
+            $role = $this->Roles->get($id);
 
-        return $this->redirect(['action' => 'index']);
+            $this->Roles->delete($role) ?
+            $this->Flash->success(__('Perfil apagado com sucesso.')) :
+            $this->Flash->error(__('Não foi possivel apagar o perfil. Por favor, tente novamente.'));
+
+            return $this->redirect(['action' => 'index']);
+
+        } catch (Exception $exc) {
+            $this->Flash->error('Entre em contato com o administrador do sistema.');
+        }
     }
 }

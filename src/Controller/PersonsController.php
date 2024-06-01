@@ -2,6 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Exception;
 
 /**
  * Persons Controller
@@ -19,12 +20,16 @@ class PersonsController extends AppController
      */
     public function index()
     {
-        $this->paginate = [
-            'contain' => ['Roles'],
-        ];
-        $persons = $this->paginate($this->Persons);
+        try {
+            $this->paginate = [
+                'contain' => ['Roles']
+            ];
+            $persons = $this->paginate($this->Persons);
+            $this->set(compact('persons'));
 
-        $this->set(compact('persons'));
+        } catch (Exception $exc) {
+            $this->Flash->error('Entre em contato com o administrador do sistema.');
+        }
     }
 
     /**
@@ -36,11 +41,16 @@ class PersonsController extends AppController
      */
     public function view($id = null)
     {
-        $person = $this->Persons->get($id, [
-            'contain' => ['Roles', 'Activities'],
-        ]);
+        try {
+            $person = $this->Persons->get($id, [
+                'contain' => ['Roles', 'Activities']
+            ]);
 
-        $this->set('person', $person);
+            $this->set('person', $person);
+
+        } catch (Exception $exc) {
+            $this->Flash->error('Entre em contato com o administrador do sistema.');
+        }
     }
 
     /**
@@ -50,18 +60,26 @@ class PersonsController extends AppController
      */
     public function add()
     {
-        $person = $this->Persons->newEntity();
-        if ($this->request->is('post')) {
-            $person = $this->Persons->patchEntity($person, $this->request->getData());
-            if ($this->Persons->save($person)) {
-                $this->Flash->success(__('O registro foi salvo com sucesso.'));
+        try {
+            $person = $this->Persons->newEntity();
 
-                return $this->redirect(['action' => 'index']);
+            if ($this->request->is('post')) {
+                $person = $this->Persons->patchEntity($person, $this->request->getData());
+
+                if ($this->Persons->save($person)) {
+                    $this->Flash->success(__('Pessoa cadastrada com sucesso.'));
+                    return $this->redirect(['action' => 'index']);
+                }
+                $this->Flash->error(__('Não foi possivel cadastrar a pessoa. Por favor, tente novamente.'));
             }
-            $this->Flash->error(__('Não foi possivel salvar o registro. Por favor, tente novamente.'));
+
+        } catch (Exception $exc) {
+            $this->Flash->error('Entre em contato com o administrador do sistema.');
+
+        } finally {
+            $roles = $this->Persons->Roles->find('list');
+            $this->set(compact('person', 'roles'));
         }
-        $roles = $this->Persons->Roles->find('list', ['limit' => 200]);
-        $this->set(compact('person', 'roles'));
     }
 
     /**
@@ -73,20 +91,26 @@ class PersonsController extends AppController
      */
     public function edit($id = null)
     {
-        $person = $this->Persons->get($id, [
-            'contain' => [],
-        ]);
-        if ($this->request->is(['patch', 'post', 'put'])) {
-            $person = $this->Persons->patchEntity($person, $this->request->getData());
-            if ($this->Persons->save($person)) {
-                $this->Flash->success(__('O registro foi alterado com sucesso.'));
+        try {
+            $person = $this->Persons->get($id);
 
-                return $this->redirect(['action' => 'index']);
+            if ($this->request->is(['patch', 'post', 'put'])) {
+                $person = $this->Persons->patchEntity($person, $this->request->getData());
+
+                if ($this->Persons->save($person)) {
+                    $this->Flash->success(__('Pessoa editada com sucesso.'));
+                    return $this->redirect(['action' => 'index']);
+                }
+                $this->Flash->error(__('Não foi possivel editar a pessoa. Por favor, tente novamente.'));
             }
-            $this->Flash->error(__('Não foi possivel alterar o registro. Por favor, tente novamente.'));
+
+        } catch (Exception $exc) {
+            $this->Flash->error('Entre em contato com o administrador do sistema.');
+
+        } finally {
+            $roles = $this->Persons->Roles->find('list');
+            $this->set(compact('person', 'roles'));
         }
-        $roles = $this->Persons->Roles->find('list', ['limit' => 200]);
-        $this->set(compact('person', 'roles'));
     }
 
     /**
@@ -98,14 +122,18 @@ class PersonsController extends AppController
      */
     public function delete($id = null)
     {
-        $this->request->allowMethod(['post', 'delete']);
-        $person = $this->Persons->get($id);
-        if ($this->Persons->delete($person)) {
-            $this->Flash->success(__('O registro foi deletado com sucesso.'));
-        } else {
-            $this->Flash->error(__('Não foi possivel deletar o registro. Por favor, tente novamente.'));
-        }
+        try {
+            $this->request->allowMethod(['post', 'delete']);
+            $person = $this->Persons->get($id);
 
-        return $this->redirect(['action' => 'index']);
+            $this->Persons->delete($person) ?
+            $this->Flash->success(__('Pessoa apagada com sucesso.')) :
+            $this->Flash->error(__('Não foi possivel apagar a pessoa. Por favor, tente novamente.'));
+
+            return $this->redirect(['action' => 'index']);
+
+        } catch (Exception $exc) {
+            $this->Flash->error('Entre em contato com o administrador do sistema.');
+        }
     }
 }

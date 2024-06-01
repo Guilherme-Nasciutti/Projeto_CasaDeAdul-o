@@ -6,9 +6,7 @@
         <li>Primeiro nome</li>
 
         <li>
-          <a href="../index.html">
-            <i class="bi bi-box-arrow-left"></i> Sair
-          </a>
+        <?= $this->Html->link('<i class="bi bi-box-arrow-left"></i> Sair', ['controller' => 'Users', 'action' => 'logout'], ['escape' => false]); ?>
         </li>
       </ul>
     </nav>
