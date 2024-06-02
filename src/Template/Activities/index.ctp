@@ -3,6 +3,18 @@
     <?= $this->Html->link('Nova atividade', ['controller' => 'Activities', 'action' => 'add']); ?>
 </header>
 
+<!-- Filtro de pesquisa  -->
+<section class="container_filter">
+    <?= $this->Form->create(null, ['type' => 'get', 'autocomplete' => 'off']) ?>
+
+    <div class="filter_row">
+        <?= $this->Form->control('filter', ['type' => 'text', 'label' => 'Filtro de pesquisa', 'placeholder' => 'Nome da atividade', 'value' => $this->request->getQuery('filter')]); ?>
+
+        <?= $this->Form->button(__('Filtrar'), ['type' => 'submit']); ?>
+    </div>
+    <?= $this->Form->end(); ?>
+</section>
+
 <main>
     <?php if (count($activities) > 0) : ?>
         <table class="table_list">

@@ -21,11 +21,17 @@ class ActivitiesController extends AppController
     public function index()
     {
         try {
-            $this->paginate = [
-                'contain' => ['Persons']
-            ];
+            $conditions = [];
 
-            $activities = $this->paginate($this->Activities);
+            if (!empty($this->request->getQuery('filter'))) {
+                $conditions[] = [
+                    'OR' => [
+                        'activities.name like' => '%' . $this->request->getQuery('filter') . '%'
+                    ]
+                ];
+            }
+
+            $activities = $this->paginate($this->Activities->find('all', ['contain' => ['Persons']])->where($conditions))->toList();
             $this->set(compact('activities'));
 
         } catch (Exception $exc) {

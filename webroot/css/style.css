@@ -107,6 +107,24 @@ select {
     margin-bottom: 1em;
 }
 
+/* FILTRO LIST */
+.container_filter form {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 2em;
+}
+
+.container_filter .filter_row {
+    gap: 1em;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+}
+
+.container_filter button {
+    min-width: 200px;
+}
+
 /* MESSAGES */
 .container_message {
     padding: 10px 15px;
@@ -147,5 +165,14 @@ select {
 
     .btn_sumit {
         max-width: 100%;
+    }
+
+    .container_filter .filter_row {
+        gap: .5em;
+        flex-wrap: wrap;
+    }
+
+    .container_filter button {
+        width: 100%;
     }
 }

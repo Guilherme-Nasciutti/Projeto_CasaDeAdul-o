@@ -21,10 +21,19 @@ class PersonsController extends AppController
     public function index()
     {
         try {
-            $this->paginate = [
-                'contain' => ['Roles']
-            ];
-            $persons = $this->paginate($this->Persons);
+            $conditions = [];
+
+            if (!empty($this->request->getQuery('filter'))) {
+                $conditions[] = [
+                    'OR' => [
+                        'persons.first_name like' => '%' . $this->request->getQuery('filter') . '%',
+                        'persons.last_name like' => '%' . $this->request->getQuery('filter') . '%',
+                        'persons.phone like' => '%' . $this->request->getQuery('filter') . '%',
+                    ]
+                ];
+            }
+
+            $persons = $this->paginate($this->Persons->find('all', ['contain' => ['Roles']])->where($conditions))->toList();
             $this->set(compact('persons'));
 
         } catch (Exception $exc) {
