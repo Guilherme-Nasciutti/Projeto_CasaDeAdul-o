@@ -3,8 +3,20 @@
     <?= $this->Html->link('Nova pessoa', ['controller' => 'Persons', 'action' => 'add']); ?>
 </header>
 
+<!-- Filtro de pesquisa  -->
+<section class="container_filter">
+    <?= $this->Form->create(null, ['type' => 'get', 'autocomplete' => 'off']) ?>
+
+    <div class="filter_row">
+        <?= $this->Form->control('filter', ['type' => 'text', 'label' => 'Filtro de pesquisa', 'placeholder' => 'Nome ou sobrenome ou telefone', 'value' => $this->request->getQuery('filter')]); ?>
+
+        <?= $this->Form->button(__('Filtrar'), ['type' => 'submit']); ?>
+    </div>
+    <?= $this->Form->end(); ?>
+</section>
+
 <main>
-    <?php if (count($persons) > 0) : ?>
+    <?php if ($persons) : ?>
         <table class="table_list">
             <thead>
                 <tr>
@@ -39,7 +51,7 @@
         <p class="list_empty">Nenhuma pessoa cadastrada!</p>
     <?php endif; ?>
 
-    <?php if (count($persons) > 0) : ?>
+    <?php if ($persons) : ?>
         <?= $this->element('pagination'); ?>
     <?php endif; ?>
 </main>
