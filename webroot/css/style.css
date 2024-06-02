@@ -97,6 +97,16 @@ select {
     background: var(--orange);
 }
 
+.field_required {
+    color: var(--red);
+}
+
+.message_required {
+    text-align: right;
+    color: var(--red);
+    margin-bottom: 1em;
+}
+
 /* MESSAGES */
 .container_message {
     padding: 10px 15px;
