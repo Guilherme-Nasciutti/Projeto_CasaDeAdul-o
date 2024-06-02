@@ -20,3 +20,9 @@
 .container_view .view_row dt {
     font-weight: 600;
 }
+
+@media screen and (max-width: 767px) {
+    .container_view .view_row {
+        flex-wrap: wrap;
+    }
+}
