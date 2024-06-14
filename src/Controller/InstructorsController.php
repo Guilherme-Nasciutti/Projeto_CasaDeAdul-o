@@ -68,10 +68,10 @@ class InstructorsController extends AppController
                 $instructor = $this->Instructors->patchEntity($instructor, $this->request->getData());
 
                 if ($this->Instructors->save($instructor)) {
-                    $this->Flash->success(__('The instructor has been saved.'));
+                    $this->Flash->success(__('Instrutor cadastrado com sucesso.'));
                     return $this->redirect(['action' => 'index']);
                 }
-                $this->Flash->error(__('The instructor could not be saved. Please, try again.'));
+                $this->Flash->error(__('Não foi possivel cadastrar o instrutor. Por favor, tente novamente.'));
             }
             $persons = $this->Instructors->Persons->find('list', ['limit' => 200]);
             $this->set(compact('instructor', 'persons'));
@@ -97,10 +97,10 @@ class InstructorsController extends AppController
                 $instructor = $this->Instructors->patchEntity($instructor, $this->request->getData());
 
                 if ($this->Instructors->save($instructor)) {
-                    $this->Flash->success(__('The instructor has been saved.'));
+                    $this->Flash->success(__('Instrutor editado com sucesso.'));
                     return $this->redirect(['action' => 'index']);
                 }
-                $this->Flash->error(__('The instructor could not be saved. Please, try again.'));
+                $this->Flash->error(__('Não foi possivel editar o instrutor. Por favor, tente novamente.'));
             }
             $persons = $this->Instructors->Persons->find('list', ['limit' => 200]);
             $this->set(compact('instructor', 'persons'));
@@ -124,8 +124,8 @@ class InstructorsController extends AppController
             $instructor = $this->Instructors->get($id);
 
             $this->Instructors->delete($instructor) ?
-            $this->Flash->success(__('The instructor has been deleted.')) :
-            $this->Flash->error(__('The instructor could not be deleted. Please, try again.'));
+            $this->Flash->success(__('Instrutor apagado com sucesso.')) :
+            $this->Flash->error(__('Não foi possivel apagar o instrutor. Por favor, tente novamente.'));
 
             return $this->redirect(['action' => 'index']);
 

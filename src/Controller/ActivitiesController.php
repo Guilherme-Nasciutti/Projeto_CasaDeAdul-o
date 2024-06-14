@@ -68,10 +68,10 @@ class ActivitiesController extends AppController
                 $activity = $this->Activities->patchEntity($activity, $this->request->getData());
 
                 if ($this->Activities->save($activity)) {
-                    $this->Flash->success(__('The activity has been saved.'));
+                    $this->Flash->success(__('Atividade cadastrada com sucesso.'));
                     return $this->redirect(['action' => 'index']);
                 }
-                $this->Flash->error(__('The activity could not be saved. Please, try again.'));
+                $this->Flash->error(__('Não foi possivel cadastrar a atividade. Por favor, tente novamente.'));
             }
             $instructors = $this->Activities->Instructors->find('list', ['limit' => 200]);
             $guests = $this->Activities->Guests->find('list', ['limit' => 200]);
@@ -100,10 +100,10 @@ class ActivitiesController extends AppController
                 $activity = $this->Activities->patchEntity($activity, $this->request->getData());
 
                 if ($this->Activities->save($activity)) {
-                    $this->Flash->success(__('The activity has been saved.'));
+                    $this->Flash->success(__('Atividade editada com sucesso.'));
                     return $this->redirect(['action' => 'index']);
                 }
-                $this->Flash->error(__('The activity could not be saved. Please, try again.'));
+                $this->Flash->error(__('Não foi possivel editar a atividade. Por favor, tente novamente.'));
             }
             $instructors = $this->Activities->Instructors->find('list', ['limit' => 200]);
             $guests = $this->Activities->Guests->find('list', ['limit' => 200]);
@@ -128,8 +128,8 @@ class ActivitiesController extends AppController
             $activity = $this->Activities->get($id);
 
             $this->Activities->delete($activity) ?
-            $this->Flash->success(__('The activity has been deleted.')) :
-            $this->Flash->error(__('The activity could not be deleted. Please, try again.'));
+            $this->Flash->success(__('Atividade apagada com sucesso.')) :
+            $this->Flash->error(__('Não foi possivel apagar a atividade. Por favor, tente novamente.'));
 
             return $this->redirect(['action' => 'index']);
 

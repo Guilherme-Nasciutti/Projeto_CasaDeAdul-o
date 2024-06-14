@@ -68,10 +68,10 @@ class GuestsController extends AppController
                 $guest = $this->Guests->patchEntity($guest, $this->request->getData());
 
                 if ($this->Guests->save($guest)) {
-                    $this->Flash->success(__('The guest has been saved.'));
+                    $this->Flash->success(__('Hóspede cadastrado com sucesso.'));
                     return $this->redirect(['action' => 'index']);
                 }
-                $this->Flash->error(__('The guest could not be saved. Please, try again.'));
+                $this->Flash->error(__('Não foi possivel cadastrar o hóspede. Por favor, tente novamente.'));
             }
             $persons = $this->Guests->Persons->find('list', ['limit' => 200]);
             $activities = $this->Guests->Activities->find('list', ['limit' => 200]);
@@ -100,10 +100,10 @@ class GuestsController extends AppController
                 $guest = $this->Guests->patchEntity($guest, $this->request->getData());
 
                 if ($this->Guests->save($guest)) {
-                    $this->Flash->success(__('The guest has been saved.'));
+                    $this->Flash->success(__('Hóspede editado com sucesso.'));
                     return $this->redirect(['action' => 'index']);
                 }
-                $this->Flash->error(__('The guest could not be saved. Please, try again.'));
+                $this->Flash->error(__('Não foi possivel editar o instrutor. Por favor, tente novamente.'));
             }
             $persons = $this->Guests->Persons->find('list', ['limit' => 200]);
             $activities = $this->Guests->Activities->find('list', ['limit' => 200]);
@@ -128,8 +128,8 @@ class GuestsController extends AppController
             $guest = $this->Guests->get($id);
 
             $this->Guests->delete($guest) ?
-            $this->Flash->success(__('The guest has been deleted.')) :
-            $this->Flash->error(__('The guest could not be deleted. Please, try again.'));
+            $this->Flash->success(__('Hóspede apagado com sucesso..')) :
+            $this->Flash->error(__('Não foi possivel apagar o hóspede. Por favor, tente novamente.'));
 
             return $this->redirect(['action' => 'index']);
 

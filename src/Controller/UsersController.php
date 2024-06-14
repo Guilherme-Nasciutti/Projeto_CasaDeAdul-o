@@ -121,7 +121,7 @@ class UsersController extends AppController
                 $user = $this->Users->patchEntity($user, $this->request->getData());
 
                 if ($this->Users->save($user)) {
-                    $this->Flash->success(__('Administrador cadastrador com sucesso.'));
+                    $this->Flash->success(__('Administrador cadastrado com sucesso.'));
                     return $this->redirect(['action' => 'index']);
                 }
                 $this->Flash->error(__('Não foi possivel cadastrar o administrador. Por favor, tente novamente.'));
