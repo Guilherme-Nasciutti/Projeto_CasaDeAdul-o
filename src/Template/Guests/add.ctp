@@ -3,26 +3,31 @@
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\Guest $guest
  */
+
+use App\Controller\CivilStatusENUM;
 ?>
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('List Guests'), ['action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('List Persons'), ['controller' => 'Persons', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Person'), ['controller' => 'Persons', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Activities'), ['controller' => 'Activities', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Activity'), ['controller' => 'Activities', 'action' => 'add']) ?></li>
-    </ul>
-</nav>
-<div class="guests form large-9 medium-8 columns content">
-    <?= $this->Form->create($guest) ?>
-    <fieldset>
-        <legend><?= __('Add Guest') ?></legend>
-        <?php
-            echo $this->Form->control('person_id', ['options' => $persons]);
-            echo $this->Form->control('activities._ids', ['options' => $activities]);
-        ?>
-    </fieldset>
-    <?= $this->Form->button(__('Submit')) ?>
-    <?= $this->Form->end() ?>
-</div>
+
+<header>
+    <h2>Hóspedes <small>cadastrar</small></h2>
+    <?= $this->Html->link('Voltar', ['controller' => 'Guests', 'action' => 'index']); ?>
+</header>
+
+<main>
+    <?= $this->element('field_required'); ?>
+
+    <?= $this->Form->create($guest); ?>
+
+    <div class="container_fields">
+        <?= $this->Form->control('person.first_name', ['label' => 'Nome <span class="field_required">*</span>', 'escape' => false]); ?>
+        <?= $this->Form->control('person.last_name', ['label' => 'Sobrenome <span class="field_required">*</span>', 'escape' => false]); ?>
+    </div>
+
+    <div class="container_fields">
+        <?= $this->Form->control('person.birthday', ['label' => 'Data de nascimento <span class="field_required">*</span>', 'type' => 'text', 'placeholder' => '99/99/9999', 'class' => 'datepicker mask_date', 'escape' => false]); ?>
+        <?= $this->Form->control('person.civil_status', ['label' => 'Estado civil <span class="field_required">*</span>', 'options' => CivilStatusENUM::findConstants(), 'escape' => false]); ?>
+        </div>
+    </div>
+
+    <?= $this->Form->button('Cadastrar', ['class' => 'btn_sumit']); ?>
+    <?= $this->Form->end(); ?>
+</main>

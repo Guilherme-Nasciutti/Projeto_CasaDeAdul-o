@@ -44,7 +44,7 @@ class GuestsController extends AppController
     {
         try {
             $guest = $this->Guests->get($id, [
-                'contain' => ['Persons', 'Activities']
+                'contain' => ['Persons']
             ]);
 
             $this->set('guest', $guest);
@@ -67,15 +67,13 @@ class GuestsController extends AppController
             if ($this->request->is('post')) {
                 $guest = $this->Guests->patchEntity($guest, $this->request->getData());
 
-                if ($this->Guests->save($guest)) {
+                if ($this->Guests->save($guest, ['associated' => ['Persons']])) {
                     $this->Flash->success(__('Hóspede cadastrado com sucesso.'));
                     return $this->redirect(['action' => 'index']);
                 }
                 $this->Flash->error(__('Não foi possivel cadastrar o hóspede. Por favor, tente novamente.'));
             }
-            $persons = $this->Guests->Persons->find('list', ['limit' => 200]);
-            $activities = $this->Guests->Activities->find('list', ['limit' => 200]);
-            $this->set(compact('guest', 'persons', 'activities'));
+            $this->set(compact('guest'));
 
         } catch (Exception $exc) {
             $this->Flash->error('Entre em contato com o administrador do sistema.');
@@ -93,21 +91,19 @@ class GuestsController extends AppController
     {
         try {
             $guest = $this->Guests->get($id, [
-                'contain' => ['Activities']
+                'contain' => ['Persons']
             ]);
 
             if ($this->request->is(['patch', 'post', 'put'])) {
                 $guest = $this->Guests->patchEntity($guest, $this->request->getData());
 
-                if ($this->Guests->save($guest)) {
+                if ($this->Guests->save($guest, ['associated' => ['Persons']])) {
                     $this->Flash->success(__('Hóspede editado com sucesso.'));
                     return $this->redirect(['action' => 'index']);
                 }
                 $this->Flash->error(__('Não foi possivel editar o instrutor. Por favor, tente novamente.'));
             }
-            $persons = $this->Guests->Persons->find('list', ['limit' => 200]);
-            $activities = $this->Guests->Activities->find('list', ['limit' => 200]);
-            $this->set(compact('guest', 'persons', 'activities'));
+            $this->set(compact('guest'));
 
         } catch (Exception $exc) {
             $this->Flash->error('Entre em contato com o administrador do sistema.');
