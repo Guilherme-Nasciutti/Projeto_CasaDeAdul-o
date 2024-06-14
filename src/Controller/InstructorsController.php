@@ -2,6 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Exception;
 
 /**
  * Instructors Controller
@@ -19,11 +20,17 @@ class InstructorsController extends AppController
      */
     public function index()
     {
-        $this->paginate = [
-            'contain' => ['Persons']
-        ];
-        $instructors = $this->paginate($this->Instructors);
-        $this->set(compact('instructors'));
+        try {
+            $this->paginate = [
+                'contain' => ['Persons']
+            ];
+
+            $instructors = $this->paginate($this->Instructors);
+            $this->set(compact('instructors'));
+
+        } catch (Exception $exc) {
+            $this->Flash->error('Entre em contato com o administrador do sistema.');
+        }
     }
 
     /**
@@ -35,11 +42,16 @@ class InstructorsController extends AppController
      */
     public function view($id = null)
     {
-        $instructor = $this->Instructors->get($id, [
-            'contain' => ['Persons', 'Activities'],
-        ]);
+        try {
+            $instructor = $this->Instructors->get($id, [
+                'contain' => ['Persons', 'Activities'],
+            ]);
 
-        $this->set('instructor', $instructor);
+            $this->set('instructor', $instructor);
+
+        } catch (Exception $exc) {
+            $this->Flash->error('Entre em contato com o administrador do sistema.');
+        }
     }
 
     /**
@@ -49,18 +61,24 @@ class InstructorsController extends AppController
      */
     public function add()
     {
-        $instructor = $this->Instructors->newEntity();
-        if ($this->request->is('post')) {
-            $instructor = $this->Instructors->patchEntity($instructor, $this->request->getData());
-            if ($this->Instructors->save($instructor)) {
-                $this->Flash->success(__('The instructor has been saved.'));
+        try {
+            $instructor = $this->Instructors->newEntity();
 
-                return $this->redirect(['action' => 'index']);
+            if ($this->request->is('post')) {
+                $instructor = $this->Instructors->patchEntity($instructor, $this->request->getData());
+
+                if ($this->Instructors->save($instructor)) {
+                    $this->Flash->success(__('The instructor has been saved.'));
+                    return $this->redirect(['action' => 'index']);
+                }
+                $this->Flash->error(__('The instructor could not be saved. Please, try again.'));
             }
-            $this->Flash->error(__('The instructor could not be saved. Please, try again.'));
+            $persons = $this->Instructors->Persons->find('list', ['limit' => 200]);
+            $this->set(compact('instructor', 'persons'));
+
+        } catch (Exception $exc) {
+            $this->Flash->error('Entre em contato com o administrador do sistema.');
         }
-        $persons = $this->Instructors->Persons->find('list', ['limit' => 200]);
-        $this->set(compact('instructor', 'persons'));
     }
 
     /**
@@ -72,20 +90,24 @@ class InstructorsController extends AppController
      */
     public function edit($id = null)
     {
-        $instructor = $this->Instructors->get($id, [
-            'contain' => [],
-        ]);
-        if ($this->request->is(['patch', 'post', 'put'])) {
-            $instructor = $this->Instructors->patchEntity($instructor, $this->request->getData());
-            if ($this->Instructors->save($instructor)) {
-                $this->Flash->success(__('The instructor has been saved.'));
+        try {
+            $instructor = $this->Instructors->get($id);
 
-                return $this->redirect(['action' => 'index']);
+            if ($this->request->is(['patch', 'post', 'put'])) {
+                $instructor = $this->Instructors->patchEntity($instructor, $this->request->getData());
+
+                if ($this->Instructors->save($instructor)) {
+                    $this->Flash->success(__('The instructor has been saved.'));
+                    return $this->redirect(['action' => 'index']);
+                }
+                $this->Flash->error(__('The instructor could not be saved. Please, try again.'));
             }
-            $this->Flash->error(__('The instructor could not be saved. Please, try again.'));
+            $persons = $this->Instructors->Persons->find('list', ['limit' => 200]);
+            $this->set(compact('instructor', 'persons'));
+
+        } catch (Exception $exc) {
+            $this->Flash->error('Entre em contato com o administrador do sistema.');
         }
-        $persons = $this->Instructors->Persons->find('list', ['limit' => 200]);
-        $this->set(compact('instructor', 'persons'));
     }
 
     /**
@@ -97,14 +119,18 @@ class InstructorsController extends AppController
      */
     public function delete($id = null)
     {
-        $this->request->allowMethod(['post', 'delete']);
-        $instructor = $this->Instructors->get($id);
-        if ($this->Instructors->delete($instructor)) {
-            $this->Flash->success(__('The instructor has been deleted.'));
-        } else {
-            $this->Flash->error(__('The instructor could not be deleted. Please, try again.'));
-        }
+        try {
+            $this->request->allowMethod(['post', 'delete']);
+            $instructor = $this->Instructors->get($id);
 
-        return $this->redirect(['action' => 'index']);
+            $this->Instructors->delete($instructor) ?
+            $this->Flash->success(__('The instructor has been deleted.')) :
+            $this->Flash->error(__('The instructor could not be deleted. Please, try again.'));
+
+            return $this->redirect(['action' => 'index']);
+
+        } catch (Exception $exc) {
+            $this->Flash->error('Entre em contato com o administrador do sistema.');
+        }
     }
 }

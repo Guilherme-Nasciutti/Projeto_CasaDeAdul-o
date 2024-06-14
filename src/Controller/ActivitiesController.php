@@ -2,6 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Exception;
 
 /**
  * Activities Controller
@@ -19,12 +20,17 @@ class ActivitiesController extends AppController
      */
     public function index()
     {
-        $this->paginate = [
-            'contain' => ['Instructors'],
-        ];
-        $activities = $this->paginate($this->Activities);
+        try {
+            $this->paginate = [
+                'contain' => ['Instructors']
+            ];
 
-        $this->set(compact('activities'));
+            $activities = $this->paginate($this->Activities);
+            $this->set(compact('activities'));
+
+        } catch (Exception $exc) {
+            $this->Flash->error('Entre em contato com o administrador do sistema.');
+        }
     }
 
     /**
@@ -36,11 +42,16 @@ class ActivitiesController extends AppController
      */
     public function view($id = null)
     {
-        $activity = $this->Activities->get($id, [
-            'contain' => ['Instructors', 'Guests'],
-        ]);
+        try {
+            $activity = $this->Activities->get($id, [
+                'contain' => ['Instructors', 'Guests']
+            ]);
 
-        $this->set('activity', $activity);
+            $this->set('activity', $activity);
+
+        } catch (Exception $exc) {
+            $this->Flash->error('Entre em contato com o administrador do sistema.');
+        }
     }
 
     /**
@@ -50,19 +61,25 @@ class ActivitiesController extends AppController
      */
     public function add()
     {
-        $activity = $this->Activities->newEntity();
-        if ($this->request->is('post')) {
-            $activity = $this->Activities->patchEntity($activity, $this->request->getData());
-            if ($this->Activities->save($activity)) {
-                $this->Flash->success(__('The activity has been saved.'));
+        try {
+            $activity = $this->Activities->newEntity();
 
-                return $this->redirect(['action' => 'index']);
+            if ($this->request->is('post')) {
+                $activity = $this->Activities->patchEntity($activity, $this->request->getData());
+
+                if ($this->Activities->save($activity)) {
+                    $this->Flash->success(__('The activity has been saved.'));
+                    return $this->redirect(['action' => 'index']);
+                }
+                $this->Flash->error(__('The activity could not be saved. Please, try again.'));
             }
-            $this->Flash->error(__('The activity could not be saved. Please, try again.'));
+            $instructors = $this->Activities->Instructors->find('list', ['limit' => 200]);
+            $guests = $this->Activities->Guests->find('list', ['limit' => 200]);
+            $this->set(compact('activity', 'instructors', 'guests'));
+
+        } catch (Exception $exc) {
+            $this->Flash->error('Entre em contato com o administrador do sistema.');
         }
-        $instructors = $this->Activities->Instructors->find('list', ['limit' => 200]);
-        $guests = $this->Activities->Guests->find('list', ['limit' => 200]);
-        $this->set(compact('activity', 'instructors', 'guests'));
     }
 
     /**
@@ -74,21 +91,27 @@ class ActivitiesController extends AppController
      */
     public function edit($id = null)
     {
-        $activity = $this->Activities->get($id, [
-            'contain' => ['Guests'],
-        ]);
-        if ($this->request->is(['patch', 'post', 'put'])) {
-            $activity = $this->Activities->patchEntity($activity, $this->request->getData());
-            if ($this->Activities->save($activity)) {
-                $this->Flash->success(__('The activity has been saved.'));
+        try {
+            $activity = $this->Activities->get($id, [
+                'contain' => ['Guests']
+            ]);
 
-                return $this->redirect(['action' => 'index']);
+            if ($this->request->is(['patch', 'post', 'put'])) {
+                $activity = $this->Activities->patchEntity($activity, $this->request->getData());
+
+                if ($this->Activities->save($activity)) {
+                    $this->Flash->success(__('The activity has been saved.'));
+                    return $this->redirect(['action' => 'index']);
+                }
+                $this->Flash->error(__('The activity could not be saved. Please, try again.'));
             }
-            $this->Flash->error(__('The activity could not be saved. Please, try again.'));
+            $instructors = $this->Activities->Instructors->find('list', ['limit' => 200]);
+            $guests = $this->Activities->Guests->find('list', ['limit' => 200]);
+            $this->set(compact('activity', 'instructors', 'guests'));
+
+        } catch (Exception $exc) {
+            $this->Flash->error('Entre em contato com o administrador do sistema.');
         }
-        $instructors = $this->Activities->Instructors->find('list', ['limit' => 200]);
-        $guests = $this->Activities->Guests->find('list', ['limit' => 200]);
-        $this->set(compact('activity', 'instructors', 'guests'));
     }
 
     /**
@@ -100,14 +123,18 @@ class ActivitiesController extends AppController
      */
     public function delete($id = null)
     {
-        $this->request->allowMethod(['post', 'delete']);
-        $activity = $this->Activities->get($id);
-        if ($this->Activities->delete($activity)) {
-            $this->Flash->success(__('The activity has been deleted.'));
-        } else {
-            $this->Flash->error(__('The activity could not be deleted. Please, try again.'));
-        }
+        try {
+            $this->request->allowMethod(['post', 'delete']);
+            $activity = $this->Activities->get($id);
 
-        return $this->redirect(['action' => 'index']);
+            $this->Activities->delete($activity) ?
+            $this->Flash->success(__('The activity has been deleted.')) :
+            $this->Flash->error(__('The activity could not be deleted. Please, try again.'));
+
+            return $this->redirect(['action' => 'index']);
+
+        } catch (Exception $exc) {
+            $this->Flash->error('Entre em contato com o administrador do sistema.');
+        }
     }
 }

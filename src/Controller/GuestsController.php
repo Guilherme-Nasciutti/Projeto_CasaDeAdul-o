@@ -2,6 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Exception;
 
 /**
  * Guests Controller
@@ -19,12 +20,17 @@ class GuestsController extends AppController
      */
     public function index()
     {
-        $this->paginate = [
-            'contain' => ['Persons'],
-        ];
-        $guests = $this->paginate($this->Guests);
+        try {
+            $this->paginate = [
+                'contain' => ['Persons'],
+            ];
 
-        $this->set(compact('guests'));
+            $guests = $this->paginate($this->Guests);
+            $this->set(compact('guests'));
+
+        } catch (Exception $exc) {
+            $this->Flash->error('Entre em contato com o administrador do sistema.');
+        }
     }
 
     /**
@@ -36,11 +42,16 @@ class GuestsController extends AppController
      */
     public function view($id = null)
     {
-        $guest = $this->Guests->get($id, [
-            'contain' => ['Persons', 'Activities'],
-        ]);
+        try {
+            $guest = $this->Guests->get($id, [
+                'contain' => ['Persons', 'Activities']
+            ]);
 
-        $this->set('guest', $guest);
+            $this->set('guest', $guest);
+
+        } catch (Exception $exc) {
+            $this->Flash->error('Entre em contato com o administrador do sistema.');
+        }
     }
 
     /**
@@ -50,19 +61,25 @@ class GuestsController extends AppController
      */
     public function add()
     {
-        $guest = $this->Guests->newEntity();
-        if ($this->request->is('post')) {
-            $guest = $this->Guests->patchEntity($guest, $this->request->getData());
-            if ($this->Guests->save($guest)) {
-                $this->Flash->success(__('The guest has been saved.'));
+        try {
+            $guest = $this->Guests->newEntity();
 
-                return $this->redirect(['action' => 'index']);
+            if ($this->request->is('post')) {
+                $guest = $this->Guests->patchEntity($guest, $this->request->getData());
+
+                if ($this->Guests->save($guest)) {
+                    $this->Flash->success(__('The guest has been saved.'));
+                    return $this->redirect(['action' => 'index']);
+                }
+                $this->Flash->error(__('The guest could not be saved. Please, try again.'));
             }
-            $this->Flash->error(__('The guest could not be saved. Please, try again.'));
+            $persons = $this->Guests->Persons->find('list', ['limit' => 200]);
+            $activities = $this->Guests->Activities->find('list', ['limit' => 200]);
+            $this->set(compact('guest', 'persons', 'activities'));
+
+        } catch (Exception $exc) {
+            $this->Flash->error('Entre em contato com o administrador do sistema.');
         }
-        $persons = $this->Guests->Persons->find('list', ['limit' => 200]);
-        $activities = $this->Guests->Activities->find('list', ['limit' => 200]);
-        $this->set(compact('guest', 'persons', 'activities'));
     }
 
     /**
@@ -74,21 +91,27 @@ class GuestsController extends AppController
      */
     public function edit($id = null)
     {
-        $guest = $this->Guests->get($id, [
-            'contain' => ['Activities'],
-        ]);
-        if ($this->request->is(['patch', 'post', 'put'])) {
-            $guest = $this->Guests->patchEntity($guest, $this->request->getData());
-            if ($this->Guests->save($guest)) {
-                $this->Flash->success(__('The guest has been saved.'));
+        try {
+            $guest = $this->Guests->get($id, [
+                'contain' => ['Activities']
+            ]);
 
-                return $this->redirect(['action' => 'index']);
+            if ($this->request->is(['patch', 'post', 'put'])) {
+                $guest = $this->Guests->patchEntity($guest, $this->request->getData());
+
+                if ($this->Guests->save($guest)) {
+                    $this->Flash->success(__('The guest has been saved.'));
+                    return $this->redirect(['action' => 'index']);
+                }
+                $this->Flash->error(__('The guest could not be saved. Please, try again.'));
             }
-            $this->Flash->error(__('The guest could not be saved. Please, try again.'));
+            $persons = $this->Guests->Persons->find('list', ['limit' => 200]);
+            $activities = $this->Guests->Activities->find('list', ['limit' => 200]);
+            $this->set(compact('guest', 'persons', 'activities'));
+
+        } catch (Exception $exc) {
+            $this->Flash->error('Entre em contato com o administrador do sistema.');
         }
-        $persons = $this->Guests->Persons->find('list', ['limit' => 200]);
-        $activities = $this->Guests->Activities->find('list', ['limit' => 200]);
-        $this->set(compact('guest', 'persons', 'activities'));
     }
 
     /**
@@ -100,14 +123,18 @@ class GuestsController extends AppController
      */
     public function delete($id = null)
     {
-        $this->request->allowMethod(['post', 'delete']);
-        $guest = $this->Guests->get($id);
-        if ($this->Guests->delete($guest)) {
-            $this->Flash->success(__('The guest has been deleted.'));
-        } else {
-            $this->Flash->error(__('The guest could not be deleted. Please, try again.'));
-        }
+        try {
+            $this->request->allowMethod(['post', 'delete']);
+            $guest = $this->Guests->get($id);
 
-        return $this->redirect(['action' => 'index']);
+            $this->Guests->delete($guest) ?
+            $this->Flash->success(__('The guest has been deleted.')) :
+            $this->Flash->error(__('The guest could not be deleted. Please, try again.'));
+
+            return $this->redirect(['action' => 'index']);
+
+        } catch (Exception $exc) {
+            $this->Flash->error('Entre em contato com o administrador do sistema.');
+        }
     }
 }
