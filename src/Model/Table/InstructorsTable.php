@@ -64,19 +64,23 @@ class InstructorsTable extends Table
 
         $validator
             ->scalar('phone')
-            ->maxLength('phone', 15)
-            ->requirePresence('phone', 'create')
-            ->notEmptyString('phone')
-            ->add('phone', 'unique', ['rule' => 'validateUnique', 'provider' => 'table']);
+            ->maxLength('phone', 15, 'Máximo de 15 dígitos!')
+            ->requirePresence('phone', 'create', 'O campo telefone pessoal é obrigatório!')
+            ->notEmptyString('phone', 'O campo telefone pessoal é obrigatório!')
+            ->add('phone', 'unique', [
+                'rule' => 'validateUnique',
+                'provider' => 'table',
+                'message' => 'Telefone já cadastrado!'
+            ]);
 
         $validator
             ->scalar('other_phone')
-            ->maxLength('other_phone', 15)
+            ->maxLength('other_phone', 15, 'Máximo de 15 dígitos!')
             ->allowEmptyString('other_phone');
 
         $validator
-            ->requirePresence('education', 'create')
-            ->notEmptyString('education');
+            ->requirePresence('education', 'create', 'O campo formação é obrigatório!')
+            ->notEmptyString('education', 'O campo formação é obrigatório!');
 
         return $validator;
     }
@@ -90,7 +94,7 @@ class InstructorsTable extends Table
      */
     public function buildRules(RulesChecker $rules)
     {
-        $rules->add($rules->isUnique(['phone']));
+        $rules->add($rules->isUnique(['phone'], 'Telefone já cadastrado!'));
         $rules->add($rules->existsIn(['person_id'], 'Persons'));
 
         return $rules;

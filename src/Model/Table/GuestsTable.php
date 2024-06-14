@@ -77,7 +77,6 @@ class GuestsTable extends Table
     public function buildRules(RulesChecker $rules)
     {
         $rules->add($rules->existsIn(['person_id'], 'Persons'));
-
         return $rules;
     }
 }

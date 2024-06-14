@@ -67,27 +67,41 @@ class ActivitiesTable extends Table
         $validator
             ->scalar('title')
             ->maxLength('title', 220)
-            ->requirePresence('title', 'create')
-            ->notEmptyString('title');
+            ->requirePresence('title', 'create', 'O campo título é obrigatório!')
+            ->notEmptyString('title', 'O campo título é obrigatório!');
 
         $validator
-            ->date('initial_date')
-            ->requirePresence('initial_date', 'create')
-            ->notEmptyDate('initial_date');
+            ->date('initial_date', ['dmy'], 'Data inválida!')
+            ->requirePresence('initial_date', 'create', 'O campo data de início é obrigatório!')
+            ->notEmptyDate('initial_date', 'O campo data de início é obrigatório!');
 
         $validator
-            ->date('final_date')
-            ->requirePresence('final_date', 'create')
-            ->notEmptyDate('final_date');
+            ->date('final_date', ['dmy'], 'Data inválida!')
+            ->requirePresence('final_date', 'create', 'O campo data final é obrigatório!')
+            ->notEmptyDate('final_date', 'O campo data final é obrigatório!')
+            ->add('final_date', 'custom', [
+                'rule' => function ($value, $context) {
+                    $initialDate = isset($context['data']['initial_date']) ? $context['data']['initial_date'] : null;
+                    if ($initialDate) {
+                        $initialDate = \DateTime::createFromFormat('d/m/Y', $initialDate);
+                        $finalDate = \DateTime::createFromFormat('d/m/Y', $value);
+                        if ($finalDate && $initialDate) {
+                            return $finalDate >= $initialDate;
+                        }
+                    }
+                    return false;
+                },
+                'message' => 'A data final não pode ser anterior à data de início.'
+            ]);
 
         $validator
-            ->requirePresence('start_time', 'create')
-            ->notEmptyString('start_time');
+            ->requirePresence('start_time', 'create', 'O campo horário de início é obrigatório!')
+            ->notEmptyString('start_time', 'O campo horário de início é obrigatório!');
 
         $validator
             ->integer('duration')
-            ->requirePresence('duration', 'create')
-            ->notEmptyString('duration');
+            ->requirePresence('duration', 'create', 'O campo duração é obrigatório!')
+            ->notEmptyString('duration', 'O campo duração é obrigatório!');
 
         return $validator;
     }
@@ -101,8 +115,7 @@ class ActivitiesTable extends Table
      */
     public function buildRules(RulesChecker $rules)
     {
-        $rules->add($rules->existsIn(['instructor_id'], 'Instructors'));
-
+        $rules->add($rules->existsIn(['instructor_id'], 'Instructors', 'É obrigatório informar um responsável.'));
         return $rules;
     }
 }
