@@ -11,12 +11,9 @@ use Cake\ORM\Entity;
  * @property string $last_name
  * @property \Cake\I18n\FrozenDate $birthday
  * @property int $civil_status
- * @property string|null $phone
- * @property int|null $education
- * @property int $role_id
  *
- * @property \App\Model\Entity\Role $role
- * @property \App\Model\Entity\Activity[] $activities
+ * @property \App\Model\Entity\Guest[] $guests
+ * @property \App\Model\Entity\Instructor[] $instructors
  */
 class Person extends Entity
 {
@@ -34,10 +31,7 @@ class Person extends Entity
         'last_name' => true,
         'birthday' => true,
         'civil_status' => true,
-        'phone' => true,
-        'education' => true,
-        'role_id' => true,
-        'role' => true,
-        'activities' => true,
+        'guests' => true,
+        'instructors' => true,
     ];
 }

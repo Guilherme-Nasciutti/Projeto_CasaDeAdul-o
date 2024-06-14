@@ -1,21 +1,21 @@
 <?php
 namespace App\Test\TestCase\Model\Table;
 
-use App\Model\Table\ActivitiesTable;
+use App\Model\Table\InstructorsTable;
 use Cake\ORM\TableRegistry;
 use Cake\TestSuite\TestCase;
 
 /**
- * App\Model\Table\ActivitiesTable Test Case
+ * App\Model\Table\InstructorsTable Test Case
  */
-class ActivitiesTableTest extends TestCase
+class InstructorsTableTest extends TestCase
 {
     /**
      * Test subject
      *
-     * @var \App\Model\Table\ActivitiesTable
+     * @var \App\Model\Table\InstructorsTable
      */
-    public $Activities;
+    public $Instructors;
 
     /**
      * Fixtures
@@ -23,9 +23,9 @@ class ActivitiesTableTest extends TestCase
      * @var array
      */
     public $fixtures = [
-        'app.Activities',
         'app.Instructors',
-        'app.Guests',
+        'app.Persons',
+        'app.Activities',
     ];
 
     /**
@@ -36,8 +36,8 @@ class ActivitiesTableTest extends TestCase
     public function setUp()
     {
         parent::setUp();
-        $config = TableRegistry::getTableLocator()->exists('Activities') ? [] : ['className' => ActivitiesTable::class];
-        $this->Activities = TableRegistry::getTableLocator()->get('Activities', $config);
+        $config = TableRegistry::getTableLocator()->exists('Instructors') ? [] : ['className' => InstructorsTable::class];
+        $this->Instructors = TableRegistry::getTableLocator()->get('Instructors', $config);
     }
 
     /**
@@ -47,7 +47,7 @@ class ActivitiesTableTest extends TestCase
      */
     public function tearDown()
     {
-        unset($this->Activities);
+        unset($this->Instructors);
 
         parent::tearDown();
     }

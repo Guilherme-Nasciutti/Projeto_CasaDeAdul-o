@@ -78,17 +78,17 @@ Router::scope('/', function (RouteBuilder $routes) {
     $routes->connect('/atividades/editar/:id', ['controller' => 'Activities', 'action' => 'edit'], ['pass' => ['id'], '_name' => 'editar_activities']);
     $routes->connect('/atividades/visualizar/:id', ['controller' => 'Activities', 'action' => 'view'], ['pass' => ['id'], '_name' => 'visualizar_activities']);
 
-    // Persons
-    $routes->connect('/pessoas', ['controller' => 'Persons', 'action' => 'index']);
-    $routes->connect('/pessoas/cadastrar', ['controller' => 'Persons', 'action' => 'add']);
-    $routes->connect('/pessoas/editar/:id', ['controller' => 'Persons', 'action' => 'edit'], ['pass' => ['id'], '_name' => 'editar_persons']);
-    $routes->connect('/pessoas/visualizar/:id', ['controller' => 'Persons', 'action' => 'view'], ['pass' => ['id'], '_name' => 'visualizar_persons']);
+    // Instructors
+    $routes->connect('/instrutores', ['controller' => 'Instructors', 'action' => 'index']);
+    $routes->connect('/instrutores/cadastrar', ['controller' => 'Instructors', 'action' => 'add']);
+    $routes->connect('/instrutores/editar/:id', ['controller' => 'Instructors', 'action' => 'edit'], ['pass' => ['id'], '_name' => 'editar_instructors']);
+    $routes->connect('/instrutores/visualizar/:id', ['controller' => 'Instructors', 'action' => 'view'], ['pass' => ['id'], '_name' => 'visualizar_instructors']);
 
-    // Roles
-    $routes->connect('/perfis', ['controller' => 'Roles', 'action' => 'index']);
-    $routes->connect('/perfis/cadastrar', ['controller' => 'Roles', 'action' => 'add']);
-    $routes->connect('/perfis/editar/:id', ['controller' => 'Roles', 'action' => 'edit'], ['pass' => ['id'], '_name' => 'editar_roles']);
-    $routes->connect('/perfis/visualizar/:id', ['controller' => 'Roles', 'action' => 'view'], ['pass' => ['id'], '_name' => 'visualizar_roles']);
+    // Guests
+    $routes->connect('/hospedes', ['controller' => 'Guests', 'action' => 'index']);
+    $routes->connect('/hospedes/cadastrar', ['controller' => 'Guests', 'action' => 'add']);
+    $routes->connect('/hospedes/editar/:id', ['controller' => 'Guests', 'action' => 'edit'], ['pass' => ['id'], '_name' => 'editar_guests']);
+    $routes->connect('/hospedes/visualizar/:id', ['controller' => 'Guests', 'action' => 'view'], ['pass' => ['id'], '_name' => 'visualizar_guests']);
 
     $routes->fallbacks(DashedRoute::class);
 });

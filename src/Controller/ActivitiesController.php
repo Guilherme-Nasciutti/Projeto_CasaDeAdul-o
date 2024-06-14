@@ -2,7 +2,6 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
-use Exception;
 
 /**
  * Activities Controller
@@ -20,23 +19,12 @@ class ActivitiesController extends AppController
      */
     public function index()
     {
-        try {
-            $conditions = [];
+        $this->paginate = [
+            'contain' => ['Instructors'],
+        ];
+        $activities = $this->paginate($this->Activities);
 
-            if (!empty($this->request->getQuery('filter'))) {
-                $conditions[] = [
-                    'OR' => [
-                        'activities.name like' => '%' . $this->request->getQuery('filter') . '%'
-                    ]
-                ];
-            }
-
-            $activities = $this->paginate($this->Activities->find('all', ['contain' => ['Persons']])->where($conditions))->toList();
-            $this->set(compact('activities'));
-
-        } catch (Exception $exc) {
-            $this->Flash->error('Entre em contato com o administrador do sistema.');
-        }
+        $this->set(compact('activities'));
     }
 
     /**
@@ -48,16 +36,11 @@ class ActivitiesController extends AppController
      */
     public function view($id = null)
     {
-        try {
-            $activity = $this->Activities->get($id, [
-                'contain' => ['Persons']
-            ]);
+        $activity = $this->Activities->get($id, [
+            'contain' => ['Instructors', 'Guests'],
+        ]);
 
-            $this->set('activity', $activity);
-
-        } catch (Exception $exc) {
-            $this->Flash->error('Entre em contato com o administrador do sistema.');
-        }
+        $this->set('activity', $activity);
     }
 
     /**
@@ -67,26 +50,19 @@ class ActivitiesController extends AppController
      */
     public function add()
     {
-        try {
-            $activity = $this->Activities->newEntity();
+        $activity = $this->Activities->newEntity();
+        if ($this->request->is('post')) {
+            $activity = $this->Activities->patchEntity($activity, $this->request->getData());
+            if ($this->Activities->save($activity)) {
+                $this->Flash->success(__('The activity has been saved.'));
 
-            if ($this->request->is('post')) {
-                $activity = $this->Activities->patchEntity($activity, $this->request->getData());
-
-                if ($this->Activities->save($activity)) {
-                    $this->Flash->success(__('Atividade cadastrada com sucesso.'));
-                    return $this->redirect(['action' => 'index']);
-                }
-                $this->Flash->error(__('Não foi possível cadastrar a atividade. Por favor, tente novamente.'));
+                return $this->redirect(['action' => 'index']);
             }
-
-        } catch (Exception $exc) {
-            $this->Flash->error('Entre em contato com o administrador do sistema.');
-
-        } finally {
-            $persons = $this->Activities->Persons->find('list');
-            $this->set(compact('activity', 'persons'));
+            $this->Flash->error(__('The activity could not be saved. Please, try again.'));
         }
+        $instructors = $this->Activities->Instructors->find('list', ['limit' => 200]);
+        $guests = $this->Activities->Guests->find('list', ['limit' => 200]);
+        $this->set(compact('activity', 'instructors', 'guests'));
     }
 
     /**
@@ -98,26 +74,21 @@ class ActivitiesController extends AppController
      */
     public function edit($id = null)
     {
-        try {
-            $activity = $this->Activities->get($id);
+        $activity = $this->Activities->get($id, [
+            'contain' => ['Guests'],
+        ]);
+        if ($this->request->is(['patch', 'post', 'put'])) {
+            $activity = $this->Activities->patchEntity($activity, $this->request->getData());
+            if ($this->Activities->save($activity)) {
+                $this->Flash->success(__('The activity has been saved.'));
 
-            if ($this->request->is(['patch', 'post', 'put'])) {
-                $activity = $this->Activities->patchEntity($activity, $this->request->getData());
-
-                if ($this->Activities->save($activity)) {
-                    $this->Flash->success(__('Atividade editada com sucesso.'));
-                    return $this->redirect(['action' => 'index']);
-                }
-                $this->Flash->error(__('Não foi possível editar a atividade. Por favor, tente novamente.'));
+                return $this->redirect(['action' => 'index']);
             }
-
-        } catch (Exception $exc) {
-            $this->Flash->error('Entre em contato com o administrador do sistema.');
-
-        } finally {
-            $persons = $this->Activities->Persons->find('list');
-            $this->set(compact('activity', 'persons'));
+            $this->Flash->error(__('The activity could not be saved. Please, try again.'));
         }
+        $instructors = $this->Activities->Instructors->find('list', ['limit' => 200]);
+        $guests = $this->Activities->Guests->find('list', ['limit' => 200]);
+        $this->set(compact('activity', 'instructors', 'guests'));
     }
 
     /**
@@ -129,18 +100,14 @@ class ActivitiesController extends AppController
      */
     public function delete($id = null)
     {
-        try {
-            $this->request->allowMethod(['post', 'delete']);
-            $activity = $this->Activities->get($id);
-
-            $this->Activities->delete($activity) ?
-            $this->Flash->success(__('Atividade apagada com sucesso.')) :
-            $this->Flash->error(__('Não foi possível apagar a atividade. Por favor, tente novamente.'));
-
-            return $this->redirect(['action' => 'index']);
-
-        } catch (Exception $exc) {
-            $this->Flash->error('Entre em contato com o administrador do sistema.');
+        $this->request->allowMethod(['post', 'delete']);
+        $activity = $this->Activities->get($id);
+        if ($this->Activities->delete($activity)) {
+            $this->Flash->success(__('The activity has been deleted.'));
+        } else {
+            $this->Flash->error(__('The activity could not be deleted. Please, try again.'));
         }
+
+        return $this->redirect(['action' => 'index']);
     }
 }

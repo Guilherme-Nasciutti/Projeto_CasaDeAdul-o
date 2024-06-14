@@ -7,15 +7,16 @@ use Cake\ORM\Entity;
  * Activity Entity
  *
  * @property int $id
- * @property string $name
+ * @property string $title
  * @property \Cake\I18n\FrozenDate $initial_date
  * @property \Cake\I18n\FrozenDate $final_date
  * @property int $start_time
  * @property int $duration
  * @property \Cake\I18n\FrozenTime $created
- * @property int $person_id
+ * @property int $instructor_id
  *
- * @property \App\Model\Entity\Person $person
+ * @property \App\Model\Entity\Instructor $instructor
+ * @property \App\Model\Entity\Guest[] $guests
  */
 class Activity extends Entity
 {
@@ -29,13 +30,14 @@ class Activity extends Entity
      * @var array
      */
     protected $_accessible = [
-        'name' => true,
+        'title' => true,
         'initial_date' => true,
         'final_date' => true,
         'start_time' => true,
         'duration' => true,
         'created' => true,
-        'person_id' => true,
-        'person' => true,
+        'instructor_id' => true,
+        'instructor' => true,
+        'guests' => true,
     ];
 }
