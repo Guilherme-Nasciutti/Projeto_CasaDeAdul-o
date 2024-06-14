@@ -4,60 +4,49 @@
  * @var \App\Model\Entity\Activity[]|\Cake\Collection\CollectionInterface $activities
  */
 ?>
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('New Activity'), ['action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Instructors'), ['controller' => 'Instructors', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Instructor'), ['controller' => 'Instructors', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Guests'), ['controller' => 'Guests', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Guest'), ['controller' => 'Guests', 'action' => 'add']) ?></li>
-    </ul>
-</nav>
-<div class="activities index large-9 medium-8 columns content">
-    <h3><?= __('Activities') ?></h3>
-    <table cellpadding="0" cellspacing="0">
-        <thead>
-            <tr>
-                <th scope="col"><?= $this->Paginator->sort('id') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('title') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('initial_date') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('final_date') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('start_time') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('duration') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('created') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('instructor_id') ?></th>
-                <th scope="col" class="actions"><?= __('Actions') ?></th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php foreach ($activities as $activity): ?>
-            <tr>
-                <td><?= $this->Number->format($activity->id) ?></td>
-                <td><?= h($activity->title) ?></td>
-                <td><?= h($activity->initial_date) ?></td>
-                <td><?= h($activity->final_date) ?></td>
-                <td><?= $this->Number->format($activity->start_time) ?></td>
-                <td><?= $this->Number->format($activity->duration) ?></td>
-                <td><?= h($activity->created) ?></td>
-                <td><?= $activity->has('instructor') ? $this->Html->link($activity->instructor->id, ['controller' => 'Instructors', 'action' => 'view', $activity->instructor->id]) : '' ?></td>
-                <td class="actions">
-                    <?= $this->Html->link(__('View'), ['action' => 'view', $activity->id]) ?>
-                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $activity->id]) ?>
-                    <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $activity->id], ['confirm' => __('Are you sure you want to delete # {0}?', $activity->id)]) ?>
-                </td>
-            </tr>
-            <?php endforeach; ?>
-        </tbody>
-    </table>
-    <div class="paginator">
-        <ul class="pagination">
-            <?= $this->Paginator->first('<< ' . __('first')) ?>
-            <?= $this->Paginator->prev('< ' . __('previous')) ?>
-            <?= $this->Paginator->numbers() ?>
-            <?= $this->Paginator->next(__('next') . ' >') ?>
-            <?= $this->Paginator->last(__('last') . ' >>') ?>
-        </ul>
-        <p><?= $this->Paginator->counter(['format' => __('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')]) ?></p>
-    </div>
-</div>
+
+<header>
+    <h2>Atividades <small>listagem</small></h2>
+    <?= $this->Html->link('Nova atividade', ['controller' => 'Activities', 'action' => 'add']); ?>
+</header>
+
+<main>
+    <?php if (count($activities) > 0) : ?>
+        <table class="table_list">
+            <thead>
+                <tr>
+                    <th class="list_phone">Instrutor</th>
+                    <th><?= $this->Paginator->sort('title', 'Título'); ?><i class="bi bi-arrow-down-up"></i></th>
+                    <th class="list_table"><?= $this->Paginator->sort('initial_date', 'Data de início'); ?><i class="bi bi-arrow-down-up"></i></th>
+                    <th class="list_table"><?= $this->Paginator->sort('final_date', 'Data de término'); ?><i class="bi bi-arrow-down-up"></i></th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <?php foreach ($activities as $activity) : ?>
+                    <tr>
+                        <td class="list_phone"><?= $activity->has('instructor') ? $this->Html->link($activity->instructor->first_name, ['controller' => 'Instructors', 'action' => 'view', $activity->instructor->id]) : ''; ?></td>
+                        <td><?= h($activity->title); ?></td>
+                        <td class="list_table"><?= h($activity->initial_date->format('d/m/Y')); ?></td>
+                        <td class="list_table"><?= h($activity->final_date->format('d/m/Y')); ?></td>
+
+                        <td class="actions">
+                            <?= $this->Html->link('<i class="bi bi-eye"></i>', ['_name' => 'visualizar_activities', 'id' => $activity->id], ['escape' => false]); ?>
+
+                            <?= $this->Html->link('<i class="bi bi-pencil-square"></i>', ['_name' => 'editar_activities', 'id' => $activity->id], ['escape' => false]); ?>
+
+                            <?= $this->Form->postLink(__('<i class="bi bi-trash"></i>'), ['action' => 'delete', $activity->id], ['escape' => false, 'confirm' => __('Tem certeza que deseja apagar a atividade {0}?', $activity->title)]); ?>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+    <?php else : ?>
+        <p class="list_empty">Nenhuma atividade cadastrada!</p>
+    <?php endif; ?>
+
+    <?php if (count($activities) > 0) : ?>
+        <?= $this->element('pagination'); ?>
+    <?php endif; ?>
+</main>

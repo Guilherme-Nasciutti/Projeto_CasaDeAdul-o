@@ -1,61 +1,43 @@
-<?php
-/**
- * @var \App\View\AppView $this
- * @var \App\Model\Entity\Instructor[]|\Cake\Collection\CollectionInterface $instructors
- */
-?>
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('New Instructor'), ['action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Persons'), ['controller' => 'Persons', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Person'), ['controller' => 'Persons', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Activities'), ['controller' => 'Activities', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Activity'), ['controller' => 'Activities', 'action' => 'add']) ?></li>
-    </ul>
-</nav>
-<div class="instructors index large-9 medium-8 columns content">
-    <h3><?= __('Instructors') ?></h3>
-    <table cellpadding="0" cellspacing="0">
-        <thead>
-            <tr>
-                <th scope="col"><?= $this->Paginator->sort('id') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('phone') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('other_phone') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('education') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('created') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('modified') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('person_id') ?></th>
-                <th scope="col" class="actions"><?= __('Actions') ?></th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php foreach ($instructors as $instructor): ?>
-            <tr>
-                <td><?= $this->Number->format($instructor->id) ?></td>
-                <td><?= h($instructor->phone) ?></td>
-                <td><?= h($instructor->other_phone) ?></td>
-                <td><?= $this->Number->format($instructor->education) ?></td>
-                <td><?= h($instructor->created) ?></td>
-                <td><?= h($instructor->modified) ?></td>
-                <td><?= $instructor->has('person') ? $this->Html->link($instructor->person->id, ['controller' => 'Persons', 'action' => 'view', $instructor->person->id]) : '' ?></td>
-                <td class="actions">
-                    <?= $this->Html->link(__('View'), ['action' => 'view', $instructor->id]) ?>
-                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $instructor->id]) ?>
-                    <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $instructor->id], ['confirm' => __('Are you sure you want to delete # {0}?', $instructor->id)]) ?>
-                </td>
-            </tr>
-            <?php endforeach; ?>
-        </tbody>
-    </table>
-    <div class="paginator">
-        <ul class="pagination">
-            <?= $this->Paginator->first('<< ' . __('first')) ?>
-            <?= $this->Paginator->prev('< ' . __('previous')) ?>
-            <?= $this->Paginator->numbers() ?>
-            <?= $this->Paginator->next(__('next') . ' >') ?>
-            <?= $this->Paginator->last(__('last') . ' >>') ?>
-        </ul>
-        <p><?= $this->Paginator->counter(['format' => __('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')]) ?></p>
-    </div>
-</div>
+<header>
+    <h2>Instrutores <small>listagem</small></h2>
+    <?= $this->Html->link('Novo instrutor', ['controller' => 'Instructors', 'action' => 'add']); ?>
+</header>
+
+<main>
+    <?php if (count($instructors) > 0) : ?>
+        <table class="table_list">
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th class="list_phone"><?= $this->Paginator->sort('phone', 'Telefone'); ?><i class="bi bi-arrow-down-up"></i></th>
+                    <th class="list_table"><?= $this->Paginator->sort('education', 'Formação'); ?><i class="bi bi-arrow-down-up"></i></th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <?php foreach ($instructors as $instructor) : ?>
+                    <tr>
+                        <td><?= h($instructor->person->first_name); ?></td>
+                        <td class="list_phone"><?= h($instructor->phone); ?></td>
+                        <td class="list_table"><?= h($instructor->education); ?></td>
+
+                        <td class="actions">
+                            <?= $this->Html->link('<i class="bi bi-eye"></i>', ['_name' => 'visualizar_instructors', 'id' => $instructor->id], ['escape' => false]); ?>
+
+                            <?= $this->Html->link('<i class="bi bi-pencil-square"></i>', ['_name' => 'editar_instructors', 'id' => $instructor->id], ['escape' => false]); ?>
+
+                            <?= $this->Form->postLink(__('<i class="bi bi-trash"></i>'), ['action' => 'delete', $instructor->id], ['escape' => false, 'confirm' => __('Tem certeza que deseja apagar o instrutor {0}?', $instructor->person->first_name)]); ?>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+    <?php else : ?>
+        <p class="list_empty">Nenhum instrutor cadastrado!</p>
+    <?php endif; ?>
+
+    <?php if (count($instructors) > 0) : ?>
+        <?= $this->element('pagination'); ?>
+    <?php endif; ?>
+</main>

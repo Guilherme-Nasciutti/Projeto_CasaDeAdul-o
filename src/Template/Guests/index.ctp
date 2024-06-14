@@ -3,53 +3,50 @@
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\Guest[]|\Cake\Collection\CollectionInterface $guests
  */
+
+use App\Controller\CivilStatusENUM;
 ?>
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('New Guest'), ['action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Persons'), ['controller' => 'Persons', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Person'), ['controller' => 'Persons', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Activities'), ['controller' => 'Activities', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Activity'), ['controller' => 'Activities', 'action' => 'add']) ?></li>
-    </ul>
-</nav>
-<div class="guests index large-9 medium-8 columns content">
-    <h3><?= __('Guests') ?></h3>
-    <table cellpadding="0" cellspacing="0">
-        <thead>
-            <tr>
-                <th scope="col"><?= $this->Paginator->sort('id') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('created') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('modified') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('person_id') ?></th>
-                <th scope="col" class="actions"><?= __('Actions') ?></th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php foreach ($guests as $guest): ?>
-            <tr>
-                <td><?= $this->Number->format($guest->id) ?></td>
-                <td><?= h($guest->created) ?></td>
-                <td><?= h($guest->modified) ?></td>
-                <td><?= $guest->has('person') ? $this->Html->link($guest->person->id, ['controller' => 'Persons', 'action' => 'view', $guest->person->id]) : '' ?></td>
-                <td class="actions">
-                    <?= $this->Html->link(__('View'), ['action' => 'view', $guest->id]) ?>
-                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $guest->id]) ?>
-                    <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $guest->id], ['confirm' => __('Are you sure you want to delete # {0}?', $guest->id)]) ?>
-                </td>
-            </tr>
-            <?php endforeach; ?>
-        </tbody>
-    </table>
-    <div class="paginator">
-        <ul class="pagination">
-            <?= $this->Paginator->first('<< ' . __('first')) ?>
-            <?= $this->Paginator->prev('< ' . __('previous')) ?>
-            <?= $this->Paginator->numbers() ?>
-            <?= $this->Paginator->next(__('next') . ' >') ?>
-            <?= $this->Paginator->last(__('last') . ' >>') ?>
-        </ul>
-        <p><?= $this->Paginator->counter(['format' => __('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')]) ?></p>
-    </div>
-</div>
+
+<header>
+    <h2>Hóspedes <small>listagem</small></h2>
+    <?= $this->Html->link('Novo hóspede', ['controller' => 'Guests', 'action' => 'add']); ?>
+</header>
+
+<main>
+    <?php if (count($guests) > 0) : ?>
+        <table class="table_list">
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th class="list_phone">Data de nascimento</th>
+                    <th class="list_table">Estado civil</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <?php foreach ($guests as $guest) : ?>
+                    <tr>
+                        <td><?= h($guest->person->first_name); ?></td>
+                        <td class="list_phone"><?= h($guest->person->birthday->format('d/m/Y')); ?></td>
+                        <td class="list_table"><?= CivilStatusENUM::findConstants($guest->person->civil_status); ?></td>
+
+                        <td class="actions">
+                            <?= $this->Html->link('<i class="bi bi-eye"></i>', ['_name' => 'visualizar_guests', 'id' => $guest->id], ['escape' => false]); ?>
+
+                            <?= $this->Html->link('<i class="bi bi-pencil-square"></i>', ['_name' => 'editar_guests', 'id' => $guest->id], ['escape' => false]); ?>
+
+                            <?= $this->Form->postLink(__('<i class="bi bi-trash"></i>'), ['action' => 'delete', $guest->id], ['escape' => false, 'confirm' => __('Tem certeza que deseja apagar o hóspede {0}?', $guest->person->first_name)]); ?>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+    <?php else : ?>
+        <p class="list_empty">Nenhum hóspede cadastrado!</p>
+    <?php endif; ?>
+
+    <?php if (count($guests) > 0) : ?>
+        <?= $this->element('pagination'); ?>
+    <?php endif; ?>
+</main>

@@ -20,10 +20,9 @@ class InstructorsController extends AppController
     public function index()
     {
         $this->paginate = [
-            'contain' => ['Persons'],
+            'contain' => ['Persons']
         ];
         $instructors = $this->paginate($this->Instructors);
-
         $this->set(compact('instructors'));
     }
 
