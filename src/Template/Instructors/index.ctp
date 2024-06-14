@@ -1,3 +1,8 @@
+<?php
+
+use App\Controller\EducationENUM;
+?>
+
 <header>
     <h2>Instrutores <small>listagem</small></h2>
     <?= $this->Html->link('Novo instrutor', ['controller' => 'Instructors', 'action' => 'add']); ?>
@@ -20,7 +25,7 @@
                     <tr>
                         <td><?= h($instructor->person->first_name); ?></td>
                         <td class="list_phone"><?= h($instructor->phone); ?></td>
-                        <td class="list_table"><?= h($instructor->education); ?></td>
+                        <td class="list_table"><?= EducationENUM::findConstants($instructor->education); ?></td>
 
                         <td class="actions">
                             <?= $this->Html->link('<i class="bi bi-eye"></i>', ['_name' => 'visualizar_instructors', 'id' => $instructor->id], ['escape' => false]); ?>

@@ -44,7 +44,7 @@ class InstructorsController extends AppController
     {
         try {
             $instructor = $this->Instructors->get($id, [
-                'contain' => ['Persons', 'Activities'],
+                'contain' => ['Persons']
             ]);
 
             $this->set('instructor', $instructor);
@@ -67,7 +67,7 @@ class InstructorsController extends AppController
             if ($this->request->is('post')) {
                 $instructor = $this->Instructors->patchEntity($instructor, $this->request->getData());
 
-                if ($this->Instructors->save($instructor)) {
+                if ($this->Instructors->save($instructor, ['associated' => ['Persons']])) {
                     $this->Flash->success(__('Instrutor cadastrado com sucesso.'));
                     return $this->redirect(['action' => 'index']);
                 }
@@ -91,19 +91,20 @@ class InstructorsController extends AppController
     public function edit($id = null)
     {
         try {
-            $instructor = $this->Instructors->get($id);
+            $instructor = $this->Instructors->get($id, [
+                'contain' => ['Persons']
+            ]);
 
             if ($this->request->is(['patch', 'post', 'put'])) {
                 $instructor = $this->Instructors->patchEntity($instructor, $this->request->getData());
 
-                if ($this->Instructors->save($instructor)) {
+                if ($this->Instructors->save($instructor, ['associated' => ['Persons']])) {
                     $this->Flash->success(__('Instrutor editado com sucesso.'));
                     return $this->redirect(['action' => 'index']);
                 }
                 $this->Flash->error(__('Não foi possivel editar o instrutor. Por favor, tente novamente.'));
             }
-            $persons = $this->Instructors->Persons->find('list', ['limit' => 200]);
-            $this->set(compact('instructor', 'persons'));
+            $this->set(compact('instructor'));
 
         } catch (Exception $exc) {
             $this->Flash->error('Entre em contato com o administrador do sistema.');
