@@ -22,7 +22,7 @@ class ActivitiesController extends AppController
     {
         try {
             $this->paginate = [
-                'contain' => ['Instructors']
+                'contain' => ['Instructors' => 'Persons']
             ];
 
             $activities = $this->paginate($this->Activities);
@@ -44,7 +44,7 @@ class ActivitiesController extends AppController
     {
         try {
             $activity = $this->Activities->get($id, [
-                'contain' => ['Instructors', 'Guests']
+                'contain' => ['Instructors' => 'Persons', 'Guests' => 'Persons']
             ]);
 
             $this->set('activity', $activity);
@@ -73,12 +73,14 @@ class ActivitiesController extends AppController
                 }
                 $this->Flash->error(__('Não foi possivel cadastrar a atividade. Por favor, tente novamente.'));
             }
-            $instructors = $this->Activities->Instructors->find('list', ['limit' => 200]);
-            $guests = $this->Activities->Guests->find('list', ['limit' => 200]);
+
+            $instructors = $this->Activities->Instructors->findInstructorsCreatingIdAndNameForList();
+            $guests = $this->Activities->Guests->find('all', ['contain' => 'Persons'])->toList();
+
             $this->set(compact('activity', 'instructors', 'guests'));
 
         } catch (Exception $exc) {
-            $this->Flash->error('Entre em contato com o administrador do sistema.');
+            $this->Flash->error('Entre em contato com o administrador do sistema.'.$exc);
         }
     }
 
@@ -105,13 +107,26 @@ class ActivitiesController extends AppController
                 }
                 $this->Flash->error(__('Não foi possivel editar a atividade. Por favor, tente novamente.'));
             }
-            $instructors = $this->Activities->Instructors->find('list', ['limit' => 200]);
-            $guests = $this->Activities->Guests->find('list', ['limit' => 200]);
-            $this->set(compact('activity', 'instructors', 'guests'));
+            $instructors = $this->Activities->Instructors->findInstructorsCreatingIdAndNameForList();
+            $guests = $this->Activities->Guests->find('all', ['contain' => 'Persons'])->toList();
+            $guest_associated_activity = $this->findGuestsAssociatedActivity($id);
+
+            $this->set(compact('activity', 'instructors', 'guests', 'guest_associated_activity'));
 
         } catch (Exception $exc) {
             $this->Flash->error('Entre em contato com o administrador do sistema.');
         }
+    }
+
+    /**
+     * Busca vinculo de hóspedes e atividade
+     */
+    private function findGuestsAssociatedActivity($activity_id)
+    {
+        $this->loadModel('Guests_Activities');
+
+        return $this->Guests_Activities->find('list', ['valueField' => 'guest_id'])
+            ->where(['activity_id ' => $activity_id])->toList();
     }
 
     /**
