@@ -37,6 +37,28 @@ form {
     flex-direction: column;
 }
 
+.container_guests {
+
+}
+
+.guests {
+    margin-top: 1em;
+    display: grid;
+    grid-auto-columns: 1fr;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+    gap: 5px 1em;
+    grid-template-areas:". .";
+}
+
+.guests label {
+    cursor: pointer;
+}
+
+.guests span {
+    margin-left: 5px;
+}
+
 .container_fields {
     gap: 1em;
     display: flex;
@@ -159,6 +181,11 @@ select {
 }
 
 @media screen and (max-width: 767px) {
+    .guests {
+        grid-template-columns: 1fr;
+        grid-template-areas: ".";
+    }
+
     .container_fields {
         flex-direction: column;
     }
