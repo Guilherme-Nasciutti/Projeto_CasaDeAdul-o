@@ -26,8 +26,8 @@
             <tbody>
                 <?php foreach ($activities as $activity) : ?>
                     <tr>
-                        <td class="list_phone"><?= $activity->has('instructor') ? $this->Html->link($activity->instructor->first_name, ['controller' => 'Instructors', 'action' => 'view', $activity->instructor->id]) : ''; ?></td>
-                        <td><?= h($activity->title); ?></td>
+                        <td class="list_phone"><?= $activity->has('instructor') ? $this->Html->link($activity->instructor->person->first_name . ' ' . $activity->instructor->person->last_name, ['controller' => 'Instructors', 'action' => 'view', $activity->instructor->id]) : ''; ?></td>
+                        <td><?= h(mb_strimwidth($activity->title, 0, 20, '...')); ?></td>
                         <td class="list_table"><?= h($activity->initial_date->format('d/m/Y')); ?></td>
                         <td class="list_table"><?= h($activity->final_date->format('d/m/Y')); ?></td>
 
