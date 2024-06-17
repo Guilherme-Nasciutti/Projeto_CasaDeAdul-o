@@ -31,6 +31,7 @@ class Activity extends Entity
      */
     protected $_accessible = [
         'title' => true,
+        'description' => true,
         'initial_date' => true,
         'final_date' => true,
         'start_time' => true,

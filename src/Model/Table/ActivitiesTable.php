@@ -48,7 +48,7 @@ class ActivitiesTable extends Table
         $this->belongsToMany('Guests', [
             'foreignKey' => 'activity_id',
             'targetForeignKey' => 'guest_id',
-            'joinTable' => 'activities_guests',
+            'joinTable' => 'guests_activities',
         ]);
     }
 
@@ -69,6 +69,10 @@ class ActivitiesTable extends Table
             ->maxLength('title', 220)
             ->requirePresence('title', 'create', 'O campo título é obrigatório!')
             ->notEmptyString('title', 'O campo título é obrigatório!');
+
+        $validator
+            ->scalar('description')
+            ->allowEmptyString('description');
 
         $validator
             ->date('initial_date', ['dmy'], 'Data inválida!')

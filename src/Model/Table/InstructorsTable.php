@@ -99,4 +99,19 @@ class InstructorsTable extends Table
 
         return $rules;
     }
+
+    public function findInstructorsCreatingIdAndNameForList()
+    {
+        return $this->find('all')
+            ->contain(['Persons'])
+            ->map(function ($row) {
+                return [
+                    $row->id => $row->person->first_name . ' ' . $row->person->last_name
+                ];
+            })
+            ->reduce(function ($acc, $item) {
+                return $acc + $item;
+            }, []
+        );
+    }
 }
