@@ -151,6 +151,13 @@ select {
 .container_message {
     padding: 10px 15px;
     border-radius: 6px;
+    margin: 10px 0 5px 0;
+}
+
+.message_warning {
+    color: var(--orange);
+    border: 1px solid var(--orange);
+    background: rgba(255, 142, 0, .1);
 }
 
 .message_error {

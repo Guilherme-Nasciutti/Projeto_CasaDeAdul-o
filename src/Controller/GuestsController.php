@@ -22,7 +22,7 @@ class GuestsController extends AppController
     {
         try {
             $this->paginate = [
-                'contain' => ['Persons'],
+                'contain' => ['Persons']
             ];
 
             $guests = $this->paginate($this->Guests);

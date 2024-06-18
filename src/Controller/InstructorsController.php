@@ -73,8 +73,7 @@ class InstructorsController extends AppController
                 }
                 $this->Flash->error(__('Não foi possivel cadastrar o instrutor. Por favor, tente novamente.'));
             }
-            $persons = $this->Instructors->Persons->find('list', ['limit' => 200]);
-            $this->set(compact('instructor', 'persons'));
+            $this->set(compact('instructor'));
 
         } catch (Exception $exc) {
             $this->Flash->error('Entre em contato com o administrador do sistema.');

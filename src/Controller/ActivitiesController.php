@@ -2,6 +2,8 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\Http\Exception\BadRequestException;
+use ErrorException;
 use Exception;
 
 /**
@@ -74,13 +76,24 @@ class ActivitiesController extends AppController
                 $this->Flash->error(__('Não foi possivel cadastrar a atividade. Por favor, tente novamente.'));
             }
 
+        } catch (Exception $exc) {
+            $this->Flash->error('Entre em contato com o administrador do sistema.');
+        } finally {
             $instructors = $this->Activities->Instructors->findInstructorsCreatingIdAndNameForList();
+            $this->isThereData($instructors, 'instrutor');
             $guests = $this->Activities->Guests->find('all', ['contain' => 'Persons'])->toList();
+            $this->isThereData($guests, 'hóspede');
 
             $this->set(compact('activity', 'instructors', 'guests'));
+        }
+    }
 
-        } catch (Exception $exc) {
-            $this->Flash->error('Entre em contato com o administrador do sistema.'.$exc);
+    private function isThereData($data, $message)
+    {
+        if (empty($data)) {
+            $this->Flash->error(__('Atividade não cadastrada! Por favor, revise as informações e tente novamente.'));
+            $this->Flash->warning(__('Por favor, cadastre pelo menos um ' . $message . ' para que seja possível cadastrar uma atividade!'));
+            return $this->redirect(['action' => 'index']);
         }
     }
 
@@ -107,14 +120,15 @@ class ActivitiesController extends AppController
                 }
                 $this->Flash->error(__('Não foi possivel editar a atividade. Por favor, tente novamente.'));
             }
+
+        } catch (Exception $exc) {
+            $this->Flash->error('Entre em contato com o administrador do sistema.');
+        } finally {
             $instructors = $this->Activities->Instructors->findInstructorsCreatingIdAndNameForList();
             $guests = $this->Activities->Guests->find('all', ['contain' => 'Persons'])->toList();
             $guest_associated_activity = $this->findGuestsAssociatedActivity($id);
 
             $this->set(compact('activity', 'instructors', 'guests', 'guest_associated_activity'));
-
-        } catch (Exception $exc) {
-            $this->Flash->error('Entre em contato com o administrador do sistema.');
         }
     }
 
@@ -125,8 +139,12 @@ class ActivitiesController extends AppController
     {
         $this->loadModel('Guests_Activities');
 
-        return $this->Guests_Activities->find('list', ['valueField' => 'guest_id'])
-            ->where(['activity_id ' => $activity_id])->toList();
+        return $this->Guests_Activities->find('list', [
+            'valueField' => 'guest_id'
+            ])->where([
+                'activity_id ' => $activity_id
+            ])
+        ->toList();
     }
 
     /**
