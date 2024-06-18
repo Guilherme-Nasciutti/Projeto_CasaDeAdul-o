@@ -5,6 +5,8 @@
  */
 
 use App\Controller\CivilStatusENUM;
+use App\Controller\StatusENUM;
+
 ?>
 
 <header>
@@ -25,7 +27,7 @@ use App\Controller\CivilStatusENUM;
     <div class="container_fields">
         <?= $this->Form->control('person.birthday', ['label' => 'Data de nascimento <span class="field_required">*</span>', 'type' => 'text', 'placeholder' => '99/99/9999', 'class' => 'datepicker mask_date', 'escape' => false]); ?>
         <?= $this->Form->control('person.civil_status', ['label' => 'Estado civil <span class="field_required">*</span>', 'options' => CivilStatusENUM::findConstants(), 'escape' => false]); ?>
-        </div>
+        <?= $this->Form->control('person.status', ['label' => 'Situação <span class="field_required">*</span>', 'options' => StatusENUM::findConstants(), 'escape' => false]); ?>
     </div>
 
     <?= $this->Form->button('Cadastrar', ['class' => 'btn_sumit']); ?>

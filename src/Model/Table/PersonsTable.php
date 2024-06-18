@@ -1,6 +1,7 @@
 <?php
 namespace App\Model\Table;
 
+use App\Controller\StatusENUM;
 use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
@@ -77,6 +78,10 @@ class PersonsTable extends Table
         $validator
             ->requirePresence('civil_status', 'create', 'O campo estado civil é obrigatório!')
             ->notEmptyString('civil_status', 'O campo estado civil é obrigatório!');
+
+        $validator
+            ->requirePresence('status', 'create', 'Campo status obrigatório!')
+            ->inList('status', array_keys(StatusENUM::findConstants()));
 
         return $validator;
     }

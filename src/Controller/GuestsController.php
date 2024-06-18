@@ -62,6 +62,7 @@ class GuestsController extends AppController
     public function add()
     {
         try {
+            $this->infoMessageStatus();
             $guest = $this->Guests->newEntity();
 
             if ($this->request->is('post')) {
@@ -90,6 +91,8 @@ class GuestsController extends AppController
     public function edit($id = null)
     {
         try {
+            $this->infoMessageStatus();
+
             $guest = $this->Guests->get($id, [
                 'contain' => ['Persons']
             ]);
@@ -101,13 +104,18 @@ class GuestsController extends AppController
                     $this->Flash->success(__('Hóspede editado com sucesso.'));
                     return $this->redirect(['action' => 'index']);
                 }
-                $this->Flash->error(__('Não foi possivel editar o instrutor. Por favor, tente novamente.'));
+                $this->Flash->error(__('Não foi possivel editar o hóspede. Por favor, tente novamente.'));
             }
             $this->set(compact('guest'));
 
         } catch (Exception $exc) {
             $this->Flash->error('Entre em contato com o administrador do sistema.');
         }
+    }
+
+    private function infoMessageStatus()
+    {
+        $this->Flash->warning(__('A situação do hóspede quando ATIVO, permite o vinculo á atividade!'));
     }
 
     /**
@@ -124,10 +132,37 @@ class GuestsController extends AppController
             $guest = $this->Guests->get($id);
 
             $this->Guests->delete($guest) ?
-            $this->Flash->success(__('Hóspede apagado com sucesso..')) :
+            $this->Flash->success(__('Hóspede apagado com sucesso.')) :
             $this->Flash->error(__('Não foi possivel apagar o hóspede. Por favor, tente novamente.'));
 
             return $this->redirect(['action' => 'index']);
+
+        } catch (Exception $exc) {
+            $this->Flash->error('Entre em contato com o administrador do sistema.');
+        }
+    }
+
+    /**
+     * Change the status of a guest.
+     *
+     * @param int|null $id The ID of the guest.
+     * @return \Cake\Http\Response|null The response after changing the status.
+     * @throws \Cake\Datasource\Exception\RecordNotFoundException When the guest record is not found.
+     */
+    public function changeStatus($id = null)
+    {
+        try {
+            if ($this->request->is(['patch', 'post', 'put'])) {
+                $guest = $this->Guests->get($id, ['contain' => ['Persons']]);
+                $person = $this->Guests->Persons->get($guest->person_id);
+                $person->status = ($person->status == StatusENUM::ATIVO) ? StatusENUM::INATIVO : StatusENUM::ATIVO;
+
+                if ($this->Guests->Persons->save($person)) {
+                    $this->Flash->success(__('Situação alterada com sucesso.'));
+                    return $this->redirect(['action' => 'index']);
+                }
+                $this->Flash->error(__('Não foi possivel alterar a situação do hóspede. Por favor, tente novamente.'));
+            }
 
         } catch (Exception $exc) {
             $this->Flash->error('Entre em contato com o administrador do sistema.');

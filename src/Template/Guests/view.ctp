@@ -5,6 +5,7 @@
  */
 
 use App\Controller\CivilStatusENUM;
+use App\Controller\StatusENUM;
 
 ?>
 
@@ -33,6 +34,11 @@ use App\Controller\CivilStatusENUM;
         <div class="view_row">
             <dt>Estado civil:</dt>
             <dd><?= CivilStatusENUM::findConstants($guest->person->civil_status); ?></dd>
+        </div>
+
+        <div class="view_row">
+            <dt>Situação:</dt>
+            <dd><?= StatusENUM::findConstants($guest->person->status); ?></dd>
         </div>
 
         <div class="view_row">

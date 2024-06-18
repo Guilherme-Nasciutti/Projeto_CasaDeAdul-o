@@ -31,6 +31,7 @@ class Person extends Entity
         'last_name' => true,
         'birthday' => true,
         'civil_status' => true,
+        'status' => true,
         'guests' => true,
         'instructors' => true,
     ];

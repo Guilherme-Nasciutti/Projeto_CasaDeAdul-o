@@ -35,6 +35,10 @@
     align-items: center;
 }
 
+.bi-repeat {
+    color: var(--green);
+}
+
 .bi-eye {
     color: var(--blue);
 }
