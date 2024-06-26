@@ -81,7 +81,7 @@ class ActivitiesController extends AppController
         } finally {
             $instructors = $this->Activities->Instructors->findInstructorsCreatingIdAndNameForList();
             $this->isThereData($instructors, 'instrutor');
-            $guests = $this->Activities->Guests->find('all', ['contain' => 'Persons'])->toList();
+            $guests = $this->Activities->Guests->findGuestsActivated();
             $this->isThereData($guests, 'hóspede');
 
             $this->set(compact('activity', 'instructors', 'guests'));

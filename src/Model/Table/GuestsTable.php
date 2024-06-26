@@ -1,6 +1,7 @@
 <?php
 namespace App\Model\Table;
 
+use App\Controller\StatusENUM;
 use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
@@ -78,5 +79,11 @@ class GuestsTable extends Table
     {
         $rules->add($rules->existsIn(['person_id'], 'Persons'));
         return $rules;
+    }
+
+    public function findGuestsActivated()
+    {
+        return $this->find('all', ['contain' => 'Persons'])
+            ->where(['Persons.status' => StatusENUM::ATIVO])->toList();
     }
 }
