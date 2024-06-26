@@ -114,4 +114,11 @@ class InstructorsTable extends Table
             }, []
         );
     }
+
+    public function findAllInstructorsByConditions($conditions = null)
+    {
+        return $this->find('all', [
+            'contain' => ['Persons']
+        ])->where($conditions);
+    }
 }
