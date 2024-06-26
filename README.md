@@ -24,17 +24,17 @@ O desenvolvimento do projeto utilizou o framework CakePHP 3, conhecido por sua r
 
 ### Gestão de usuários para uso do sistema
 
-- Perfil
 - Cadastro, edição e exclusão de usuários.
 - Login e autenticação de usuários.
+- Troca de senha para acesso.
 
-### Gestão de pessoas
+### Gestão de instrutores
 
-- Cadastro, edição e exclusão de pessoas.
+- Cadastro, edição e exclusão de instrutores.
 
-### Gestão de perfis
+### Gestão de hóspedes
 
-- Cadastro, edição e exclusão de perfis.
+- Cadastro, edição e exclusão de hóspedes.
 
 ### Gestão de atividades
 
@@ -74,7 +74,7 @@ Para executar o projeto localmente, siga os passos abaixo:
    ```
 
 4. **Acesse a aplicação**:
-   - Abra o navegador e acesse o link fornecido na etapa anterior.
+   - Abra o navegador e acesse o link fornecido na etapa anterior com o usuário default (padrão disponibilizado), sendo email: *admin@gmail.com* e senha: *123456*
 
 ## Contribuição
 
@@ -84,8 +84,10 @@ Contribuições são bem-vindas! Sinta-se à vontade para abrir issues e pull re
 
 Para mais informações, entre em contato com a equipe de desenvolvimento:
 
-- Nome do Desenvolvedor 1: [email@example.com]
-- Nome do Desenvolvedor 2: [email@example.com]
+- Guilherme Ferreira Nasciutti: guilherme.nasciutti@aluno.imepac.edu.br
+- Gustavo Alexandre de Souza Nascimento: gustavo.nascimento@aluno.imepac.edu.br
+- Marcos Eustáquio Brazão: marcos.brazao@aluno.imepac.edu.br
+- Thiago Vinicius Reis da Silva: thiago.reis@aluno.imepac.edu.br
 
 ---
 
