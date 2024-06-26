@@ -37,8 +37,20 @@ form {
     flex-direction: column;
 }
 
-.container_guests {
+.check_all {
+    margin: 2em 0;
+    font-weight: 500;
+    cursor: pointer;
+}
 
+.check_all i {
+    font-size: .8em;
+}
+
+.guests_explain {
+    gap: 1em;
+    display: flex;
+    flex-direction: column;
 }
 
 .guests {
@@ -127,6 +139,13 @@ select {
     text-align: right;
     color: var(--red);
     margin-bottom: 1em;
+}
+
+.bi-check-square-fill,
+.bi-square,
+.uncheck,
+.check {
+    cursor: pointer;
 }
 
 /* FILTRO LIST */

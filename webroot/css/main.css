@@ -15,7 +15,8 @@
     color: var(--grey);
 }
 
-.container_main header a {
+.container_main header a,
+.link_btn {
     padding: 8px;
     border-radius: 6px;
     border: 1px solid var(--blue);
@@ -23,8 +24,15 @@
     transition: .3s all;
 }
 
-.container_main header a:hover {
+.container_main header a:hover,
+.link_btn:hover {
     background: var(--baby);
+}
+
+.link_btn {
+    font-weight: 400;
+    background: none;
+    font-size: 1em;
 }
 
 .edit_profile {
