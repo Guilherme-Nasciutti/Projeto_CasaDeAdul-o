@@ -68,6 +68,7 @@ class ActivitiesController extends AppController
 
             if ($this->request->is('post')) {
                 $activity = $this->Activities->patchEntity($activity, $this->request->getData());
+                $this->isThereGuestsAssociated($activity->guests);
 
                 if ($this->Activities->save($activity)) {
                     $this->Flash->success(__('Atividade cadastrada com sucesso.'));
@@ -76,6 +77,9 @@ class ActivitiesController extends AppController
                 $this->Flash->error(__('Não foi possivel cadastrar a atividade. Por favor, tente novamente.'));
             }
 
+        } catch (BadRequestException $exc) {
+            $this->Flash->error(__('Atividade não cadastrada. Revise as informações e tente novamente.'));
+            $this->Flash->warning(__($exc->getMessage()));
         } catch (Exception $exc) {
             $this->Flash->error('Entre em contato com o administrador do sistema.');
         } finally {
@@ -85,6 +89,13 @@ class ActivitiesController extends AppController
             $this->isThereData($guests, 'hóspede');
 
             $this->set(compact('activity', 'instructors', 'guests'));
+        }
+    }
+
+    private function isThereGuestsAssociated($guests)
+    {
+        if (empty($guests) OR $guests === NULL) {
+            throw new BadRequestException('Informe o(s) hóspedes que realizaram a atividade!');
         }
     }
 
@@ -113,6 +124,7 @@ class ActivitiesController extends AppController
 
             if ($this->request->is(['patch', 'post', 'put'])) {
                 $activity = $this->Activities->patchEntity($activity, $this->request->getData());
+                $this->isThereGuestsAssociated($activity->guests);
 
                 if ($this->Activities->save($activity)) {
                     $this->Flash->success(__('Atividade editada com sucesso.'));
