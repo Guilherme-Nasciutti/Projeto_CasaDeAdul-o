@@ -23,16 +23,27 @@ class ActivitiesController extends AppController
     public function index()
     {
         try {
-            $this->paginate = [
-                'contain' => ['Instructors' => 'Persons']
-            ];
-
-            $activities = $this->paginate($this->Activities);
+            $conditions = $this->filterDefault();
+            $activities = $this->paginate($this->Activities->findAllActivitiesByConditions($conditions))->toList();
             $this->set(compact('activities'));
 
         } catch (Exception $exc) {
             $this->Flash->error('Entre em contato com o administrador do sistema.');
         }
+    }
+
+    private function filterDefault()
+    {
+        $conditions = [];
+
+        if (!empty($this->request->getQuery('filter'))) {
+            $conditions[] = [
+                'OR' => [
+                    'activities.title like' => '%' . $this->request->getQuery('filter') . '%'
+                ]
+            ];
+        }
+        return $conditions;
     }
 
     /**

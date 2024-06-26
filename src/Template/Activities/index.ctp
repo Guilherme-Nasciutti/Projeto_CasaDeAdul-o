@@ -10,8 +10,20 @@
     <?= $this->Html->link('Nova atividade', ['controller' => 'Activities', 'action' => 'add']); ?>
 </header>
 
+<!-- Filtro de pesquisa  -->
+<section class="container_filter">
+    <?= $this->Form->create(null, ['type' => 'get', 'autocomplete' => 'off']) ?>
+
+    <div class="filter_row">
+        <?= $this->Form->control('filter', ['type' => 'text', 'label' => 'Filtro de pesquisa', 'placeholder' => 'Título da atividade', 'value' => $this->request->getQuery('filter')]); ?>
+
+        <?= $this->Form->button(__('Filtrar'), ['type' => 'submit']); ?>
+    </div>
+    <?= $this->Form->end(); ?>
+</section>
+
 <main>
-    <?php if (count($activities) > 0) : ?>
+    <?php if ($activities) : ?>
         <table class="table_list">
             <thead>
                 <tr>
@@ -46,7 +58,7 @@
         <p class="list_empty">Nenhuma atividade cadastrada!</p>
     <?php endif; ?>
 
-    <?php if (count($activities) > 0) : ?>
+    <?php if ($activities) : ?>
         <?= $this->element('pagination'); ?>
     <?php endif; ?>
 </main>

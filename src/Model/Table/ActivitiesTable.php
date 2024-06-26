@@ -122,4 +122,11 @@ class ActivitiesTable extends Table
         $rules->add($rules->existsIn(['instructor_id'], 'Instructors', 'É obrigatório informar um responsável.'));
         return $rules;
     }
+
+    public function findAllActivitiesByConditions($conditions = null)
+    {
+        return $this->find('all', [
+            'contain' => ['Instructors' => 'Persons']
+        ])->where($conditions);
+    }
 }
