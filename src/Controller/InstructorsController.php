@@ -21,16 +21,27 @@ class InstructorsController extends AppController
     public function index()
     {
         try {
-            $this->paginate = [
-                'contain' => ['Persons']
-            ];
-
-            $instructors = $this->paginate($this->Instructors);
+            $conditions = $this->filterDefault();
+            $instructors = $this->paginate($this->Instructors->findAllInstructorsByConditions($conditions))->toList();
             $this->set(compact('instructors'));
 
         } catch (Exception $exc) {
             $this->Flash->error('Entre em contato com o administrador do sistema.');
         }
+    }
+
+    private function filterDefault()
+    {
+        $conditions = [];
+
+        if (!empty($this->request->getQuery('filter'))) {
+            $conditions[] = [
+                'OR' => [
+                    'persons.first_name like' => '%' . $this->request->getQuery('filter') . '%'
+                ]
+            ];
+        }
+        return $conditions;
     }
 
     /**

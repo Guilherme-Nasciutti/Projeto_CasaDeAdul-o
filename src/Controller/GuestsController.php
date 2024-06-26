@@ -22,7 +22,7 @@ class GuestsController extends AppController
     {
         try {
             $conditions = $this->filterDefault();
-            $guests = $this->paginate($this->Guests->findAllGuestsByConditions($conditions));
+            $guests = $this->paginate($this->Guests->findAllGuestsByConditions($conditions))->toList();
             $this->set(compact('guests'));
 
         } catch (Exception $exc) {
