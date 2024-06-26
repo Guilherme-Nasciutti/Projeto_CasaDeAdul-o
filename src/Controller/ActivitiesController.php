@@ -39,7 +39,8 @@ class ActivitiesController extends AppController
         if (!empty($this->request->getQuery('filter'))) {
             $conditions[] = [
                 'OR' => [
-                    'activities.title like' => '%' . $this->request->getQuery('filter') . '%'
+                    'activities.title like' => '%' . $this->request->getQuery('filter') . '%',
+                    'persons.first_name like' => '%' . $this->request->getQuery('filter') . '%'
                 ]
             ];
         }

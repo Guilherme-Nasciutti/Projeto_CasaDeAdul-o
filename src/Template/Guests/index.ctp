@@ -14,6 +14,18 @@ use App\Controller\StatusENUM;
     <?= $this->Html->link('Novo hóspede', ['controller' => 'Guests', 'action' => 'add']); ?>
 </header>
 
+<!-- Filtro de pesquisa  -->
+<section class="container_filter">
+    <?= $this->Form->create(null, ['type' => 'get', 'autocomplete' => 'off']) ?>
+
+    <div class="filter_row">
+        <?= $this->Form->control('filter', ['type' => 'text', 'label' => 'Filtro de pesquisa', 'placeholder' => 'Nome do hóspede', 'value' => $this->request->getQuery('filter')]); ?>
+
+        <?= $this->Form->button(__('Filtrar'), ['type' => 'submit']); ?>
+    </div>
+    <?= $this->Form->end(); ?>
+</section>
+
 <main>
     <?php if (count($guests) > 0) : ?>
         <table class="table_list">

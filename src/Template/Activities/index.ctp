@@ -15,7 +15,7 @@
     <?= $this->Form->create(null, ['type' => 'get', 'autocomplete' => 'off']) ?>
 
     <div class="filter_row">
-        <?= $this->Form->control('filter', ['type' => 'text', 'label' => 'Filtro de pesquisa', 'placeholder' => 'Título da atividade', 'value' => $this->request->getQuery('filter')]); ?>
+        <?= $this->Form->control('filter', ['type' => 'text', 'label' => 'Filtro de pesquisa', 'placeholder' => 'Título da atividade ou nome do instrutor', 'value' => $this->request->getQuery('filter')]); ?>
 
         <?= $this->Form->button(__('Filtrar'), ['type' => 'submit']); ?>
     </div>

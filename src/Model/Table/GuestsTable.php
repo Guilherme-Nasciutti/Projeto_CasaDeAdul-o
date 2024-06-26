@@ -86,4 +86,11 @@ class GuestsTable extends Table
         return $this->find('all', ['contain' => 'Persons'])
             ->where(['Persons.status' => StatusENUM::ATIVO])->toList();
     }
+
+    public function findAllGuestsByConditions($conditions = null)
+    {
+        return $this->find('all', [
+            'contain' => ['Persons']
+        ])->where($conditions);
+    }
 }

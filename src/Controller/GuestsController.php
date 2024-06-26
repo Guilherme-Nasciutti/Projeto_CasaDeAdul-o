@@ -21,16 +21,27 @@ class GuestsController extends AppController
     public function index()
     {
         try {
-            $this->paginate = [
-                'contain' => ['Persons']
-            ];
-
-            $guests = $this->paginate($this->Guests);
+            $conditions = $this->filterDefault();
+            $guests = $this->paginate($this->Guests->findAllGuestsByConditions($conditions));
             $this->set(compact('guests'));
 
         } catch (Exception $exc) {
             $this->Flash->error('Entre em contato com o administrador do sistema.');
         }
+    }
+
+    private function filterDefault()
+    {
+        $conditions = [];
+
+        if (!empty($this->request->getQuery('filter'))) {
+            $conditions[] = [
+                'OR' => [
+                    'persons.first_name like' => '%' . $this->request->getQuery('filter') . '%'
+                ]
+            ];
+        }
+        return $conditions;
     }
 
     /**
