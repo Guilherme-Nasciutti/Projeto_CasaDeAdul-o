@@ -51,11 +51,11 @@ use App\Controller\TimesDayENUM;
 
         <div class="view_row">
             <dt>Data de cadastro:</dt>
-            <dd><?= $activity->created->format('d/m/Y H:i:s'); ?> horas</dd>
+            <dd><?= $activity->created->format('d/m/Y H:i:s'); ?></dd>
         </div>
     </dl>
 
-    <?php if (count($activity->guests) > 0) : ?>
+    <?php if (!empty($activity->guests)) : ?>
         <table class="table_list">
             <thead>
                 <tr>
@@ -68,7 +68,7 @@ use App\Controller\TimesDayENUM;
             <tbody>
                 <?php foreach ($activity->guests as $guest) : ?>
                     <tr>
-                        <td><?= h($guest->person->first_name); ?></td>
+                        <td><?= h($guest->person->first_name . ' ' . $guest->person->last_name); ?></td>
                         <td class="list_phone"><?= h($guest->person->birthday->format('d/m/Y')); ?></td>
                         <td class="list_table"><?= CivilStatusENUM::findConstants($guest->person->civil_status); ?></td>
                     </tr>

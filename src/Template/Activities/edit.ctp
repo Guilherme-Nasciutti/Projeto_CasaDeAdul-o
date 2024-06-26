@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\Activity $activity
@@ -41,12 +42,19 @@ use App\Controller\TimesDayENUM;
     <section class="container_guests">
         <h3>Hóspedes <span class="field_required">*</span></h3>
         <p><small>Selecione os hóspedes que estaram vinculados a esta atividade, ou clique na opção abaixo para para marcar/desmarcar todos os hóspedes.</small></p>
+        <p><small>** A listagem abaixo é somente de hóspedes que se encontram com a situação 'ATIVA'.</small></p>
+
+        <p class="check_all inactive">
+            <i class="bi bi-check-square"></i>
+            <i class="bi bi-square"></i>
+            Marcar / Desmarcar todos
+        </p>
 
         <?php $cont = 0; ?>
 
         <div class="guests">
             <?php foreach ($guests as $guest) : ?>
-                <?= $this->Form->control('guests.' . $cont . '.id', ['hiddenField' => false, 'type' => 'checkbox', 'label' => '<span>' . $guest->person->first_name . ' ' . $guest->person->last_name . '</span>', 'value' => $guest->id, 'escape' => false, 'checked' => in_array($guest->id, $guest_associated_activity)]); ?>
+                <?= $this->Form->control('guests.' . $cont . '.id', ['hiddenField' => false, 'type' => 'checkbox', 'label' => '<span>' . $guest->person->first_name . ' ' . $guest->person->last_name . '</span>', 'value' => $guest->id, 'escape' => false, 'required' => false, 'checked' => in_array($guest->id, $guest_associated_activity)]); ?>
                 <?php $cont++; ?>
             <?php endforeach; ?>
         </div>
@@ -55,3 +63,5 @@ use App\Controller\TimesDayENUM;
     <?= $this->Form->button('Editar', ['class' => 'btn_sumit']); ?>
     <?= $this->Form->end(); ?>
 </main>
+
+<?= $this->Html->script('checks'); ?>
