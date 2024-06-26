@@ -153,9 +153,12 @@ class GuestsController extends AppController
     {
         try {
             if ($this->request->is(['patch', 'post', 'put'])) {
-                $guest = $this->Guests->get($id, ['contain' => ['Persons']]);
+                $guest = $this->Guests->get($id);
+
                 $person = $this->Guests->Persons->get($guest->person_id);
-                $person->status = ($person->status == StatusENUM::ATIVO) ? StatusENUM::INATIVO : StatusENUM::ATIVO;
+                $person->status = ($person->status == StatusENUM::ATIVO) ?
+                    StatusENUM::INATIVO :
+                    StatusENUM::ATIVO;
 
                 if ($this->Guests->Persons->save($person)) {
                     $this->Flash->success(__('Situação alterada com sucesso.'));

@@ -66,6 +66,7 @@ class InstructorsController extends AppController
 
             if ($this->request->is('post')) {
                 $instructor = $this->Instructors->patchEntity($instructor, $this->request->getData());
+                $instructor->person->status = StatusENUM::ATIVO;
 
                 if ($this->Instructors->save($instructor, ['associated' => ['Persons']])) {
                     $this->Flash->success(__('Instrutor cadastrado com sucesso.'));
