@@ -8,8 +8,20 @@ use App\Controller\EducationENUM;
     <?= $this->Html->link('Novo instrutor', ['controller' => 'Instructors', 'action' => 'add']); ?>
 </header>
 
+<!-- Filtro de pesquisa  -->
+<section class="container_filter">
+    <?= $this->Form->create(null, ['type' => 'get', 'autocomplete' => 'off']) ?>
+
+    <div class="filter_row">
+        <?= $this->Form->control('filter', ['type' => 'text', 'label' => 'Filtro de pesquisa', 'placeholder' => 'Nome do instrutor', 'value' => $this->request->getQuery('filter')]); ?>
+
+        <?= $this->Form->button(__('Filtrar'), ['type' => 'submit']); ?>
+    </div>
+    <?= $this->Form->end(); ?>
+</section>
+
 <main>
-    <?php if (count($instructors) > 0) : ?>
+    <?php if ($instructors) : ?>
         <table class="table_list">
             <thead>
                 <tr>
@@ -42,7 +54,7 @@ use App\Controller\EducationENUM;
         <p class="list_empty">Nenhum instrutor cadastrado!</p>
     <?php endif; ?>
 
-    <?php if (count($instructors) > 0) : ?>
+    <?php if ($instructors) : ?>
         <?= $this->element('pagination'); ?>
     <?php endif; ?>
 </main>

@@ -27,7 +27,7 @@ use App\Controller\StatusENUM;
 </section>
 
 <main>
-    <?php if (count($guests) > 0) : ?>
+    <?php if ($guests) : ?>
         <table class="table_list">
             <thead>
                 <tr>
@@ -64,7 +64,7 @@ use App\Controller\StatusENUM;
         <p class="list_empty">Nenhum hóspede cadastrado!</p>
     <?php endif; ?>
 
-    <?php if (count($guests) > 0) : ?>
+    <?php if ($guests) : ?>
         <?= $this->element('pagination'); ?>
     <?php endif; ?>
 </main>

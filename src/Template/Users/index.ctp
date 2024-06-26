@@ -4,7 +4,7 @@
 </header>
 
 <main>
-    <?php if (count($users) > 0) : ?>
+    <?php if ($users) : ?>
         <table class="table_list">
             <thead>
                 <tr>
@@ -35,7 +35,7 @@
         <p class="list_empty">Nenhum administrador cadastrado!</p>
     <?php endif; ?>
 
-    <?php if (count($users) > 0) : ?>
+    <?php if ($users) : ?>
         <?= $this->element('pagination'); ?>
     <?php endif; ?>
 </main>
