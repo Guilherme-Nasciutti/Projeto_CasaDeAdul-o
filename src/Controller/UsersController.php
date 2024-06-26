@@ -215,7 +215,7 @@ class UsersController extends AppController
             }
 
         } catch (Exception $exc) {
-            $this->Flash->error(__('Erro desconhecido! Por favor, entre em contato com o suporte.'.$exc));
+            $this->Flash->error(__('Erro desconhecido! Por favor, entre em contato com o suporte.'));
         } finally {
             $this->set(compact('user'));
         }
